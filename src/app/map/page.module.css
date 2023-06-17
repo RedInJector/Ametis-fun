@@ -1,0 +1,6 @@
+.frame{
+    border: 0;
+
+    width: 100%;
+    height: calc(99.4vh - var(--nav-height));
+}   

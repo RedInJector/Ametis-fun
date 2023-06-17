@@ -38,6 +38,9 @@
   --callout-border-rgb: 172, 175, 176;
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
+
+
+  font-size: 20px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -92,7 +95,24 @@ body {
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+  rgb(var(--background-start-rgb));
+
+  --background-color: #19181B;
+  --main-font-color: #EBEBEB;
+  
+
+  background: var(--background-color);
+  color: var(--main-font-color);
+
+  margin: auto;
+  font-size: 1rem;
+
+  --nav-height: 3rem;
+
+  --primary-purpule: #8F37F7;
+  --primary-text: #EBEBEB;
+
+  
 }
 
 a {

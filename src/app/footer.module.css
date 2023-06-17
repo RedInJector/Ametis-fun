@@ -1,0 +1,51 @@
+.footer{
+    width: 100vw;
+    background-color: rgba(39, 39, 42, 0.5);
+    box-shadow: 0px -2px 0px 0px #27272A;
+
+    font-size: 14px;
+}
+.wrapper{
+    padding: 24px 0;
+    margin: auto;
+    max-width: 1536px;
+}
+.top{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.topLeft{
+    display: flex;
+    align-items: center;
+}
+.topRight{
+
+}
+
+.AmetisIcon{
+    margin-right: 10px;
+}
+.topRight{
+    display: flex;
+}
+.iconButton{
+    display: flex;
+    margin: 0px 12px;
+    padding:8px 8px;
+    
+}
+.Icon{
+
+}
+.middle{
+    margin-bottom: 20px;
+}
+.middleText{
+    margin-right: 20px;
+}
+.bottom{
+  
+}

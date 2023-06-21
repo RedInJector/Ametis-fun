@@ -1,8 +1,7 @@
 "use client"
 import s from './page.module.css'
 import Image from 'next/image'
-import { manrope } from './layout'
-import { inter } from './layout'
+import { inter, manrope } from './config';
 import React, { Children, useState } from "react";
 import { motion, useAnimationControls } from "framer-motion"
 

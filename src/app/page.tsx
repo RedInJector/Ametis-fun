@@ -1,8 +1,7 @@
 import Image from 'next/image'
 import s from './page.module.css'
 import Link from 'next/link'
-import { manrope } from './layout'
-import { inter } from './layout'
+import {inter, manrope} from './config';
 import Section3 from './Section3'
 
 

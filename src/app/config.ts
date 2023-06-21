@@ -2,3 +2,11 @@ export const authUrl = "https://discord.com/api/oauth2/authorize?client_id=98521
 export const apiUrl = "localhost:8080"
 export const apiUri = "http://" + apiUrl;
 export const discordUrl = "";
+
+
+import { Inter } from 'next/font/google'
+import { Manrope } from 'next/font/google'
+
+export const inter = Inter({ subsets: ['latin', 'cyrillic'] })
+
+export const manrope = Manrope({ subsets: ['latin', 'cyrillic']})

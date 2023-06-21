@@ -3,7 +3,7 @@ import React, { useEffect, useState, ChangeEvent, FormEvent, use } from 'react';
 import Authorized from '../User/Authorized';
 import { User } from '../User/User';
 import s from './page.module.css';
-import { inter, manrope } from '../layout'
+import { inter, manrope } from '../config';
 import { useRouter } from 'next/navigation'
 import * as config from "../config";
 import Image from 'next/image'

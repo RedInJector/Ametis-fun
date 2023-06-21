@@ -1,13 +1,8 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
-import { Manrope } from 'next/font/google'
-import localFont from 'next/font/local'
+import {inter, manrope} from './config';
 import NavBar from './nav'
 import Footer from './footer'
 
-export const inter = Inter({ subsets: ['latin', 'cyrillic'] })
-
-export const manrope = Manrope({ subsets: ['latin', 'cyrillic']})
 
 export const metadata = {
   title: 'Ametis',

@@ -24,8 +24,7 @@ const Confidential = ({user}:{user:User}) =>{
         <div>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet vel nesciunt illo cum dignissimos voluptate cumque ipsum alias esse totam perferendis, perspiciatis ipsam, sequi temporibus similique qui odio blanditiis incidunt.
             <div>
-                {user.publicUsername}
-                {user.discriminator}
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio numquam quis officia culpa qui esse accusantium nisi tenetur impedit facilis soluta voluptate, dolore aliquam vitae recusandae totam tempora maiores. Aut?
             </div>
         </div>
     )

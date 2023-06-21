@@ -48,7 +48,7 @@ function NavList() {
       <div className={s.central}>
         <Link className={pathname == "/" ? s.selectedButton : s.notSelectedButton} href="/" draggable="false">Головна</Link>
         <Link className={pathname == "/rules" ? s.selectedButton : s.notSelectedButton} href="/" draggable="false">Правила</Link>
-        <Link className={pathname == "/wiki" ? s.selectedButton : s.notSelectedButton} href="/" draggable="false">Вікі</Link>
+        <Link className={pathname == "/wiki" ? s.selectedButton : s.notSelectedButton} href="/Wiki" draggable="false">Вікі</Link>
         <Link className={pathname == "/map" ? s.selectedButton : s.notSelectedButton} href="/map" draggable="false">Мапа</Link>
         <Link className={`${s.selectedIcon} ${s.iconButton}`} href="/" draggable="false"><TelegramIcon /></Link>
         <Link className={`${s.selectedIcon} ${s.iconButton}`} href="/" draggable="false"><DiscordIcon /></Link>

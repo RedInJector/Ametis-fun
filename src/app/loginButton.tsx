@@ -37,8 +37,12 @@ export default function AuthButton() {
     if (user === null) {
       return;
     }
+    let cook = getCookie("_dt");
+    if(cook == null)
+      return
 
-    logOut(user.token);
+    logOut(cook)
+    //logOut(getCookie("_dt"));
     setUser(null);
   };
 
@@ -53,7 +57,7 @@ export default function AuthButton() {
         <div className={styles.avatarWrapper}>
           <Image
             priority
-            src={`https://cdn.discordapp.com/avatars/${user.discordId}/${user.avatarUrl}`}
+            src={`https://cdn.discordapp.com/avatars/${user.discordUser.discordId}/${user.discordUser.avatarUrl}`}
             width="300"
             height="300"
             className={styles.Avatar}
@@ -79,4 +83,10 @@ function AuthIcon() {
       alt="Join our Discord!"
     />
   );
+}
+
+
+function getCookie(name: string): string | null {
+  const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+  return cookieValue ? decodeURIComponent(cookieValue.pop()!) : null;
 }

@@ -45,8 +45,8 @@ const Panel = ({ user }: { user: User }) => {
 
         // TODO: Change urls
         //ws://localhost:8080/api/v1/guild-socket?dsid=654684984
-
-        const uri = 'ws://localhost:8080/api/v1/guild-socket?' + params;
+        
+        const uri = 'ws://' + config.apiUrl + '/api/v1/guild-socket?' + params;
         const socket = new WebSocket(uri);
 
         socket.onmessage = (event) => {
@@ -62,7 +62,7 @@ const Panel = ({ user }: { user: User }) => {
     }, []);
 
     const handleFormSubmit = async (name: string) => {
-        const res = await fetch(`${config.apiUrl}/api/v1/submit-minecraft-name`, {
+        const res = await fetch(`${config.apiUri}/api/v1/submit-minecraft-name`, {
             method: 'POST',
             cache: 'no-store',
             credentials: 'include',
@@ -246,7 +246,7 @@ const Form = ({ onSubmit }: FormProps) => {
 
         if (isValidating) {
             timeoutId = setTimeout(async () => {
-                const res = await fetch(`${config.apiUrl}/api/v1/check-minecraft-name?name=` + inputValue, {
+                const res = await fetch(`${config.apiUri}/api/v1/check-minecraft-name?name=` + inputValue, {
                     method: 'GET',
                     cache: 'no-store',
                     credentials: 'include'
@@ -336,7 +336,7 @@ const Krok3 = ({ user }: { user: User }) => {
         // TODO: Change urls
         //ws://localhost:8080/api/v1/payment-socket?userid=654684984
 
-        const uri = 'ws://localhost:8080/api/v1/payment-socket?' + params;
+        const uri = 'ws://' + config.apiUrl + '/api/v1/payment-socket?' + params;
         const socket = new WebSocket(uri);
 
         socket.onmessage = (event) => {

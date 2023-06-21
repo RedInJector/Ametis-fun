@@ -18,7 +18,7 @@ export default function AuthButton() {
 
   const fetchUserData = async () => {
     try {
-      const res = await fetch(`${config.apiUrl}/api/v1/getuserdata2`, {
+      const res = await fetch(`${config.apiUri}/api/v1/getuserdata2`, {
         method: 'GET',
         cache: 'no-store',
         credentials: 'include',

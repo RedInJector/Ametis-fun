@@ -13,7 +13,7 @@ const Authorized: React.FC<AuthorizedProps> = ({ children }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`${config.apiUrl}/api/v1/getuserdata2`, {
+      const response = await fetch(`${config.apiUri}/api/v1/getuserdata2`, {
         method: 'GET',
         cache: 'no-store',
         credentials: 'include',

@@ -67,7 +67,7 @@ export async function getUserData(token: string): Promise<User | null> {
 */
 export function logOut(token: string) {
     try {
-        fetch(`${config.apiUrl}/api/v1/logout2`, {
+        fetch(`${config.apiUri}/api/v1/logout2`, {
             method: 'DELETE',
             cache: 'no-store',
             credentials: 'include',

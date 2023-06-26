@@ -54,6 +54,7 @@ function NavList() {
         <Link className={`${s.selectedIcon} ${s.iconButton}`} href="/" draggable="false"><DiscordIcon /></Link>
       </div>
       <div className={s.right}>
+
         <AuthButton />
       </div>
     </>

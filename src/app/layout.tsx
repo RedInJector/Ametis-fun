@@ -1,7 +1,6 @@
 import './globals.css'
-import {inter, manrope} from './config';
-import NavBar from './nav'
-import Footer from './footer'
+import {inter, manrope} from '@/fonts/fonts';
+import Footer from '@/components/footer/footer'
 
 
 export const metadata = {
@@ -57,7 +56,6 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NavBar />
         {children}
         <Footer />
       </body>

@@ -36,35 +36,8 @@ export type User = {
     banned: boolean;
 }
 
+import * as config from "../config/config";
 
-
-import * as config from "../config";
-
-
-/*
-export async function getUserData(token: string): Promise<User | null> {
-    try {
-        const res = await fetch(`${config.apiUrl}/api/v1/getuserdata`, {
-            method: 'GET',
-            headers: {
-                'Authorization': token
-            },
-            cache: 'no-store'
-        });
-
-        if (!res.ok) {
-            return null;
-        }
-
-        const user = (await res.json()) as User;
-        user.token = token;
-        return user;
-    } catch (error) {
-        console.error('An error occurred while fetching user data ' + error);
-        return null;
-    }
-}
-*/
 export function logOut(token: string) {
     try {
         fetch(`${config.apiUri}/api/v1/logout2`, {

@@ -6,7 +6,6 @@ export default function Footer(){
       <footer className={s.footer}>
         <div className={s.wrapper}>
             <div className={s.top}>
-                
                 <div className={s.topLeft}>
                     <AmetisIcon />
                     Ametis

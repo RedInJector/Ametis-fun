@@ -1,32 +1,28 @@
 'use client'
-import React, { useEffect, useState, ChangeEvent, FormEvent, use } from 'react';
-import Authorized from '../User/Authorized';
-import { User } from '../User/User';
+import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
+import { useUser } from '@/components/Auth/UserProvider';
 import s from './page.module.css';
-import { inter, manrope } from '../config';
+import {inter, manrope} from '@/fonts/fonts';
 import { useRouter } from 'next/navigation'
-import * as config from "../config";
+import * as config from "@/config/config";
 import Image from 'next/image'
+import { User } from '@/types/User';
+import Spinner from '@/components/Spinner/Spinner'
 
+export default function RegistrationPanel() {
+    const user = useUser();
 
-export default function LoginPage() {
     return (
-        <main className={s.main}>
-            <Authorized>
-                {(user: User | null) => (
-                    user ? <Panel user={user} /> : <p>Loading...</p>
-                )}
-            </Authorized>
-        </main>
+        <>
+            {user.user ? <Panel user={user.user}></Panel> : <Spinner />}
+        </>
     )
 }
 
 
 
 const Panel = ({ user }: { user: User }) => {
-    const [data, setData] = useState(null);
     const [step, setStep] = useState(0);
-    const [savedPlayerName, setSavedPlayerName] = useState("null");
     const router = useRouter()
 
     let params: string;
@@ -37,24 +33,17 @@ const Panel = ({ user }: { user: User }) => {
             router.push('/');
         }
         if (user.minecraftPlayer != null) {
-            setSavedPlayerName(user.minecraftPlayer.playerName);
             setStep(2);
             return;
         }
 
-
-        // TODO: Change urls
-        //ws://localhost:8080/api/v1/guild-socket?dsid=654684984
-        
         const uri = 'ws://' + config.apiUrl + '/api/v1/guild-socket?' + params;
         const socket = new WebSocket(uri);
 
         socket.onmessage = (event) => {
-            const socketData = event.data;
             setStep(1);
         };
 
-        // Clean up the WebSocket connection
         return () => {
             socket.close();
         };
@@ -81,7 +70,7 @@ const Panel = ({ user }: { user: User }) => {
             playerName: name,
             allowedOnServer: true
         }
-        setSavedPlayerName(name);
+        //setSavedPlayerName(name);
         setStep(2);
     }
 
@@ -332,10 +321,6 @@ const Krok3 = ({ user }: { user: User }) => {
     params = 'userid=' + user.id;
 
     useEffect(() => {
-        
-        // TODO: Change urls
-        //ws://localhost:8080/api/v1/payment-socket?userid=654684984
-
         const uri = 'ws://' + config.apiUrl + '/api/v1/payment-socket?' + params;
         const socket = new WebSocket(uri);
 
@@ -343,7 +328,6 @@ const Krok3 = ({ user }: { user: User }) => {
             router.push('/')
         };
 
-        // Clean up the WebSocket connection
         return () => {
             socket.close();
         };

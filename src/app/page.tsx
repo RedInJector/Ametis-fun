@@ -1,18 +1,25 @@
 import Image from 'next/image'
 import s from './page.module.css'
 import Link from 'next/link'
-import {inter, manrope} from './config';
+import {inter, manrope} from '@/fonts/fonts';
 import Section3 from './Section3'
+import UserProvider from '@/components/Auth/UserProvider';
+import NavBar from '@/components/Navbar/nav'
 
 
 export default function Home() {
   return (
-    <main className={s.main}>
-      <Section1 />
-      <Section2 />
-      <Section3 />
-      <Section4 />
-    </main>
+    <>
+      <UserProvider AuthorizedOnly={false}>
+            <NavBar />
+      </UserProvider>
+      <main className={s.main}>
+        <Section1 />
+        <Section2 />
+        <Section3 />
+        <Section4 />
+      </main>
+    </>
   )
 }
 

@@ -1,0 +1,108 @@
+.navDesktop {
+    z-index: 10;
+    position: fixed;
+    width: 100%;
+    height: var(--nav-height);
+    
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.2s, backdrop-filter 0.5s;
+}
+
+.navDesktopSticky{
+    backdrop-filter: blur(30px);
+	background-color: rgba(25, 24, 27, 0.5);
+}
+
+.navDesktopWrapper {
+    max-width: 1300px;
+    margin: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.Image {
+    display: flex;
+
+}
+
+.Center{
+    display: flex;
+    align-items: center;
+}
+
+.iconButton {
+    display: flex;
+    align-content: center;
+
+    cursor: pointer;
+
+    filter: brightness(0) saturate(100%) invert(99%) sepia(1%) saturate(657%) hue-rotate(351deg) brightness(115%) contrast(84%);
+    
+}
+.iconButton:hover{
+    filter: brightness(0) saturate(100%) invert(24%) sepia(82%) saturate(3908%) hue-rotate(260deg) brightness(99%) contrast(96%);
+}
+
+
+.HorizontalCenter a:nth-child(1) {
+    margin-left: 20px;
+    margin-right: 50px;
+}
+
+.HorizontalCenter a:nth-child(2) {
+    margin-right: 50px;
+}
+
+.HorizontalCenter a:nth-child(3) {
+    margin-right: 50px;
+}
+
+.HorizontalCenter a:nth-child(4) {
+    margin-right: 50px;
+}
+
+.HorizontalCenter a:nth-child(5) {
+    margin-right: 30px;
+}
+
+.HorizontalCenter a:nth-child(6) {
+    margin-right: 20px;
+}
+
+
+.button{
+    font-weight: 500;
+    font-size: 16px;
+
+    transition: color 0.1s, background-color 0.2s, backdrop-filter 0.5s;
+}
+.button:hover{
+    color: #8F37F7;
+}
+
+.selectedButton{
+    color: #8F37F7;
+}
+
+
+.authButton{
+    color: #000000;
+    filter: brightness(0) saturate(100%) invert(99%) sepia(1%) saturate(657%) hue-rotate(351deg) brightness(115%) contrast(84%);
+
+    gap:10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+
+    
+}
+
+.authButton:hover{
+    
+    filter: brightness(0) saturate(100%) invert(24%) sepia(82%) saturate(3908%) hue-rotate(260deg) brightness(99%) contrast(96%);
+}
+

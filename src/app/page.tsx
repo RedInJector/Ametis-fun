@@ -4,7 +4,9 @@ import Link from 'next/link'
 import {inter, manrope} from '@/fonts/fonts';
 import Section3 from './Section3'
 import UserProvider from '@/components/Auth/UserProvider';
-import NavBar from '@/components/Navbar/nav'
+import NavBar from '@/components/navbar2/_nav'
+import UPGLOW from 'public/Upper Glow.png'
+import BOTGLOW from 'public/Bottom Glow.png'
 
 
 export default function Home() {
@@ -27,16 +29,31 @@ const Section1 = () => {
   return (
     <section className={`${s.s1container} ${inter.className}`}>
       <div className={s.backgroundImages} draggable="false">
-        <div className={`${s.s1BackgroundImage} ${s.s1Image1}`}>
-          <PersImage file="/Personage.png" />
-        </div>
-        <div className={`${s.s1BackgroundImage} ${s.s1Image2}`}>
-          <PersImage file="/Personage2.png" />
-        </div>
-        <div className={`${s.s1BackgroundImage} ${s.s1Circle} ${s.s1Circle1}`}></div>
-        <div className={`${s.s1BackgroundImage} ${s.s1Circle} ${s.s1Circle2}`}></div>
-        <div className={`${s.s1BackgroundImage} ${s.s1Circle} ${s.s1Circle3}`}></div>
-        <div className={`${s.s1BackgroundImage} ${s.s1Circle} ${s.s1Circle4}`}></div>
+        <Image 
+          src='/LEFTIMAGE.png'
+          alt=""
+          width={443}
+          height={743}
+          className={`${s.s1BackgroundImage} ${s.s1Image1}`}
+        />
+        <Image 
+          src='/RIGHTIMAGE.png'
+          alt=""
+          width={492}
+          height={583}
+          className={`${s.s1BackgroundImage} ${s.s1Image2}`}
+        />
+        <Image
+          src={UPGLOW}
+          alt=""
+          className={`${s.s1BackgroundImage} ${s.s1circle11}`}
+        />
+        <Image
+          src={BOTGLOW}
+          alt=""
+          className={`${s.s1BackgroundImage} ${s.s1circle22}`}
+        />
+        
       </div>
       <div className={s.s1Part}>
         <div className={`${s.s1Title} ${manrope.className}`}>

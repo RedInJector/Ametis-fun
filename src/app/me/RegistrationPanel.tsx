@@ -286,7 +286,13 @@ const Form = ({ onSubmit }: FormProps) => {
             ) : null
             }
 
-            <button className={isValid ? `${s.formButton}` : `${s.formbuttondissabled}`} disabled={!isValid || isValidating || isSubmited} type="submit" >Зберегти</button>
+            { isValid ? 
+            <button className={s.formButton} disabled={!isValid || isValidating || isSubmited} type="submit" >Зберегти</button>
+            :
+            null
+        
+        }
+            
         </form>
     );
 };

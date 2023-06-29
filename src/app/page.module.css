@@ -82,6 +82,7 @@
 
 .backgroundImages{
     position: relative;
+    z-index: -1;
 }
 
 .s1BackgroundImage{
@@ -97,7 +98,9 @@
     transform: none;
 }
 
-
+.zindex{
+    z-index: -5;
+}
 
 .s1Circle{
     z-index: -2;
@@ -109,46 +112,33 @@
     opacity: 0.8;
 }
 
-.s1Circle1{
-    background: #7A31FF;
-    left: -150px;
-    top: -60px;
-}
-.s1Circle2{
-    background: #CE8AFF;
-    left: -50px;
-    top: -200px;
-}
-.s1Circle3{
-    width: 995px;
-    height: 995px;
-    opacity: 0.3;
-    background: #7A31FF;
-    right: -150px;
-    top: 300px;
-}
-.s1Circle4{
-    width: 995px;
-    height: 995px;
-    right: -600px;
-    top: -60px;
+.s1circle11{
+    z-index: -3;
 
-    background: #CE8AFF;
-    opacity: 0.3;
-    filter: blur(225px);
+    left: -527px;
+    top: -687px;
 }
+.s1circle22{
+    z-index: -3;
+
+    right: -1048px;
+    top: -660px;
+}
+
 .s1Imageim1{
     width: 500px;
     height: auto;
 }
 .s1Image1{
-    top: 40px;
-    left: 3%;
+    transform: scaleX(-1);
+    top: 16px;
+    left: -49px;
 }
 
 .s1Image2{
-    top: 0px;
-    right: 3%;
+    top: -2px;
+    right: 40px;
+
 }
 
 
@@ -157,18 +147,20 @@
         width: 450px;
         height: auto;
     }
+}
+
+@media screen and (max-width: 1600px) {
+    .s1Imageim1 {
+        display: none;
+    }
+}
+@media screen and (max-width: 1500px) {
+
     .s1Image1{
-        top: 80px;
-        left: 3%;
+        display: none;
     }
     
     .s1Image2{
-        top: 60px;
-        right: 3%;
-    }
-}
-@media screen and (max-width: 1600px) {
-    .s1Imageim1 {
         display: none;
     }
 }

@@ -14,7 +14,7 @@ export default function RegistrationPanel() {
 
     return (
         <>
-            {user.user ? <Panel user={user.user}></Panel> : <Spinner />}
+            {user ? <Panel user={user}></Panel> : <Spinner />}
         </>
     )
 }
@@ -68,7 +68,8 @@ const Panel = ({ user }: { user: User }) => {
         user.minecraftPlayer = {
             id: null,
             playerName: name,
-            allowedOnServer: true
+            allowedOnServer: true,
+            skinUrl: ""
         }
         //setSavedPlayerName(name);
         setStep(2);
@@ -286,7 +287,13 @@ const Form = ({ onSubmit }: FormProps) => {
             ) : null
             }
 
-            <button className={isValid ? `${s.formButton}` : `${s.formbuttondissabled}`} disabled={!isValid || isValidating || isSubmited} type="submit" >Зберегти</button>
+            { isValid ? 
+            <button className={s.formButton} disabled={!isValid || isValidating || isSubmited} type="submit" >Зберегти</button>
+            :
+            null
+        
+        }
+            
         </form>
     );
 };
@@ -304,11 +311,7 @@ const Avatar = ({ name }: { name: string }) => {
 }
 const Krok3 = ({ user }: { user: User }) => {
     if (user.minecraftPlayer == null)
-        user.minecraftPlayer = {
-            id: 0,
-            playerName: "",
-            allowedOnServer: false
-        }
+       return(<></>);
 
 
     const convertToPaddedString = (num: number, length: number): string => {

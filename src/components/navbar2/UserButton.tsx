@@ -79,11 +79,12 @@ function Panel() {
                 <AvatarImage />
                 <div className={s.PanelTopRight}>
                     {user.minecraftPlayer == null ?
-                        <div>{user.discordUser.publicUsername}</div>
+                        <div>{user.discordUser.publicUsername}
+                        #{convertToPaddedString(user.id, 5)}</div>
                         :
                         <div>
                             {user.minecraftPlayer.playerName}
-                            #{convertToPaddedString(user?.id, 5)}
+                            #{convertToPaddedString(user.id, 5)}
                         </div>
                     }
                     <Link href='/me' className={s.buybutton}>

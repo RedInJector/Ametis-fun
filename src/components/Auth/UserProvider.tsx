@@ -68,7 +68,6 @@ const Provider = ({ children, AuthorizedOnly }: Props) => {
 
     }
 
-
     const exposed: UserContextType = {
         user,
         logout,

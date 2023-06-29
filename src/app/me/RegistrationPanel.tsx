@@ -9,12 +9,16 @@ import Image from 'next/image'
 import { User } from '@/types/User';
 import Spinner from '@/components/Spinner/Spinner'
 
+import { motion } from "framer-motion"
+
 export default function RegistrationPanel() {
     const user = useUser();
 
     return (
         <>
-            {user ? <Panel user={user}></Panel> : <Spinner />}
+            
+            {user ? <motion.div initial= {{ y: 70, opacity:0}} animate={{y: 0, opacity:1 }}  transition={{ delay: 0.3, type: 'spring',  damping: 13}}><Panel user={user}></Panel></motion.div> : <Spinner />}
+            
         </>
     )
 }

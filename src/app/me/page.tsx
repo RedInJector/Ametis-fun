@@ -4,7 +4,6 @@ import UserProvider from '@/components/Auth/UserProvider';
 import NavBar from '@/components/navbar2/_nav'
 
 
-
 export default function LoginPage() {
     return (
         <UserProvider AuthorizedOnly={true}>

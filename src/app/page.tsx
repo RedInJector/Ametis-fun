@@ -71,7 +71,7 @@ const Section1 = () => {
           <Image 
             src='/RIGHTPERSONA.png'
             alt=""
-            width={550}
+            width={780}
             height={0}
             className={`${s.s1BackgroundImage} ${s.s1Image2}`}
           />
@@ -130,33 +130,33 @@ const Section2 = () => {
       </div>
       <div className={s.s2Grid}>
         <S2GridElement
-          file="/survive.webp.png"
+          file="/mainpagepictures/2.png"
           title="Виживайте"
           text="Основа сервера - звичайне, ванільне виживання з іншими гравцями"
         />
         <S2GridElement
-          file="/survive.webp.png"
+          file="/mainpagepictures/1.png"
           title="Придумуйте власні правила "
           text="Гра на сервері будується на стосунках між гравцями, отож будь-хто може змінити чи регулювати правила та закони"
         />
         <S2GridElement
-          file="/survive.webp.png"
+          file="/mainpagepictures/3.png"
           title="Створюйте власні спільноти"
           text="На сервері є можливість створювати власні спільноти людей для власних проєктів"
         />
         <S2GridElement
-          file="/survive.webp.png"
-          title="Беріть владу у свої руки"
-          text="Сервером керують звичайні гравці, котрі можуть обратись на будь-яку посаду"
+          file="/mainpagepictures/4.png"
+          title="Будьте ким хочете"
+          text="Втілюйте свої фантазії, та відігруйте персонажів котрих забажаєте"
         />
         <S2GridElement
-          file="/survive.webp.png"
+          file="/mainpagepictures/5.png"
           title="Торгуйте"
           text="Працюйте, добувайте ресурси, відкрийте
           власний бізнес і продавайте речі на ринку"
         />
         <S2GridElement
-          file="/survive.webp.png"
+          file="/mainpagepictures/6.png"
           title="Беріть участь або створюйте свої події"
           text="Беріть участь в міні-іграх, торгуйтесь на ринку, приєднуйтесь до зборів ресурсів, або побудови проєктів"
         />
@@ -209,19 +209,6 @@ function S2GridElement({ file, title, text }: { file: string, title: string, tex
 }
 
 
-function PersImage({ file }: { file: string }) {
-  return (
-    <Image
-      priority
-      src={file}
-      className={s.s1Imageim1}
-      width={529}
-      height={641}
-      alt="Personage"
-    />
-  );
-}
-
 function GridImage({ file }: { file: string }) {
   return (
     <Image
@@ -229,6 +216,7 @@ function GridImage({ file }: { file: string }) {
       src={file}
       width={800}
       height={460}
+      quality={80}
       alt="Image"
       className={s.s2GridImageimg}
     />

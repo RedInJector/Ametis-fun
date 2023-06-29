@@ -1,7 +1,7 @@
 import s from './page.module.css';
 import RegistrationPanel from './RegistrationPanel';
 import UserProvider from '@/components/Auth/UserProvider';
-import NavBar from '@/components/Navbar/nav'
+import NavBar from '@/components/navbar2/_nav'
 
 
 

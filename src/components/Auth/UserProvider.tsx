@@ -79,6 +79,7 @@ const Provider = ({ children, AuthorizedOnly }: Props) => {
     );
 };
 
-export const useUser = () => useContext(Context);
+export const useUser = () => useContext(Context).user;
+export const useAuth = () => useContext(Context);
 
 export default Provider;

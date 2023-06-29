@@ -4,7 +4,6 @@ import sm from './_navMobile.module.css'
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link'
-import { useUser } from 'components/Auth/UserProvider'
 import { usePathname } from "next/navigation";
 import useWindowDimensions from 'components/hooks/useWindowDimension';
 
@@ -13,7 +12,8 @@ import { inter } from '@/fonts/fonts'
 import DSIcon from 'public/nav/discord-icon.svg'
 import TGIcon from 'public/nav/Telegram-icon.svg'
 import Logo from 'public/Ametis-icon.svg'
-import Auth from 'public/nav/Frame.svg'
+
+import UserButton from './UserButton';
 
 export default function Navbar() {
     const { width } = useWindowDimensions();
@@ -44,31 +44,21 @@ function NavDesktop() {
     return (
         <nav className={`${isScrolled ? s.navDesktopSticky : null} ${inter.className} ${s.navDesktop}`}>
             <div className={s.navDesktopWrapper}>
-                <Image
-                    priority
-                    src={Logo}
-                    alt=""
-                    className={s.Image}
-                />
+                <Link href="/">
+                    <Image
+                        priority
+                        src={Logo}
+                        alt=""
+                        className={s.Image}
+                    />
+                </Link>
                 <div className={`${s.Center} ${s.HorizontalCenter}`}>
                     <NavList />
                 </div>
-                <AuthButton />
+                <UserButton />
             </div>
         </nav>
 
-    )
-}
-
-function AuthButton() {
-    return (
-        <div className={`${inter.className} ${s.authButton} ${s.Center} `}>
-            <Image
-                src={Auth}
-                alt=""
-            />
-            Авторизація
-        </div>
     )
 }
 

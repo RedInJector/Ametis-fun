@@ -13,6 +13,7 @@ export type MinecraftPlayer = {
     id: number | null;
     playerName: string;
     allowedOnServer: boolean;
+    skinUrl: string;
 }
 
 export type User = {

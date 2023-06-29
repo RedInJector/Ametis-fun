@@ -16,6 +16,7 @@
 
 .navDesktopWrapper {
     max-width: 1300px;
+    padding: 0 30px;
     margin: auto;
     height: 100%;
     display: flex;
@@ -89,6 +90,7 @@
 }
 
 
+
 .authButton{
     color: #000000;
     filter: brightness(0) saturate(100%) invert(99%) sepia(1%) saturate(657%) hue-rotate(351deg) brightness(115%) contrast(84%);
@@ -97,12 +99,86 @@
     cursor: pointer;
     font-weight: 600;
     font-size: 16px;
-
-    
 }
 
 .authButton:hover{
-    
     filter: brightness(0) saturate(100%) invert(24%) sepia(82%) saturate(3908%) hue-rotate(260deg) brightness(99%) contrast(96%);
 }
 
+
+
+.userbuttonContainer{
+    position: relative;
+}
+
+.avatarimage{
+    border: transparent;
+    border-radius: 9px;
+    width: 32px;
+    height: 32px;
+}
+.avatarContainer{
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    border-radius: 9px;
+    user-select: none;
+    position: relative;
+}
+
+.avatarContainer:hover{
+    background-color: #ffffff22;
+}
+
+.OpenedPanel{
+    z-index: 11;
+    position: absolute;
+    top: 50px;
+    right: 0px;
+    border-radius: 9px;
+    padding: 25px;
+    border-radius: 9px;
+    border: 1px solid #5D5C62;
+    background: #232326;
+    font-weight: 600;
+    
+}
+.PanelTop{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.PanelBottom{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.buybutton{
+    color: #8F37F7;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    filter: brightness(0) saturate(100%) invert(40%) sepia(67%) saturate(4851%) hue-rotate(241deg) brightness(96%) contrast(95%);
+}
+.buybutton:hover{
+    cursor: pointer;
+    filter: brightness(0) saturate(100%) invert(13%) sepia(68%) saturate(7379%) hue-rotate(269deg) brightness(92%) contrast(130%);
+}
+
+.PanelTopRight{
+    display: flex;
+    flex-direction: column;
+
+}
+.logoutimage{
+    filter: brightness(0) saturate(100%) invert(98%) sepia(2%) saturate(200%) hue-rotate(197deg) brightness(115%) contrast(84%);
+}
+
+.PanelBottom:hover{
+    cursor: pointer;
+    
+    filter: brightness(0) saturate(100%) invert(30%) sepia(53%) saturate(3592%) hue-rotate(244deg) brightness(99%) contrast(89%);
+
+}

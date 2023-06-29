@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image'
 import s from './page.module.css'
 import Link from 'next/link'
@@ -7,19 +8,27 @@ import UserProvider from '@/components/Auth/UserProvider';
 import NavBar from '@/components/navbar2/_nav'
 import UPGLOW from 'public/Upper Glow.png'
 import BOTGLOW from 'public/Bottom Glow.png'
-
+import { motion } from "framer-motion"
 
 export default function Home() {
   return (
     <>
-      <UserProvider AuthorizedOnly={false}>
-            <NavBar />
-      </UserProvider>
+      <motion.div  initial= {{ y: -60}} animate={{y: 0 }}  transition={{ delay: 0.4, duration: 0.5 }}>
+        <UserProvider AuthorizedOnly={false}>
+              <NavBar />
+        </UserProvider>
+      </motion.div>
       <main className={s.main}>
         <Section1 />
+        <motion.div  initial= {{ opacity: 0,}} whileInView={{opacity: 1 }}  viewport={{ once: true, amount: 0.1 }} transition={{ delay: 0.3, duration: 1 }}>
         <Section2 />
+        </motion.div>
+        <motion.div  initial= {{ opacity: 0,}} whileInView={{opacity: 1 }}  viewport={{ once: true, amount: 0.3 }} transition={{ duration: 1 }}>
         <Section3 />
+        </motion.div>
+        <motion.div  initial= {{ opacity: 0,}} whileInView={{opacity: 1 }}  viewport={{ once: true, amount: 0.3 }} transition={{ duration: 1 }}>
         <Section4 />
+        </motion.div>
       </main>
     </>
   )
@@ -28,48 +37,64 @@ export default function Home() {
 const Section1 = () => {
   return (
     <section className={`${s.s1container} ${inter.className}`}>
+  
       <div className={s.backgroundImages} draggable="false">
-        <Image 
-          src='/LEFTIMAGE.png'
-          alt=""
-          width={443}
-          height={743}
-          className={`${s.s1BackgroundImage} ${s.s1Image1}`}
-        />
-        <Image 
-          src='/RIGHTIMAGE.png'
-          alt=""
-          width={492}
-          height={583}
-          className={`${s.s1BackgroundImage} ${s.s1Image2}`}
-        />
+
+        <div className={s.zindex}></div>
+        <motion.div initial= {{x: -200, rotate: 30,opacity: 0}} animate={{ x: 0, rotate: 0, opacity: 1 }} transition={{ duration: 2}}>
         <Image
           src={UPGLOW}
           alt=""
           className={`${s.s1BackgroundImage} ${s.s1circle11}`}
         />
-        <Image
-          src={BOTGLOW}
-          alt=""
-          className={`${s.s1BackgroundImage} ${s.s1circle22}`}
-        />
-        
+        </motion.div>
+        <motion.div initial= {{x: 500, rotate: 30,opacity: 0}} animate={{ x: 0, rotate: 0, opacity: 1 }} transition={{  duration: 3}}>
+          <Image
+            src={BOTGLOW}
+            alt=""
+            className={`${s.s1BackgroundImage} ${s.s1circle22}`}
+          />
+        </motion.div>
       </div>
-      <div className={s.s1Part}>
-        <div className={`${s.s1Title} ${manrope.className}`}>
-          Україномовний сервер
-          з елементами
-          <span className={s.s1PurpuleText}> Role-play</span>
+      
+        <div className={s.backgroundImages} draggable="false">
+        <motion.div initial= {{x: -100, opacity: 0,}}  animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.3, type: 'spring',  damping: 13}}>
+        <Image 
+            src='/LEFTPERSONA.png'
+            alt=""
+            width={700}
+            height={0}
+            className={`${s.s1BackgroundImage} ${s.s1Image1}`}
+          />
+          </motion.div>
+          <motion.div initial= {{x: 100, opacity: 0,}} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.3, type: 'spring',  damping: 13}}>
+          <Image 
+            src='/RIGHTPERSONA.png'
+            alt=""
+            width={550}
+            height={0}
+            className={`${s.s1BackgroundImage} ${s.s1Image2}`}
+          />
+          </motion.div>
         </div>
-        <div className={`${s.s1text} ${inter.className}`}>
-          Простір для вираження власної творчості та розвитку своїх
-          здібностей в будівництві, й соціальній взаємодії з іншими гравцями.
-        </div>
-        <MainButtons />
-        <div className={s.s1subButtonText}>
-          1.19.2 · Minecraft: Java Edition · Ліцензія не обов’язкова
-        </div>
-      </div>
+
+        <motion.div className={s.s1Part}  initial= {{y: 200, opacity: 0,}} animate={{ y: 0, opacity: 1 }} transition={{ type: 'spring',  damping: 12}}>
+
+          <div className={`${s.s1Title} ${manrope.className}`}>
+            Україномовний сервер
+            з елементами
+            <span className={s.s1PurpuleText}> Role-play</span>
+          </div>
+          <div className={`${s.s1text} ${inter.className}`}>
+            Простір для вираження власної творчості та розвитку своїх
+            здібностей в будівництві, й соціальній взаємодії з іншими гравцями.
+          </div>
+          <MainButtons />
+          <div className={s.s1subButtonText}>
+            1.19.2 · Minecraft: Java Edition · Ліцензія не обов’язкова
+          </div>
+
+      </motion.div>
     </section>
   );
 }

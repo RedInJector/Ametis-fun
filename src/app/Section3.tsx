@@ -49,7 +49,7 @@ const S3Nav = () => {
     controls1.start({
       x: 0,
       opacity: 1,
-      transition: { duration: 0.3 },
+      transition: { duration: 0.1 },
     })
     controls2.set({
       x: 0,
@@ -58,7 +58,7 @@ const S3Nav = () => {
     controls2.start({
       x: direction * -window.screen.width,
       opacity: 0,
-      transition: { duration: 0.3 },
+      transition: { duration: 0.1 },
     })
   };
 
@@ -108,7 +108,7 @@ const S3Nav = () => {
 
   return (
     <div>
-      <div className={s.s3NavBar} >
+      <nav className={s.s3NavBar} >
         <button disabled={isAnimating} className={s.s3navButton} onClick={() => Previouse()}>
           <ArrowLeft />
         </button>
@@ -118,7 +118,7 @@ const S3Nav = () => {
         <button disabled={isAnimating} className={s.s3navButton} onClick={() => Next()}>
           <ArrowRight />
         </button>
-      </div>
+      </nav>
 
       <div className={s.s3CaroucelWrapper}>
         <motion.div animate={controls2} className={s.animationDiv} onAnimationComplete={compleateAnimation}>

@@ -1,5 +1,8 @@
 import s from './footer.module.css'
 import Image from 'next/image'
+import Link from 'next/link'
+
+import * as config from "@/config/config";
 
 export default function Footer(){
     return(
@@ -11,8 +14,8 @@ export default function Footer(){
                     Ametis
                 </div>
                 <div className={s.topRight}>
-                    <Icon src="/Telegram-icon.svg" href="/"/>
-                    <Icon src="/discord-icon.svg" href="/"/>
+                    <Icon src="/Telegram-icon.svg" href={config.telegramUrl}/>
+                    <Icon src="/discord-icon.svg" href={config.discordUrl}/>
                 </div>
             </div>
             <div className={s.middle}>

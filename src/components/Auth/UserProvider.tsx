@@ -82,3 +82,14 @@ export const useUser = () => useContext(Context).user;
 export const useAuth = () => useContext(Context);
 
 export default Provider;
+
+/*
+interface Props2 {
+    children: React.ReactNode,
+}
+const a =({ children }:Props2) =>{
+    return(
+        {children}
+    )
+}
+*/

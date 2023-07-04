@@ -1,0 +1,135 @@
+.main{
+    font-family: Helvetica;
+    -webkit-font-smoothing: antialiased;
+    background: rgba( 71, 147, 227, 1);
+    overflow-x: auto;
+    overflow-y: auto;
+    color: black;
+
+    height: 100vh;
+}
+.h2{
+    text-align: center;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+    padding: 30px 0;
+}
+
+/* Table Styles */
+
+.tablewrapper{
+    margin: 10px 70px 70px;
+    box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
+}
+
+.fltable {
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+    background-color: white;
+}
+
+.fltable td, .fltable th {
+    text-align: center;
+    padding: 8px;
+}
+
+.fltable td {
+    border-right: 1px solid #f8f8f8;
+    font-size: 12px;
+}
+
+.fltable thead th {
+    color: #ffffff;
+    background: #4FC3A1;
+}
+
+
+.fltable thead th:nth-child(odd) {
+    color: #ffffff;
+    background: #324960;
+}
+
+.fltable tr:nth-child(even) {
+    background: #F8F8F8;
+}
+
+/* Responsive */
+
+@media (max-width: 767px) {
+    .tablewrapper{
+        margin: 0;
+    }
+    .fltable {
+        display: block;
+        width: 100%;
+    }
+    .table-wrapper:before{
+        content: "Scroll horizontally >";
+        display: block;
+        text-align: right;
+        font-size: 11px;
+        color: white;
+        padding: 0 0 10px;
+    }
+    .fltable thead, .fltable tbody, .fltable thead th {
+        display: block;
+    }
+    .fltable thead th:last-child{
+        border-bottom: none;
+    }
+    .fltable thead {
+        float: left;
+    }
+    .fltable tbody {
+        width: auto;
+        position: relative;
+        overflow-x: auto;
+    }
+    .fltable td, .fltable th {
+        padding: 20px .625em .625em .625em;
+        height: 60px;
+        vertical-align: middle;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        overflow-y: auto;
+        
+        font-size: 13px;
+        text-overflow: ellipsis;
+    }
+    .fltable thead th {
+        text-align: left;
+        border-bottom: 1px solid #f7f7f9;
+    }
+    .fltable tbody tr {
+        display: table-cell;
+    }
+    .fltable tbody tr:nth-child(odd) {
+        background: none;
+    }
+    .fltable tr:nth-child(even) {
+        background: transparent;
+    }
+    .fltable tr td:nth-child(odd) {
+        background: #F8F8F8;
+        border-right: 1px solid #E6E4E4;
+    }
+    .fltable tr td:nth-child(even) {
+        border-right: 1px solid #E6E4E4;
+    }
+    .fltable tbody td {
+        display: block;
+        text-align: center;
+    }
+}
+
+.noplayer{
+    color: red;
+}

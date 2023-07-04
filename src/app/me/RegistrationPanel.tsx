@@ -86,9 +86,7 @@ const Panel = ({ user }: { user: User }) => {
 
         user.minecraftPlayer = {
             id: null,
-            playerName: name,
-            allowedOnServer: true,
-            skinUrl: ""
+            playerName: name
         }
         //setSavedPlayerName(name);
         setStep(2);

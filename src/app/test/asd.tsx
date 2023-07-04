@@ -1,3 +1,5 @@
+
+'use client'
 import Image from 'next/image'
 import s from './page.module.css'
 import Link from 'next/link'
@@ -34,7 +36,7 @@ export default function Home() {
   )
 }
 
-const Section1 = () => {
+function Section1() {
 
   return (
     <section className={`${s.s1container} ${inter.className}`}>
@@ -91,7 +93,7 @@ const Section1 = () => {
   );
 }
 
-const MainButtons = () => {
+function MainButtons (){
   return (
     <div className={s.s1Buttons}>
       <a className={s.s1Button} >
@@ -109,7 +111,7 @@ const MainButtons = () => {
     </div>
   )
 }
-const Section2 = () => {
+function Section2() {
   return (
     <section className={`${s.s2container} ${inter.className}`} >
       <div className={s.s4Background}>
@@ -165,7 +167,7 @@ const Section2 = () => {
     </section>
   );
 }
-const Section4 = () => {
+function Section4() {
   return (
     <section className={s.s4container}>
       <div className={s.s4Background}>

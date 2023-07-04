@@ -82,9 +82,30 @@ function NavList() {
 
 
 function NavMobile() {
+    const [isOpened, setOpened] = useState(false);
     return (
         <nav className={s.navMobile}>
-
+            {isOpened ? <NavMobileOpened /> : null}
+            
         </nav>
+    )
+}
+
+function NavMobileOpened(){
+    const pathname = usePathname();
+    return(
+        <>
+            <div className={sm.opened}>
+                <div className={sm.top}>
+
+                </div>
+                
+                <Link className={`${pathname == '/' ? sm.selectedButton : null} ${sm.button}`} href="/" draggable="false">Головна</Link>
+                <Link className={`${pathname == '/rules' ? sm.selectedButton : null} ${sm.button}`} href="/" draggable="false">Правила</Link>
+                <Link className={`${pathname == '/wiki' ? sm.selectedButton : null} ${sm.button}`} href="/" draggable="false">Вікі</Link>
+                <Link className={`${pathname == '/map' ? sm.selectedButton : null} ${sm.button}`} href="/" draggable="false">Мапа</Link>
+                <UserButton />
+            </div>
+        </>
     )
 }

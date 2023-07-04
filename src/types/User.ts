@@ -12,8 +12,6 @@ export type DiscordUser = {
 export type MinecraftPlayer = {
     id: number | null;
     playerName: string;
-    allowedOnServer: boolean;
-    skinUrl: string;
 }
 
 export type User = {
@@ -21,8 +19,7 @@ export type User = {
     discordUser: DiscordUser;
     minecraftPlayer: MinecraftPlayer | null;
     hasPayed: boolean;
-    isMinecraftNameSet: boolean;
-    isBanned: boolean;
-    minecraftNameSet: boolean;
     banned: boolean;
+    admin: boolean;
 }
+

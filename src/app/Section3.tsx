@@ -2,7 +2,7 @@
 import s from './page.module.css'
 import Image from 'next/image'
 import { inter, manrope } from '@/fonts/fonts';
-import React, { Children, useState } from "react";
+import React, { useState } from "react";
 import { motion, useAnimationControls } from "framer-motion"
 
 import useWindowDimensions from 'components/hooks/useWindowDimension';
@@ -29,9 +29,8 @@ const S3Nav = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [previouseIdx, setPreviouseIdx] = useState(-1);
-  //const [scope, animate] = useAnimate()
+
   const controls1 = useAnimationControls();
-  const controls2 = useAnimationControls();
 
   const compleateAnimation = () => {
     setIsAnimating(false);
@@ -48,20 +47,11 @@ const S3Nav = () => {
 
     //setIsAnimating(true);
     controls1.set({
-
       opacity: 0
     })
     controls1.start({
-
       opacity: 1,
       transition: { ease: "easeIn", duration: 0.3 },
-    })
-    controls2.set({
-
-    })
-    controls2.start({
-
-
     })
   };
 
@@ -102,10 +92,13 @@ const S3Nav = () => {
     }
     animate(false);
   }
-
-  const SmallNavButton = ({ index, text }: { index: number, text: string }) => {
+  interface Props {
+    index: number;
+    children: React.ReactNode;
+  }
+  const SmallNavButton = ({ index, children }:Props) => {
     return (
-      <button disabled={isAnimating} className={`${currentIdx == index ? s.s3navSelectedButton : null} ${s.s3navButton}`} onClick={() => setCurrent(index)}>{text}</button>
+      <button disabled={isAnimating} className={`${currentIdx == index ? s.s3navSelectedButton : null} ${s.s3navButton}`} onClick={() => setCurrent(index)}>{children}</button>
     )
   }
 
@@ -116,11 +109,11 @@ const S3Nav = () => {
           <ArrowLeft />
         </button>
         {width > 800 ? <>
-          <SmallNavButton index={0} text="Ресурспак" />
-          <SmallNavButton index={1} text="Емоції" />
-          <SmallNavButton index={2} text="Система лобі" />
-          <SmallNavButton index={3} text="Спільноти" />
-          <SmallNavButton index={4} text="Чат" />
+          <SmallNavButton index={0}>Ресурспак</SmallNavButton>
+          <SmallNavButton index={1}>Емоції</SmallNavButton>
+          <SmallNavButton index={2}>Система лобі</SmallNavButton>
+          <SmallNavButton index={3}>Спільноти</SmallNavButton>
+          <SmallNavButton index={4}>Чат</SmallNavButton>
         </>
           :
           null}
@@ -128,18 +121,12 @@ const S3Nav = () => {
           <ArrowRight />
         </button>
       </nav>
-
       <div className={s.s3CaroucelWrapper}>
         <div className={s.animationDiv}>
-
           {previouseIdx != -1 && (
-           
             data[previouseIdx]
           )}
-
-
         </div>
-
         <motion.div animate={controls1} className={s.animationDiv} onAnimationComplete={compleateAnimation}>
           {data[currentIdx]}
         </motion.div>
@@ -148,77 +135,86 @@ const S3Nav = () => {
   );
 };
 
+interface Props {
+  children: React.ReactNode;
+}
+interface Props2 {
+  children: React.ReactNode;
+  url: string;
+}
 
 
-function Page({ title, p1, p2, url }: { title: string, p1: string, p2: string, url: string }) {
+function Page({ children, url }:Props2){
   return(
-  <div className={s.s3Caroucel} style={{ backgroundImage: `url(${url})` }}>
-    <div className={s.s3page}>
-      <div className={`${manrope.className} ${s.s3pageTitle}`}>
-        {title}
-      </div>
-      <div className={s.s3pageText}>
-        {p1}
-      </div>
-      <div className={s.s3pageText}>
-        {p2}
+    <div className={s.s3Caroucel} style={{ backgroundImage: `url(${url})` }}>
+      <div className={s.s3page}>
+        {children}
       </div>
     </div>
-  </div>
+  )
+}
+
+function Title({ children }:Props) {
+  return (
+    <div className={`${manrope.className} ${s.s3pageTitle}`}>
+      {children}
+    </div>
+  )
+}
+function Paragraph({ children }:Props){
+  return(
+    <div className={s.s3pageText}>
+        {children}
+    </div>
   )
 }
 
 
 const page1 = () => {
   return (
-    <Page 
-      title="Власний ресурспак"
-      p1="Ми знаємо як важливо мати на Role-Play серверах власний ресурспак"
-      p2="Саме тому ми створили такий та активно його підримуємо, впершу чергу базуючись на ваших побажаннях та ідеях"
-      url="/mainpagepictures/panel/1.png"
-    />
+    <Page url="/mainpagepictures/panel/1.png">
+      <Title>Власний ресурспак</Title>
+      <Paragraph>Ми знаємо як важливо мати на Role-Play серверах власний ресурспак</Paragraph>
+      <Paragraph>Саме тому ми створили такий та активно його підримуємо, впершу чергу базуючись на ваших побажаннях та ідеях</Paragraph>
+    </Page>
   )
 }
 const page2 = () => {
   return (
-    <Page 
-      title="Власний пак Емоцій"
-      p1="Виражайте ваші емоції, враження та дії краще використовуючи наш пак емоцій"
-      p2="Один з єдиничних випадків україномовних паків емоцій, зроблей українцями для гравців нашого сервера"
-      url="/mainpagepictures/panel/2.png"
-    />
+    <Page url="/mainpagepictures/panel/2.png">
+      <Title>Власний пак Емоцій</Title>
+      <Paragraph>Виражайте ваші емоції, враження та дії краще використовуючи наш пак емоцій</Paragraph>
+      <Paragraph>Один з єдиничних випадків україномовних паків емоцій, зроблей українцями для гравців нашого сервера</Paragraph>
+    </Page>
   )
 }
 
 const page3 = () => {
   return (
-    <Page 
-      title="Система лобі"
-      p1="Дає можливість високої продуктивності сервера та стабільний ТПС "
-      p2="Не звичайна система сервера з розділенням сервера на світ побудов та світ ферм робить наш проєкт менш лагучим та більш ефективним"
-      url=""
-    />
+    <Page url="">
+      <Title>Система лобі</Title>
+      <Paragraph>Дає можливість високої продуктивності сервера та стабільний ТПС</Paragraph>
+      <Paragraph>Не звичайна система сервера з розділенням сервера на світ побудов та світ ферм робить наш проєкт менш лагучим та більш ефективним</Paragraph>
+    </Page>
   )
 }
 const page4 = () => {
   return (
-    <Page 
-      title="Спільноти"
-      p1="Одна з крутих можливостей об’єднюватись та втілювати ваші проєкти в реальність"
-      p2="Використовуючи плагін Parties ми створити круту систему прокачування ваших спільнот при побудові проєктів, міст тощо"
-      url=""
-    />
+    <Page url="">
+      <Title>Спільноти</Title>
+      <Paragraph>Одна з крутих можливостей об’єднюватись та втілювати ваші проєкти в реальність</Paragraph>
+      <Paragraph>Використовуючи плагін Parties ми створити круту систему прокачування ваших спільнот при побудові проєктів, міст тощо</Paragraph>
+    </Page>
   )
 }
 
 const page5 = () => {
   return (
-    <Page 
-      title="Чат"
-      p1="Оновлений, налаштовуємий та не звичайни чат для вашого спілнування"
-      p2="Ви можете мутити та заглушувати гравців та вони не зможуть вам писати, вимикати чи вмикати певні канали в чаті"
-      url=""
-    />
+    <Page url="">
+      <Title>Чат</Title>
+      <Paragraph>Оновлений, налаштовуємий та не звичайни чат для вашого спілнування</Paragraph>
+      <Paragraph>Ви можете мутити та заглушувати гравців та вони не зможуть вам писати, вимикати чи вмикати певні канали в чаті</Paragraph>
+    </Page>
   )
 }
 

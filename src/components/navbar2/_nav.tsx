@@ -15,6 +15,8 @@ import Logo from 'public/Ametis-icon.svg'
 
 import UserButton from './UserButton';
 
+import * as config from "@/config/config";
+
 export default function Navbar() {
     const { width } = useWindowDimensions();
     return (
@@ -71,8 +73,8 @@ function NavList() {
             <Link className={`${pathname == '/rules' ? s.selectedButton : null} ${s.button}`} href="/" draggable="false">Правила</Link>
             <Link className={`${pathname == '/wiki' ? s.selectedButton : null} ${s.button}`} href="/" draggable="false">Вікі</Link>
             <Link className={`${pathname == '/map' ? s.selectedButton : null} ${s.button}`} href="/" draggable="false">Мапа</Link>
-            <Link className={`${s.iconButton}`} href="/" draggable="false"><Image priority src={DSIcon} alt={""} /></Link>
-            <Link className={`${s.iconButton}`} href="/" draggable="false"><Image priority src={TGIcon} alt={""} /></Link>
+            <Link className={`${s.iconButton}`} href={config.discordUrl} draggable="false"><Image priority src={DSIcon} alt={""} /></Link>
+            <Link className={`${s.iconButton}`} href={config.telegramUrl} draggable="false"><Image priority src={TGIcon} alt={""} /></Link>
         </>
     )
 }

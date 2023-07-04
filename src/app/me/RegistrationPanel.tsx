@@ -15,13 +15,28 @@ export default function RegistrationPanel() {
     const user = useUser();
 
     return (
-        <>
-            
+        <>   
             {user ? <motion.div initial= {{ y: 70, opacity:0}} animate={{y: 0, opacity:1 }}  transition={{ delay: 0.3, type: 'spring',  damping: 13}}><Panel user={user}></Panel></motion.div> : <Spinner />}
-            
         </>
     )
 }
+
+interface Props {
+    children: React.ReactNode;
+  }
+  
+function SectionAnimation({children}:Props) {
+    const anim = {
+      initial:{ y: 0 },
+      animate:{ y: 100 },
+      transition:{ duration: 1 }
+    }
+    return(
+      <motion.div initial={anim.initial} animate={anim.animate} transition={anim.transition}>
+        {children}
+      </motion.div>
+    )
+  }
 
 
 
@@ -41,7 +56,7 @@ const Panel = ({ user }: { user: User }) => {
             return;
         }
 
-        const uri = 'ws://' + config.apiUrl + '/api/v1/guild-socket?' + params;
+        const uri = 'wss://' + config.apiUrl + '/api/v1/guild-socket?' + params;
         const socket = new WebSocket(uri);
 
         socket.onmessage = (event) => {
@@ -95,10 +110,10 @@ const Panel = ({ user }: { user: User }) => {
                     <Krok1 />
                 )}
                 {step == 1 && (
-                    <Krok2 onSubmit={handleFormSubmit} />
+                        <Krok2 onSubmit={handleFormSubmit} />
                 )}
                 {step == 2 && (
-                    <Krok3 user={user} />
+                        <Krok3 user={user} />
                 )}
             </div>
         </section>
@@ -328,7 +343,7 @@ const Krok3 = ({ user }: { user: User }) => {
     params = 'userid=' + user.id;
 
     useEffect(() => {
-        const uri = 'ws://' + config.apiUrl + '/api/v1/payment-socket?' + params;
+        const uri = 'wss://' + config.apiUrl + '/api/v1/payment-socket?' + params;
         const socket = new WebSocket(uri);
 
         socket.onmessage = (event) => {

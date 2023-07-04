@@ -459,7 +459,9 @@
 }
 .s4Plate{
     padding: 25px 30px;
+    border:solid 2px;
     border-radius: 8px;
+    border-color: #ffffff1c;
     background-color: #413F4633;
 }
 .s4Title{
@@ -468,6 +470,8 @@
     margin-bottom: 16px;
 
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .s4subtitle{
     font-weight: 500;

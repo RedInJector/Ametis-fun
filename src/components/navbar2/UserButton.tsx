@@ -119,13 +119,7 @@ function AvatarImage() {
 
     if(user.minecraftPlayer != null)
         return (
-            <Image
-                src={apiUri + "/api/v1/player/head/" + user.minecraftPlayer?.playerName}
-                width={100}
-                height={100}
-                alt=""
-                className={s.avatarimage}
-            />
+            <img className={s.avatarimage} src={apiUri + "/api/v1/player/head/" + user.minecraftPlayer?.playerName}></img>
         )
     
     return(

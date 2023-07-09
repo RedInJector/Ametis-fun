@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image'
 import s from './page.module.css'
 import Link from 'next/link'
@@ -7,54 +8,83 @@ import UserProvider from '@/components/Auth/UserProvider';
 import NavBar from '@/components/navbar2/_nav'
 import UPGLOW from 'public/Upper Glow.png'
 import BOTGLOW from 'public/Bottom Glow.png'
+import { motion } from "framer-motion"
+import Footer from '@/components/footer/footer'
+import useWindowDimensions from '@/components/hooks/useWindowDimension';
+import * as config from '@/config/config'
 
+interface Props {
+  children: React.ReactNode;
+}
 
+function SectionAnimation({children}:Props) {
+  const anim = {
+    initial:{ opacity: 0 },
+    whileInView:{ opacity: 1 },
+    viewport:{once: true, amount: 0.3 },
+    transition:{ duration: 1 }
+  }
+  return(
+    <motion.div initial={anim.initial} whileInView={anim.whileInView} viewport={anim.viewport} transition={anim.transition}>
+      {children}
+    </motion.div>
+  )
+}
 
 export default function Home() {
-
+  const { width } = useWindowDimensions();
+  
   return (
     <>
-
+      {width > 800 ?
+      <motion.nav initial={{ y: -60 }} animate={{ y: 0 }} transition={{ delay: 0.4, duration: 0.5 }}>
+        <UserProvider AuthorizedOnly={false}>
+          <NavBar />
+        </UserProvider>
+      </motion.nav>
+      :
       <UserProvider AuthorizedOnly={false}>
-        <NavBar />
-      </UserProvider>
-
+          <NavBar />
+        </UserProvider>
+      }
       <main className={s.main}>
         <Section1 />
-
         <Section2 />
-
-
-        <Section3 />
-
-        <Section4 />
-
+        <SectionAnimation>
+          <Section3 />
+        </SectionAnimation>
+        <SectionAnimation>
+          <Section4 />
+        </SectionAnimation>
       </main>
+      <Footer />
     </>
   )
 }
 
 const Section1 = () => {
-
   return (
     <section className={`${s.s1container} ${inter.className}`}>
       <div className={s.backgroundImages} draggable="false">
-        <div className={s.zindex}>
+        <div className={s.zindex}></div>
+        <motion.div initial={{ x: -200, rotate: 30, opacity: 0 }} animate={{ x: 0, rotate: 0, opacity: 1 }} transition={{ duration: 2 }}>
           <Image
             src={UPGLOW}
             alt=""
             className={`${s.s1BackgroundImage} ${s.s1circle11}`}
           />
-
-
+        </motion.div>
+        <motion.div initial={{ x: 500, rotate: 30, opacity: 0 }} animate={{ x: 0, rotate: 0, opacity: 1 }} transition={{ duration: 3 }}>
           <Image
             src={BOTGLOW}
             alt=""
             className={`${s.s1BackgroundImage} ${s.s1circle22}`}
           />
-        </div>
-        <div className={s.backgroundImages} draggable="false">
+        </motion.div>
+      </div>
 
+      <div className={s.backgroundImages} draggable="false">
+        <motion.div initial={{ x: -100, opacity: 0, }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.3, type: 'spring', damping: 13 }}>
           <Image
             src='/LEFTPERSONA.png'
             alt=""
@@ -62,7 +92,8 @@ const Section1 = () => {
             height={0}
             className={`${s.s1BackgroundImage} ${s.s1Image1}`}
           />
-
+        </motion.div>
+        <motion.div initial={{ x: 100, opacity: 0, }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.3, type: 'spring', damping: 13 }}>
           <Image
             src='/RIGHTPERSONA.png'
             alt=""
@@ -70,9 +101,10 @@ const Section1 = () => {
             height={0}
             className={`${s.s1BackgroundImage} ${s.s1Image2}`}
           />
-        </div>
+        </motion.div>
       </div>
-      <div className={s.s1Part}>
+
+      <motion.div className={s.s1Part} initial={{ y: 200, opacity: 0, }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'spring', damping: 12 }}>
         <div className={`${s.s1Title} ${manrope.className}`}>
           Україномовний сервер
           з елементами
@@ -86,7 +118,7 @@ const Section1 = () => {
         <div className={s.s1subButtonText}>
           1.20.1 · Minecraft: Java Edition · Ліцензія не обов’язкова
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
@@ -94,7 +126,7 @@ const Section1 = () => {
 const MainButtons = () => {
   return (
     <div className={s.s1Buttons}>
-      <a className={s.s1Button} >
+      <a href={config.donatelloURL} className={s.s1Button} >
         <div className={s.s1ButtonTextContainer}>
           <ButtonIcon file="/gamepad-icon.svg" />
           Придбати доступ на сервер
@@ -112,15 +144,15 @@ const MainButtons = () => {
 const Section2 = () => {
   return (
     <section className={`${s.s2container} ${inter.className}`} >
-      <div className={s.s4Background}>
+      <motion.div className={s.s4Background} initial={{ y: -200, opacity: 0, }} animate={{ y: 0, opacity: 1 }} transition={{ delay:0.6, type: 'spring', damping: 15 }}>
         <div className={`${s.s1BackgroundImage} ${s.s2Circle} ${s.s2Circle1}`}></div>
         <div className={`${s.s1BackgroundImage} ${s.s2Circle} ${s.s2Circle2}`}></div>
-      </div>
+      </motion.div>
 
-      <div className={s.s2Top}>
+      <motion.div className={s.s2Top} initial={{ y: -200, opacity: 0, }} animate={{ y: 0, opacity: 1 }} transition={{ delay:0.6, type: 'spring', damping: 11 }}>
         <div className={`${manrope.className} ${s.s2Title}`}>Сервер — це спільнота людей</div>
         <div className={s.s2Text}>Гравці заходять на сервер щоб спілкуватися, знайти нову компанію, друзів та знайомих</div>
-      </div>
+      </motion.div>
 
       <div className={s.s2Grid}>
         <S2GridElement
@@ -196,7 +228,7 @@ const Section4 = () => {
 }
 function S2GridElement({ file, title, text, number }: { file: string, title: string, text: string, number: number }) {
   return (
-    <div>
+    <motion.div initial={{ opacity: 0, y: 50, }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ delay: 0.03 * number, duration: 0.4 }}>
       <GridImage file={file} />
       <div className={`${manrope.className} ${s.s2GridTitle}`}>
         {title}
@@ -204,7 +236,7 @@ function S2GridElement({ file, title, text, number }: { file: string, title: str
       <div className={s.s2GridText}>
         {text}
       </div>
-    </div >
+    </motion.div >
   )
 }
 

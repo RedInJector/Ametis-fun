@@ -1,0 +1,73 @@
+.nav{
+    display: flex;
+    justify-content: center;
+
+    font-size: 16px;
+    font-weight: 500;
+
+    margin-bottom: 40px;
+}
+.ul{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+.selected{
+    font-size: 16px;
+    font-weight: 500;
+    font-style: normal;
+
+    border: 1px solid #5D5C62;
+    background: #413F46;
+}
+.button{
+    padding: 8px 18px;
+    border-radius: 32px;
+    cursor: pointer;
+}
+
+.s3Caroucel{
+    max-width: 1272px;
+    height: 430px;
+    margin: auto;
+    padding-left: 64px;
+
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.s3page{
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.s3pageTitle{
+    font-size: 26px;
+    font-weight: 800;
+}
+.s3pageText{
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: -0.1px;
+}
+.BottomButton{
+    display: inline-flex;
+    align-items: center;
+    border-radius: 20px;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 10px 20px;
+    background: #8F37F7;
+}
+.BottomButton:hover{
+    background: #a458fa;
+}
+.BottomButton:active{
+    background: #8551c0;
+}

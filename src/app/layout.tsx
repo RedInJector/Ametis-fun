@@ -1,6 +1,6 @@
 import './globals.css'
 import {inter, manrope} from '@/fonts/fonts';
-import Footer from '@/components/footer/footer'
+
 
 
 export const metadata = {
@@ -57,7 +57,6 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         {children}
-        <Footer />
       </body>
     </html>
   )

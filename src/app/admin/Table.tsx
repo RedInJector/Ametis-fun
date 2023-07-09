@@ -2,17 +2,13 @@
 import { useUser } from '@/components/Auth/UserProvider';
 import Spinner from '@/components/Spinner/Spinner';
 import * as config from '@/config/config'
-import { User } from '@/types/User'
+import { User } from '@/types/types'
 import { useEffect, useState } from 'react';
 import s from './page.module.css'
 
 
 export default function Table(){
     const user = useUser();
-
-    useEffect(() => {
-
-    },[user])
     
 
     return(
@@ -59,15 +55,15 @@ function Table1({user}:{user:User}){
                         <td>{user.id}</td>
                         <td>{user.discordUser.publicUsername} / {user.discordUser.discordId}</td>
                         <td>
-                            {user.minecraftPlayer ? (
+                            {user.minecraftName ? (
                                 <>
-                                    {user.minecraftPlayer.playerName}
+                                    {user.minecraftName}
                                 </>
                             ) : (
                                <p className={s.noplayer}>No Minecraft Player</p>
                             )}
                         </td>
-                        <td>{user.discordUser.email}</td>
+                        
                         <td>{String(user.hasPayed)}</td>
                         <td>{String(user.banned)}</td>
                     </tr>
@@ -88,7 +84,6 @@ function Table1({user}:{user:User}){
                                 <th>User id</th>
                                 <th>discord (name / id)</th>
                                 <th>minecraft name</th>
-                                <th>email</th>
                                 <th>Has Payed</th>
                                 <th>is banned</th>
                             </tr>

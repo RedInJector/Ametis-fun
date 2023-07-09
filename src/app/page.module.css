@@ -547,6 +547,13 @@
 
 
 
-
+@media screen and (max-width: 800px) {
+    .backgroundImages{
+        display: none;
+    }
+    .s3Caroucel{
+        padding: 102px 40px;
+    }
+}
 
 

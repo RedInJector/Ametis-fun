@@ -8,3 +8,12 @@ RUN npm run build
 
 EXPOSE 3000
 CMD ["npm", "run", "start"]
+
+/*
+export const authUrl = "https://discord.com/api/oauth2/authorize?client_id=985218368007192608&redirect_uri=https%3A%2F%2Fwww.ametis.xyz%2Fapi%2Fv1%2Fredirect&response_type=code&scope=identify%20email";
+export const apiUrl = "www.ametis.xyz"
+export const apiUri = "https://" + apiUrl;
+export const discordUrl = "";
+
+export const telegramUrl = "";
+*/

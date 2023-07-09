@@ -1,6 +1,6 @@
 'use client'
 import { createContext, useContext, useEffect, useState } from 'react';
-import { User } from '@/types/User';
+import { User } from '@/types/types';
 import * as config from "@/config/config";
 
 type UserContextType = {

@@ -7,8 +7,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-
-
+    margin: 0;
   }
 }
 
@@ -19,10 +18,9 @@
 }
 
 html,
-body,
 #root {
-  max-width: 100%;
-
+  max-width: 100vw;
+  margin: auto;
 }
 
 body {
@@ -34,10 +32,11 @@ body {
   background: var(--background-color);
   color: var(--main-font-color);
 
-  margin: auto;
+  margin: 0;
   font-size: 1rem;
 
   --nav-height: 3rem;
+  --nav-mobile-height: 70px;
  
 
   --primary-purpule: #8F37F7;

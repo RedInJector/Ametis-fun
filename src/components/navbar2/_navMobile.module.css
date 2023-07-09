@@ -1,13 +1,28 @@
-.top{
-    height: 50px;
+.navMobile{
+    top:0;
+    z-index: 11;
+    position: fixed;
+    width: 100%;
+    height: var(--nav-mobile-height);
+    display:flex;
+    align-items: center;
+}
+.Image{
+    width: 48px;
+    height: auto;
+    margin-left: 15px;
+}
+.zindex{
+    z-index: 15;
 }
 
 .opened{
+    top:0;
     position: fixed;
     width: 100%;
     height: 100vh;
     background: #19181B;
-    z-index: 10;
+    z-index: 11;
 
     display: flex;
     flex-direction: column;
@@ -15,7 +30,18 @@
 
     font-weight: 400;
     color: #FFF;
-    font-size: 12px;
+    font-size: 16px;
+}
+.top{
+    height: 66px;
+    display: flex;
+    align-items: center;
+}
+.Image2{
+    z-index: inherit;
+    width: 36px;
+    height: auto;
+    margin-left: 13px;
 }
 
 .button{
@@ -33,4 +59,23 @@
 }
 .button:active{
     background: rgb(107, 37, 247);
+}
+
+.navClosed{
+    right: 100vw;
+    transition: right 0.5s ease;
+}
+.navOpened{
+    right: 0;
+    transition: right 0.5s ease;
+}
+
+.topbutton:active{
+    background-color: #c5c5c53a;
+    border-radius: 10px;
+}
+
+.sticky {
+    backdrop-filter: blur(30px);
+	background-color: rgba(25, 24, 27, 0.5);
 }

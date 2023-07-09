@@ -1,12 +1,12 @@
 'use client'
 import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
 import { useUser } from '@/components/Auth/UserProvider';
-import s from './page.module.css';
+import s from './Registrationpanel.module.css';
 import {inter, manrope} from '@/fonts/fonts';
 import { useRouter } from 'next/navigation'
 import * as config from "@/config/config";
 import Image from 'next/image'
-import { User } from '@/types/User';
+import { User } from '@/types/types';
 import Spinner from '@/components/Spinner/Spinner'
 
 import { motion } from "framer-motion"
@@ -51,12 +51,12 @@ const Panel = ({ user }: { user: User }) => {
         if (user.hasPayed) {
             router.push('/');
         }
-        if (user.minecraftPlayer != null) {
+        if (user.minecraftName != null) {
             setStep(2);
             return;
         }
 
-        const uri = 'wss://' + config.apiUrl + '/api/v1/guild-socket?' + params;
+        const uri = config.ws() + config.apiUrl + '/api/v1/guild-socket?' + params;
         const socket = new WebSocket(uri);
 
         socket.onmessage = (event) => {
@@ -84,10 +84,8 @@ const Panel = ({ user }: { user: User }) => {
         if (res.status != 200)
             console.error('An unknown error occurred ');
 
-        user.minecraftPlayer = {
-            id: null,
-            playerName: name
-        }
+        user.minecraftName = name;
+        
         //setSavedPlayerName(name);
         setStep(2);
     }
@@ -327,7 +325,7 @@ const Avatar = ({ name }: { name: string }) => {
     )
 }
 const Krok3 = ({ user }: { user: User }) => {
-    if (user.minecraftPlayer == null)
+    if (user.minecraftName == null)
        return(<></>);
 
 
@@ -341,7 +339,7 @@ const Krok3 = ({ user }: { user: User }) => {
     params = 'userid=' + user.id;
 
     useEffect(() => {
-        const uri = 'wss://' + config.apiUrl + '/api/v1/payment-socket?' + params;
+        const uri = config.ws() + config.apiUrl + '/api/v1/payment-socket?' + params;
         const socket = new WebSocket(uri);
 
         socket.onmessage = (event) => {
@@ -370,9 +368,9 @@ const Krok3 = ({ user }: { user: User }) => {
                 </div>
 
                 <div className={`${s.PlayerBanner} ${s.k3Banner}`}>
-                    <Avatar name={user.minecraftPlayer.playerName} />
+                    <Avatar name={user.minecraftName} />
                     <div className={s.bannerText}>
-                        <div>{user.minecraftPlayer.playerName}</div>
+                        <div>{user.minecraftName}</div>
                         <div className={s.idtext}>#{convertToPaddedString(user.id, 5)}</div>
                     </div>
                 </div>

@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import * as config from "@/config/config";
 
-export default function Footer(){
+ function Footer(){
     return(
       <footer className={s.footer}>
         <div className={s.wrapper}>
@@ -30,6 +30,8 @@ export default function Footer(){
       </footer>  
     );
 }
+
+export default Footer;
 
 function AmetisIcon(){
     return(

@@ -128,10 +128,6 @@
     top: -660px;
 }
 
-.s1Imageim1{
-    width: 500px;
-    height: auto;
-}
 .s1Image1{
     transform: scaleX(-1);
     top: 16px;
@@ -145,18 +141,7 @@
 }
 
 
-@media screen and (max-width: 1700px) {
-    .s1Imageim1 {
-        width: 450px;
-        height: auto;
-    }
-}
 
-@media screen and (max-width: 1600px) {
-    .s1Imageim1 {
-        display: none;
-    }
-}
 @media screen and (max-width: 1500px) {
 
     .s1Image1{
@@ -324,114 +309,6 @@
     padding: 20px 0;
 }
 
-.s3NavBar{
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
-    z-index: 2;
-}
-
-.s3navButtonSelected {
-	background-color:#44c767;
-	border-radius:28px;
-	border:1px solid #18ab29;
-	display:inline-block;
-	cursor:pointer;
-	padding: 8px 18px;
-	text-decoration:none;
-
-    font-weight: 500;
-    font-size: 16px;
-    letter-spacing: 0.32px;
-}
-
-
-.s3navButton {
-        /*Reset's every elements apperance*/
-        background: none repeat scroll 0 0 transparent;
-        border: medium none;
-        border-spacing: 0;
-        list-style: none outside none;
-        margin: 0;
-        padding: 0;
-        text-align: left;
-        text-decoration: none;
-        text-indent: 0;
-
-    color: var(--primary-text);
-	border-radius:28px;
-	border:1px transparent #18ab29;
-	display:inline-block;
-	cursor:pointer;
-	padding: 8px 18px;
-	text-decoration:none;
-
-    font-weight: 500;
-    font-size: 16px;
-    letter-spacing: 0.32px;
-    margin: 0 11px;
-}
-.s3navButton:hover {
-	background-color:#5D5C62;
-}
-.s3navButton:active {
-	position:relative;
-	top:1px;
-}
-
-.s3navSelectedButton{
-    background-color: #413F46;
-    border:1px solid #5D5C62;
-}
-.s3CaroucelWrapper{
-    max-width: 1272px;
-    margin: auto;
-    height: 429px;
-    z-index: 1;
-}
-
-.s3Caroucel{
-    width: 1272px;
-    height: 429px;
-    border-radius: 22px;
-    background-color: #413F46;
-    overflow: clip;
-    padding: 102px 64px;
-    background-size: cover;
-    
-    background-repeat: no-repeat;
-
-}
-@media screen and (max-width: 1286px) {
-    .s3Caroucel {
-        width: calc(100vw - 5px);
-    }
-    .s3CaroucelWrapper{
-        max-width: calc(100vw - 5px);
-    }
-}
-.arrow{
-    width: 20px;
-    height: 20px;
-}
-
-@media screen and (max-width: 800px) {
-    .arrow{
-        width: 50px;
-        height: 50px;
-    }
-    .s3NavBar{
-        display: flex;
-        justify-content: space-around;
-    }
-}
-
-
-
-.animationDiv{
-    position: absolute;
-}
-
 
 /*#endregion*/
 
@@ -487,73 +364,19 @@
     position: relative;
 }
 
-.s4Circle{
-    z-index: -2;
-    
-    width: 933px;
-    height: 933px;
-    filter: blur(175px); 
-    border-radius: 50%;
-    opacity: 0.3;
-}
+
 
 .s4Circle1{
-    background: #7A31FF;
-    left: -600px;
-    top: -500px;
+    right: -713px;
+    top: -177px;
 }
 .s4Circle2{
-    background: #CE8AFF;
-    opacity: 0.3;
-    left: -600px;
-    top: -700px;
+    left: -1073px;
+    top: -544px;
 }
-.s4Circle3{
-    background: #7A31FF;
-    opacity: 0.8;
-    right: -600px;
-    top: 200px;
-}
-.s4Circle4{
-    background: #CE8AFF;
-    opacity: 0.3;
-    right: -800px;
-    top: 0px;
-}
+
 
 
 /*#endregion*/
-
-
-
-
-.s3page{
-    max-width: 360px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-
-}
-
-.s3pageTitle{
-    font-size: 26px;
-    font-weight: 800;
-}
-.s3pageText{
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: -0.1px;
-}
-
-
-
-@media screen and (max-width: 800px) {
-    .backgroundImages{
-        display: none;
-    }
-    .s3Caroucel{
-        padding: 102px 40px;
-    }
-}
 
 

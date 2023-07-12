@@ -8,6 +8,8 @@ import UserProvider from '@/components/Auth/UserProvider';
 import NavBar from '@/components/navbar2/_nav'
 import UPGLOW from 'public/Upper Glow.png'
 import BOTGLOW from 'public/Bottom Glow.png'
+import S4UPGLOW from 'public/s4UpperGlow.png'
+import S4BOTGLOW from 'public/s4BottomGlow.png'
 import { motion } from "framer-motion"
 import Footer from '@/components/footer/footer'
 import useWindowDimensions from '@/components/hooks/useWindowDimension';
@@ -200,11 +202,21 @@ const Section2 = () => {
 const Section4 = () => {
   return (
     <section className={s.s4container}>
-      <div className={s.s4Background}>
-        <div className={`${s.s1BackgroundImage} ${s.s4Circle} ${s.s4Circle2}`}></div>
-        <div className={`${s.s1BackgroundImage} ${s.s4Circle} ${s.s4Circle1}`}></div>
-        <div className={`${s.s1BackgroundImage} ${s.s4Circle} ${s.s4Circle3}`}></div>
-        <div className={`${s.s1BackgroundImage} ${s.s4Circle} ${s.s4Circle4}`}></div>
+
+      <div className={s.s4Background} draggable="false">
+        <div className={s.zindex}>
+          <Image
+            src={S4UPGLOW}
+            alt=""
+            className={`${s.s1BackgroundImage} ${s.s4Circle1}`}
+          />
+          <Image
+            
+            src={S4BOTGLOW}
+            alt=""
+            className={`${s.s1BackgroundImage} ${s.s4Circle2}`}
+          />
+          </div>
       </div>
 
       <div className={s.s4Wrapper}>

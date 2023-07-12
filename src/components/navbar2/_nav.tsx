@@ -22,7 +22,14 @@ export default function Navbar() {
     const { width } = useWindowDimensions();
     return (
         <>
-            {width > 800 ? <NavDesktop /> : <NavMobile />}
+
+            {
+                width ?
+                    width <= 800 ?
+                        <NavMobile /> : <NavDesktop />
+                    :
+                    null
+            }
         </>
 
     )

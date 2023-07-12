@@ -23,3 +23,10 @@ export type PlaytimeData = {
     playtime: number,
     date: string
 }
+
+export type Playtime = {
+    lastDaySeconds: number;
+    lastWeekSeconds: number;
+    lastMonthSeconds: number;
+    allTimeSeconds: number;
+  };

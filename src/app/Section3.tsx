@@ -1,6 +1,5 @@
 import s from './page.module.css'
 import { inter, manrope } from '@/fonts/fonts';
-import React, { useState } from "react";
 
 import Carousel from './Carusel';
 

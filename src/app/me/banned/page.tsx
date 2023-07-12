@@ -1,15 +1,10 @@
-
-import UserProvider from 'components/Auth/UserProvider';
-import NavBar from 'components/navbar2/_nav'
-import Footer from 'components/footer/footer'
 import { User } from '@/types/types';
 import * as config from "@/config/config";
 import {cookies}  from 'next/headers'
 import { redirect } from 'next/navigation'
-import Me from './me';
 
-export default async function LoginPage() {
 
+export default async function Page(){
     const cookie = cookies().get('_dt');
     if(cookie == null)
         redirect(config.authUrl);
@@ -27,20 +22,12 @@ export default async function LoginPage() {
         redirect('/');
 
     const user = await response.json() as User;
+    if(!user.banned)
+        redirect('/me')
 
-    if(user.banned)
-        redirect('/me/banned')
-
-    if(!user.hasPayed)
-        redirect('/me/register')
-
-    return (
+    return(
         <>
-        <UserProvider AuthorizedOnly={true}>
-            <NavBar />
-            <Me />
-        </UserProvider>
-        <Footer />
+            you were banned
         </>
     )
 }

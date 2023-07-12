@@ -21,7 +21,7 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Me() {
     const user = useUser();
     const [roles, setRoles] = useState<Role[] | null>();
-    const [palytime, setplaytime] = useState<Playtime>();
+    const [playTime, setPlayTime] = useState<Playtime>();
     const [lastOnline, setLastOnline] = useState<string>("0")
 
     useEffect(() => {
@@ -39,7 +39,7 @@ export default function Me() {
             setRoles(data);
         };
 
-        const fetchdata2 = async () => {
+        const fetchData2 = async () => {
             const response = await fetch(`${config.apiUri}/api/v1/p/allplaytime/` + user?.minecraftName, {
                 method: 'GET',
                 cache: 'no-store',
@@ -50,9 +50,9 @@ export default function Me() {
 
             const data = await response.json() as Playtime;
 
-            setplaytime(data);
+            setPlayTime(data);
         }
-        const fetchdata3 = async () => {
+        const fetchData3 = async () => {
             const response = await fetch(`${config.apiUri}/api/v1/p/isonline/` + user?.minecraftName, {
                 method: 'GET',
                 cache: 'no-store',
@@ -75,8 +75,8 @@ export default function Me() {
             return
 
         fetchData1();
-        fetchdata2();
-        fetchdata3();
+        fetchData2();
+        fetchData3();
     }, [user])
 
 
@@ -151,10 +151,10 @@ export default function Me() {
                                     <div className={s.profileTitleText}>Статистика</div>
                                     <hr className={s.hr} />
                                     <div className={`${s.infoHeader} ${s.profileText}`}>
-                                        <div>Часу награно: <span className={s.stats}>{convertSecondsToTime(palytime?.allTimeSeconds)}</span></div>
-                                        <div>За місяць: <span className={s.stats}>{convertSecondsToTime(palytime?.lastMonthSeconds)}</span></div>
-                                        <div>За тиждень: <span className={s.stats}>{convertSecondsToTime(palytime?.lastWeekSeconds)}</span></div>
-                                        <div>За день: <span className={s.stats}>{convertSecondsToTime(palytime?.lastDaySeconds)}</span></div>
+                                        <div>Часу награно: <span className={s.stats}>{convertSecondsToTime(playTime?.allTimeSeconds)}</span></div>
+                                        <div>За місяць: <span className={s.stats}>{convertSecondsToTime(playTime?.lastMonthSeconds)}</span></div>
+                                        <div>За тиждень: <span className={s.stats}>{convertSecondsToTime(playTime?.lastWeekSeconds)}</span></div>
+                                        <div>За день: <span className={s.stats}>{convertSecondsToTime(playTime?.lastDaySeconds)}</span></div>
                                     </div>
                                     <hr className={s.hr} />
                                     <div className={s.HeatmapWrapper}>
@@ -253,8 +253,6 @@ function Calendar() {
                             return s.colorScale4;
                         else if(value.count >= 3600*5)
                             return s.colorScale5;
-
-
 
                     } } />
                     

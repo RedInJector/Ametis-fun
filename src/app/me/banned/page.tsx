@@ -2,6 +2,8 @@ import { User } from '@/types/types';
 import * as config from "@/config/config";
 import {cookies}  from 'next/headers'
 import { redirect } from 'next/navigation'
+import Banned from "@/app/me/banned/banned";
+import UserProvider from "components/Auth/UserProvider";
 
 
 export default async function Page(){
@@ -27,7 +29,9 @@ export default async function Page(){
 
     return(
         <>
-            you were banned
+            <UserProvider AuthorizedOnly={true}>
+                <Banned />
+            </UserProvider>
         </>
     )
 }

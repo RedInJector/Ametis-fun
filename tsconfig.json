@@ -22,7 +22,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "public/*": ["../public/*"],
-      "components/*":["./src/components/*"]
+      "components/*":["./src/components/*"],
+      "contentlayer/generated": ["./.contentlayer/generated"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

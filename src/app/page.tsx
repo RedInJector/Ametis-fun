@@ -2,9 +2,8 @@
 import Image from 'next/image'
 import s from './page.module.css'
 import Link from 'next/link'
-import { inter, manrope } from '@/fonts/fonts';
 import Section3 from './Section3'
-import UserProvider from '@/components/Auth/UserProvider';
+import UserProvider, {useUser} from '@/components/Auth/UserProvider';
 import NavBar from '@/components/navbar2/_nav'
 import UPGLOW from 'public/Upper Glow.png'
 import BOTGLOW from 'public/Bottom Glow.png'
@@ -12,8 +11,8 @@ import S4UPGLOW from 'public/s4UpperGlow.png'
 import S4BOTGLOW from 'public/s4BottomGlow.png'
 import { motion } from "framer-motion"
 import Footer from '@/components/footer/footer'
-import useWindowDimensions from '@/components/hooks/useWindowDimension';
 import * as config from '@/config/config'
+import {useEffect} from "react";
 
 interface Props {
   children: React.ReactNode;
@@ -34,21 +33,16 @@ function SectionAnimation({children}:Props) {
 }
 
 export default function Home() {
-  const { width } = useWindowDimensions();
-  
+
   return (
     <>
-      {width > 800 ?
+    <UserProvider AuthorizedOnly={false}>
       <motion.nav initial={{ y: -60 }} animate={{ y: 0 }} transition={{ delay: 0.4, duration: 0.5 }}>
-        <UserProvider AuthorizedOnly={false}>
+
           <NavBar />
-        </UserProvider>
+
       </motion.nav>
-      :
-      <UserProvider AuthorizedOnly={false}>
-          <NavBar />
-        </UserProvider>
-      }
+
       <main className={s.main}>
         <Section1 />
         <Section2 />
@@ -59,14 +53,18 @@ export default function Home() {
           <Section4 />
         </SectionAnimation>
       </main>
+    </UserProvider>
       <Footer />
+
     </>
   )
 }
 
 const Section1 = () => {
+  const user = useUser();
+
   return (
-    <section className={`${s.s1container} ${inter.className}`}>
+    <section className={`${s.s1container}`}>
       <div className={s.backgroundImages} draggable="false">
         <div className={s.zindex}></div>
         <motion.div initial={{ x: -200, rotate: 30, opacity: 0 }} animate={{ x: 0, rotate: 0, opacity: 1 }} transition={{ duration: 2 }}>
@@ -107,14 +105,22 @@ const Section1 = () => {
       </div>
 
       <motion.div className={s.s1Part} initial={{ y: 200, opacity: 0, }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'spring', damping: 12 }}>
-        <div className={`${s.s1Title} ${manrope.className}`}>
+        <div className={`${s.s1Title}`}>
           Україномовний сервер
           з елементами
           <span className={s.s1PurpuleText}> Role-play</span>
         </div>
-        <div className={`${s.s1text} ${inter.className}`}>
+        <div className={`${s.s1text}`}>
           Простір для вираження власної творчості та розвитку своїх
           здібностей в будівництві, й соціальній взаємодії з іншими гравцями.
+        </div>
+        <div className={s.ip}>
+          {user != null ?
+              user.hasPayed ? <><span>IP:</span> {config.serverip}</>
+                  : null
+              :
+              null
+          }
         </div>
         <MainButtons />
         <div className={s.s1subButtonText}>
@@ -126,15 +132,24 @@ const Section1 = () => {
 }
 
 const MainButtons = () => {
+  const user = useUser();
+
   return (
     <div className={s.s1Buttons}>
-      <a href={config.donatelloURL} className={s.s1Button} >
+      <Link href='/me' className={s.s1Button} >
         <div className={s.s1ButtonTextContainer}>
           <ButtonIcon file="/gamepad-icon.svg" />
-          Придбати доступ на сервер
+          { user != null ?
+              user.hasPayed ?
+                  <>Мій Профіль</>
+                  :
+                  <>Придбати доступ на сервер</>
+              :
+              <>Придбати доступ на сервер</>
+          }
         </div>
-      </a>
-      <Link href='/' className={`${s.s1ButtonInfo} ${s.s1Button}`}>
+      </Link>
+      <Link href='/wiki/first_time_on_server/Idea' className={`${s.s1ButtonInfo} ${s.s1Button}`}>
         <div className={s.s1ButtonTextContainer}>
           <ButtonIcon file="/info-icon.svg" />
           Про сервер
@@ -145,14 +160,14 @@ const MainButtons = () => {
 }
 const Section2 = () => {
   return (
-    <section className={`${s.s2container} ${inter.className}`} >
+    <section className={`${s.s2container}`} >
       <motion.div className={s.s4Background} initial={{ y: -200, opacity: 0, }} animate={{ y: 0, opacity: 1 }} transition={{ delay:0.6, type: 'spring', damping: 15 }}>
         <div className={`${s.s1BackgroundImage} ${s.s2Circle} ${s.s2Circle1}`}></div>
         <div className={`${s.s1BackgroundImage} ${s.s2Circle} ${s.s2Circle2}`}></div>
       </motion.div>
 
       <motion.div className={s.s2Top} initial={{ y: -200, opacity: 0, }} animate={{ y: 0, opacity: 1 }} transition={{ delay:0.6, type: 'spring', damping: 11 }}>
-        <div className={`${manrope.className} ${s.s2Title}`}>Сервер — це спільнота людей</div>
+        <div className={`${s.s2Title}`}>Сервер — це спільнота людей</div>
         <div className={s.s2Text}>Гравці заходять на сервер щоб спілкуватися, знайти нову компанію, друзів та знайомих</div>
       </motion.div>
 
@@ -221,7 +236,7 @@ const Section4 = () => {
 
       <div className={s.s4Wrapper}>
         <div className={s.s4Plate}>
-          <div className={`${manrope.className} ${s.s4Title}`}>
+          <div className={`${s.s4Title}`}>
             <ButtonIcon file="/Card-icon.svg" />
             Придбай доступ на сервер прямо зараз!
           </div>
@@ -242,7 +257,7 @@ function S2GridElement({ file, title, text, number }: { file: string, title: str
   return (
     <motion.div initial={{ opacity: 0, y: 50, }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ delay: 0.03 * number, duration: 0.4 }}>
       <GridImage file={file} />
-      <div className={`${manrope.className} ${s.s2GridTitle}`}>
+      <div className={` ${s.s2GridTitle}`}>
         {title}
       </div>
       <div className={s.s2GridText}>

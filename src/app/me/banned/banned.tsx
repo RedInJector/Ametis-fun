@@ -1,52 +1,68 @@
 'use client'
-import {useUser} from "components/Auth/UserProvider";
 import Image from "next/image";
-import s from "@/app/me/register/Registrationpanel.module.css";
+import s from "./page.module.css";
 import React from "react";
-import {inter} from "@/fonts/fonts";
-import Spinner from "components/Spinner/Spinner";
 import {User} from "@/types/types";
+import {apiUri} from "@/config/config";
+import {motion} from "framer-motion";
 
 
-
-export default function Banned(){
-    const user = useUser()
-
+export default function Panel({user}:{user:User}){
+    const convertToPaddedString = (num: number, length: number): string => {
+        const numString = num.toString();
+        return numString.padStart(length, '0');
+    }
+    const anim = {
+        initial:{ y: 30,  opacity: 0 },
+        animate:{ y:0, opacity: 1 },
+        transition:{ type: 'spring', damping: 13, }
+    }
     return(
-        <>
-            {user ? <Panel user={user} /> : <Spinner />}
-        </>
-    )
 
-}
-
-
-function Panel({user}:{user:User}){
-    return(
-        <main>
-            <section className={`${inter.className} ${s.section}`}>
-                <Image
-                    draggable="false"
-                    priority
-                    src="/BigAuthorize.svg"
-                    width={224}
-                    height={41}
-                    className={s.BigAuthorize}
-                    alt="Logo"
-                />
+            <motion.section className={s.section} initial={anim.initial} animate={anim.animate}  transition={anim.transition}>
                 <div className={s.container}>
                     <div className={s.Title}>Ви забанені на сервері</div>
-                    <Image
-                        draggable="false"
-                        src={`https://mc-heads.net/avatar/${user?.minecraftName}`}
-                        width={100}
-                        height={100}
-                        className={s.AvatarIcon}
-                        alt="Player Icon"
-                    />
+                    <div className={s.playerBanner}>
+                        <Image
+                            draggable="false"
+                            src={apiUri + "/api/v1/p/head/" + user.minecraftName}
+                            width={100}
+                            height={100}
+                            className={s.AvatarIcon}
+                            alt="Player Icon"
+                        />
+                        <div>
+                            <div>{user.minecraftName ? user.minecraftName : user.discordUser.publicUsername}#
+                            {convertToPaddedString(user.id, 5)}</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>Вартість розбану:</div>
+                        <div className={s.amount}>100₴</div>
+                    </div>
+                    <div className={s.annotationsContainer}>
+                        <div className={s.annottation}>*Зі списку Ціль виберіть “Розбан на сервері”</div>
+                        <div className={s.annottation}>*В полі Ім’я вводьте ваш Minecraft Нікнейм</div>
+                    </div>
+                    <div className={s.PaybuttonContainer}>
+                        <a className={s.PayButton} href='/'>
+                            <div className={s.PayButtonInside}>
+                                <Image
+                                    draggable="false"
+                                    priority
+                                    src="/login/card.svg"
+                                    width={20}
+                                    height={20}
+                                    className={s.buttonPayicon}
+                                    alt="Logo"
+                                />
+                                Оплатити
+                            </div>
+                        </a>
+                    </div>
                 </div>
-            </section>
+            </motion.section>
 
-        </main>
+
     )
 }

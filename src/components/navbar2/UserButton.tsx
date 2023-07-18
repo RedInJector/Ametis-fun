@@ -1,6 +1,5 @@
 'use client'
 import s from './_nav.module.css';
-import { inter } from '@/fonts/fonts'
 import * as config from '@/config/config'
 import Image from 'next/image'
 import { useAuth, useUser } from 'components/Auth/UserProvider'
@@ -40,7 +39,7 @@ export default function UserButton() {
             {width > 800 ? 
             <div className={s.userbuttonContainer}>
                 {user == null ?
-                    <a href={authUrl} className={`${inter.className} ${s.authButton} ${s.Center} `}>
+                    <a href={authUrl} className={`${s.authButton} ${s.Center} `}>
                         <Image src={Auth} alt="" />
                         Авторизація
                     </a>
@@ -76,7 +75,7 @@ export default function UserButton() {
 
 function AuthButton() {
     return (
-        <a href={authUrl} className={`${inter.className} ${s.authButton} ${s.Center} `}>
+        <a href={authUrl} className={` ${s.authButton} ${s.Center} `}>
             <Image src={Auth} alt="" className={s.svg1}  />
             Авторизація
         </a>
@@ -100,7 +99,9 @@ function Panel() {
         <div className={s.OpenedPanel}>
             <div>
             <div className={s.PanelTop}>
+
                 <AvatarImage />
+
                 <div className={s.PanelTopRight}>
                     <Name user={user} />
                     {user.hasPayed ? 
@@ -141,16 +142,11 @@ function Name({ user }: { user: User }) {
     return (
         <>
             {user.minecraftName == null ?
-                <div>{user.discordUser.publicUsername}
-                    #{convertToPaddedString(user.id, 5)}</div>
+                <Link href='/me' className={s.userlink}>{user.discordUser.publicUsername}
+                    #{convertToPaddedString(user.id, 5)}</Link>
                 :
                 <div>
-                    {user.hasPayed ?
-                        <Link href="/me" className={s.userlink}>{user.minecraftName}#{convertToPaddedString(user.id, 5)}</Link>
-
-                        :
-                        <>{user.minecraftName}#{convertToPaddedString(user.id, 5)}</>
-                    }
+                    <Link href="/me" className={s.userlink}>{user.minecraftName}#{convertToPaddedString(user.id, 5)}</Link>
                 </div>
             }
         </>

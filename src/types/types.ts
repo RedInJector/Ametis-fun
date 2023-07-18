@@ -10,6 +10,7 @@ export type User = {
     hasPayed: boolean;
     banned: boolean;
     admin: boolean;
+
 }
 
 export type Role = {

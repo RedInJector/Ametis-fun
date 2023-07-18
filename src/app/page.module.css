@@ -10,6 +10,8 @@
     position: relative;
     overflow: clip;
     padding-top: var(--nav-height);
+
+    font-family: var(--font-inter);
 }
 .s1Part{
     text-align: center;
@@ -27,6 +29,8 @@
     font-weight: 800;
     letter-spacing: -3px;
     line-height: 60px;
+
+    font-family: var(--font-manrope);
 }
 .s1PurpuleText{
     color: var(--primary-purpule);
@@ -36,6 +40,8 @@
     max-width: 620px;
     font-size: 0.9em;
     font-weight: 400;
+
+    font-family: var(--font-inter);
 }
 .s1Buttons{
     padding: 20px 0;
@@ -204,6 +210,8 @@
     border-top: 2px solid rgba(255, 255, 255, 0.1);
     padding: 51px;
     overflow: clip ;
+
+    font-family: var(--font-inter);
 }
 
 .s2Top{
@@ -215,6 +223,8 @@
 .s2Title{
     font-size: 32px;
     font-weight: 800;
+
+    font-family: var(--font-manrope);
 }
 .s2Text{
     font-size: 18px;
@@ -237,6 +247,8 @@
 .s2GridTitle{
     font-weight: 800;
     font-size: 20px;
+
+    font-family: var(--font-manrope);
 }
 .s2GridText{
     font-size: 16px;
@@ -298,6 +310,8 @@
 
     background-repeat: repeat;
     background: url("/div.big-feature.png");
+
+    font-family: var(--font-inter);
 }
 
 .s3Title{
@@ -307,6 +321,8 @@
     text-align: center;
     margin: auto;
     padding: 20px 0;
+
+    font-family: var(--font-manrope);
 }
 
 
@@ -349,6 +365,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    font-family: var(--font-manrope);
 }
 .s4subtitle{
     font-weight: 500;
@@ -380,3 +398,12 @@
 /*#endregion*/
 
 
+.ip{
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #8F37F7;
+}
+.ip span{
+    color: #EBEBEB;
+}

@@ -1,7 +1,5 @@
 'use client'
-import { useUser } from 'components/Auth/UserProvider';
 import s from './page.module.css';
-import { manrope } from '@/fonts/fonts';
 import Spinner from '@/components/Spinner/Spinner';
 import ReactSkinview3d from 'react-skinview3d';
 import { WalkingAnimation } from "skinview3d";
@@ -14,15 +12,25 @@ import CalendarHeatmap from 'react-calendar-heatmap';
 import 'react-calendar-heatmap/dist/styles.css';
 
 import ReactTooltip from 'react-tooltip';
-import { stringify } from 'querystring';
+import Image from "next/image";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Me() {
-    const user = useUser();
+export default function Me({user}:{user:User}) {
     const [roles, setRoles] = useState<Role[] | null>();
     const [playTime, setPlayTime] = useState<Playtime>();
     const [lastOnline, setLastOnline] = useState<string>("0")
+    const [showTooltip, setShowTooltip] = useState(false);
+
+    const handleClick = () => {
+        if(showTooltip)
+            return
+        setShowTooltip(true);
+        setTimeout(() => {
+            setShowTooltip(false);
+        }, 2000);
+    };
 
     useEffect(() => {
         const fetchData1 = async () => {
@@ -65,7 +73,10 @@ export default function Me() {
 
             if(data == 'Now')
                 setLastOnline("Зараз")
-            
+
+            else if(data == "null")
+                setLastOnline("Ніколи")
+
             else
                 setLastOnline(convertSecondsToTime(parseInt(data)));
         }
@@ -85,99 +96,110 @@ export default function Me() {
         return numString.padStart(length, '0');
     }
 
+    const copied = () =>{
+
+    }
+
     return (
         <main className={s.main}>
             <div className={s.sectionWrapper}>
-                {user ?
-                    <section className={s.section}>
-                        <div className={`${manrope.className} ${s.Header}`}>
-                            {user?.minecraftName}#{convertToPaddedString(user.id, 5)}
+                <section className={s.section}>
+                    <div className={`${s.Header}`}>
+                        {user?.minecraftName}#{convertToPaddedString(user.id, 5)}
+                    </div>
+                    <hr className={s.hr} />
+                    <div className={s.mainpanelwrapper}>
+                        <div className={s.left}>
+                            <ReactSkinview3d
+                                skinUrl={config.apiUri +"/api/v1/p/skin/" + user.minecraftName}
+                                height="400"
+                                width="275"
+                                className={s.viewer}
+                                onReady={({
+                                    viewer
+                                }) => {
+
+                                    viewer.animation = new WalkingAnimation();
+                                    viewer.animation.speed = 0.8;
+
+                                    viewer.animation.progress = 0.5;
+                                    //viewer.animation.paused = true;
+                                    // Enabled auto rotate
+
+                                    viewer.controls.enableRotate = true;
+                                    viewer.controls.enableZoom = false;
+
+                                    //viewer.camera.rotateX(0.2);
+                                    viewer.camera.translateY(5);
+                                    viewer.camera.translateX(-15);
+
+                                    viewer.fov = 50;
+                                    viewer.zoom = 0.9;
+                                }}
+                            />
                         </div>
-                        <hr className={s.hr} />
-                        <div className={s.mainpanelwrapper}>
-                            <div className={s.left}>
-                                <ReactSkinview3d
-                                    skinUrl={config.apiUri +"/api/v1/p/skin/" + user.minecraftName}
-                                    height="400"
-                                    width="275"
-                                    className={s.viewer}
-                                    onReady={({
-                                        viewer
-                                    }) => {
+                        <div className={`${s.right}`}>
+                            <div className={s.rightPanel}>
+                                <div className={s.profileTitleText}>Профіль</div>
+                                <hr className={s.hr} />
+                                <div className={`${inter.className} ${s.profileText} ${s.rolebox}`}>Ролі:
+                                    {
+                                        roles?.map((role, index) => (
+                                            <div key={index} className={s.role}>
+                                                <span
+                                                    style={{ backgroundColor: `rgb(${role.R},${role.G},${role.B})` }}
+                                                    className={s.dot}
+                                                ></span>
+                                                {role.name}
+                                            </div>
+                                        ))
+                                    }
 
-                                        viewer.animation = new WalkingAnimation();
-                                        viewer.animation.speed = 0.8;
-
-                                        viewer.animation.progress = 0.5;
-                                        //viewer.animation.paused = true;
-                                        // Enabled auto rotate
-
-                                        viewer.controls.enableRotate = true;
-                                        viewer.controls.enableZoom = false;
-
-                                        //viewer.camera.rotateX(0.2);
-                                        viewer.camera.translateY(5);
-                                        viewer.camera.translateX(-15);
-
-                                        viewer.fov = 50;
-                                        viewer.zoom = 0.9;
-                                    }}
-                                />
-                            </div>
-                            <div className={`${manrope.className} ${s.right}`}>
-                                <div className={s.rightPanel}>
-                                    <div className={s.profileTitleText}>Профіль</div>
-                                    <hr className={s.hr} />
-                                    <div className={`${inter.className} ${s.profileText} ${s.rolebox}`}>Ролі:
-                                        {
-                                            roles?.map((role, index) => (
-                                                <div key={index} className={s.role}>
-                                                    <span
-                                                        style={{ backgroundColor: `rgb(${role.R},${role.G},${role.B})` }}
-                                                        className={s.dot}
-                                                    ></span>
-                                                    {role.name}
-                                                </div>
-                                            ))
-                                        }
-
-                                    </div>
-                                    <hr className={s.hr} />
-                                    <div className={s.profileText}>Був на сервері: {lastOnline} тому</div>
-                                    <hr className={s.hr} />
-                                    <div className={s.profileText}>Інформація:</div>
                                 </div>
-                                <div className={s.rightPanel}>
-                                    <div className={s.profileTitleText}>Статистика</div>
-                                    <hr className={s.hr} />
-                                    <div className={`${s.infoHeader} ${s.profileText}`}>
-                                        <div>Часу награно: <span className={s.stats}>{convertSecondsToTime(playTime?.allTimeSeconds)}</span></div>
-                                        <div>За місяць: <span className={s.stats}>{convertSecondsToTime(playTime?.lastMonthSeconds)}</span></div>
-                                        <div>За тиждень: <span className={s.stats}>{convertSecondsToTime(playTime?.lastWeekSeconds)}</span></div>
-                                        <div>За день: <span className={s.stats}>{convertSecondsToTime(playTime?.lastDaySeconds)}</span></div>
+                                <hr className={s.hr} />
+                                <div className={s.profileText}>Був на сервері: {lastOnline} {lastOnline != 'Ніколи' ? "тому" : "" }</div>
+                                <hr className={s.hr} />
+                                <div onClick={handleClick}  className={`${inter.className} ${s.profileText} ${s.rolebox} ${s.clickable}`}>Інформація:
+                                    <CopyToClipboard text={user.discordUser.publicUsername}>
+                                    <div  className={s.role}>
+                                        <Image
+                                            src={'/discord-icon.svg'}
+                                            width={20}
+                                            height={20}
+                                            alt={""} />
+                                        {user.discordUser.publicUsername}
+
                                     </div>
-                                    <hr className={s.hr} />
-                                    <div className={s.HeatmapWrapper}>
-                                        <div className={`${s.Heatmap}`}>
-                                            <Calendar />
-                                        </div>
-                                    </div>
+                                    </CopyToClipboard>
+                                    {showTooltip ? "Скопійовано!" : null}
                                 </div>
                             </div>
+                            <div className={s.rightPanel}>
+                                <div className={s.profileTitleText}>Статистика</div>
+                                <hr className={s.hr} />
+                                <div className={`${s.infoHeader} ${s.profileText}`}>
+                                    <div>Часу награно: <span className={s.stats}>{convertSecondsToTime(playTime?.allTimeSeconds)}</span></div>
+                                    <div>За місяць: <span className={s.stats}>{convertSecondsToTime(playTime?.lastMonthSeconds)}</span></div>
+                                    <div>За тиждень: <span className={s.stats}>{convertSecondsToTime(playTime?.lastWeekSeconds)}</span></div>
+                                    <div>За день: <span className={s.stats}>{convertSecondsToTime(playTime?.lastDaySeconds)}</span></div>
+                                </div>
+                                <hr className={s.hr} />
+                                <div className={s.HeatmapWrapper}>
+                                    <div className={`${s.Heatmap}`}>
+                                        <Calendar user={user}/>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </section>
-                    :
-                    <Spinner />
-                }
+                    </div>
+                </section>
             </div>
         </main>
     )
 }
 
 
-function Calendar() {
-    const user = useUser();
-
+function Calendar({user}:{user:User}) {
     const [data, setData] = useState<any[] | null>(null);
 
     useEffect(() => {
@@ -191,6 +213,10 @@ function Calendar() {
             }
 
             const data = await response.json() as PlaytimeData[];
+            if(data == null) {
+                setData([])
+                return
+            }
             var mappedArray = data.map(function (obj) {
                 return {
                     count: obj.playtime == null ? 0 : obj.playtime,
@@ -201,8 +227,6 @@ function Calendar() {
 
             setData(mappedArray);
         };
-        if (user == null)
-            return
 
         fetchData();
     }, [])
@@ -224,7 +248,7 @@ function Calendar() {
         <>
             {data ?
                 <>
-                <ReactTooltip />
+                <ReactTooltip  className={s.tooltip} />
                 <CalendarHeatmap
                     startDate={new Date('2023-07-01')}
                     endDate={new Date('2023-12-31')}
@@ -269,6 +293,10 @@ function Calendar() {
 function convertSecondsToTime(seconds: number | undefined) {
     if(seconds === undefined)
         return "0";
+
+    if(seconds == -1)
+        return "Ніколи";
+
 
     if (seconds < 60) {
       return seconds + " хв.";

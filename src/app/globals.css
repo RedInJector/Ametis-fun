@@ -32,6 +32,8 @@ body {
   background: var(--background-color);
   color: var(--main-font-color);
 
+  font-family: var(--font-inter);
+
   margin: 0;
   font-size: 1rem;
 
@@ -53,3 +55,217 @@ a {
     color-scheme: dark;
   }
 }
+
+
+article{
+  align-self: stretch;
+
+  font-family: var(--font-inter);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 24px;
+}
+article p{
+  margin-bottom: 20px;
+}
+article aside p{
+  margin: 0;
+}
+
+article strong{
+  font-weight: 600;
+}
+
+article h1{
+  margin: 20px 0;
+  font-family: var(--font-manrope);
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 36px;
+  letter-spacing: -0.75px;
+}
+article h2{
+  margin: 25px 0;
+  font-family: var(--font-manrope);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+article li{
+  margin: 5px 0 5px 40px;
+}
+article h3{
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+article aside{
+  margin: 15px 0;
+  background: rgba(65, 63, 70, 0.20);
+  padding: 15px;
+  border-radius: 9px;
+  border: 1px transparent;
+}
+article summary{
+  cursor: pointer;
+  user-select: none;
+}
+
+article details{
+  margin: 10px 0;
+}
+
+article details p{
+  margin-left: 35px;
+}
+article details aside p{
+  margin-left: 0;
+}
+article details li{
+  line-height: normal;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+article details details{
+  margin-left: 35px;
+}
+
+article .columns{
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 50px;
+  grid-row-gap: 0px;
+}
+
+article a{
+
+  color: #1882FF;
+  text-decoration: underline;
+}
+
+.halfpr-column-parent{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 40px;
+  grid-row-gap: 0px;
+}
+.halfpr-column-parent img {
+  object-fit: cover;
+  width: 100%;
+  max-height: 100%;
+}
+
+.triopr-column-parent{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 40px;
+  grid-row-gap: 0px;
+}
+.triopr-column-parent img {
+  object-fit: cover;
+  width: 100%;
+  max-height: 100%;
+}
+
+article .topimage{
+  width: 150px;
+  height: auto;
+}
+
+
+article table {
+  border-collapse: collapse;
+}
+
+article th, article td {
+  border: 1px solid white;
+  padding: 8px;
+}
+
+article th {
+  text-align: left;
+}
+
+article tr{
+  transition: background-color 0.2s;
+}
+
+article tr:hover {
+  background-color: #8F37F7;
+}
+
+article img{
+  max-width: 100%;
+  height: auto;
+}
+
+article summary{
+  margin-bottom: 20px;
+}
+
+article span{
+  max-width: 150px;
+  max-height: 150px;
+}
+.two-column-grid{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 30px;
+  grid-row-gap: 0px;
+}
+
+@media screen and (max-width: 936px) {
+  article .alcotable thead {
+    display: none;
+  }
+
+  article .alcotable td {
+    display: flex;
+    align-items: center;
+  }
+
+
+
+  article td:nth-of-type(1):before {
+    content: "Продукт";
+  }
+  article td:nth-of-type(2):before {
+    content: "Інгредієнти";
+  }
+  article td:nth-of-type(3):before {
+    content: "Час бродіння";
+  }
+  article td:nth-of-type(4):before {
+    content: "Перегонка";
+  }
+  article td:nth-of-type(5):before {
+    content: "Старіння/Деревина";
+  }
+
+  article .alcotable td::before {
+    font-weight: bold;
+    width: 300px;
+    min-width: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  article .alcotable{
+    border-spacing: 30px;
+  }
+
+}
+
+article em{
+  color: #7b7b7c;
+}
+

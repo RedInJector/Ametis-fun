@@ -10,6 +10,8 @@
     position: relative;
     overflow: clip;
     padding-top: var(--nav-height);
+
+    font-family: var(--font-inter);
 }
 .s1Part{
     text-align: center;
@@ -27,6 +29,8 @@
     font-weight: 800;
     letter-spacing: -3px;
     line-height: 60px;
+
+    font-family: var(--font-manrope);
 }
 .s1PurpuleText{
     color: var(--primary-purpule);
@@ -36,6 +40,8 @@
     max-width: 620px;
     font-size: 0.9em;
     font-weight: 400;
+
+    font-family: var(--font-inter);
 }
 .s1Buttons{
     padding: 20px 0;
@@ -128,10 +134,6 @@
     top: -660px;
 }
 
-.s1Imageim1{
-    width: 500px;
-    height: auto;
-}
 .s1Image1{
     transform: scaleX(-1);
     top: 16px;
@@ -145,18 +147,7 @@
 }
 
 
-@media screen and (max-width: 1700px) {
-    .s1Imageim1 {
-        width: 450px;
-        height: auto;
-    }
-}
 
-@media screen and (max-width: 1600px) {
-    .s1Imageim1 {
-        display: none;
-    }
-}
 @media screen and (max-width: 1500px) {
 
     .s1Image1{
@@ -219,6 +210,8 @@
     border-top: 2px solid rgba(255, 255, 255, 0.1);
     padding: 51px;
     overflow: clip ;
+
+    font-family: var(--font-inter);
 }
 
 .s2Top{
@@ -230,6 +223,8 @@
 .s2Title{
     font-size: 32px;
     font-weight: 800;
+
+    font-family: var(--font-manrope);
 }
 .s2Text{
     font-size: 18px;
@@ -252,6 +247,8 @@
 .s2GridTitle{
     font-weight: 800;
     font-size: 20px;
+
+    font-family: var(--font-manrope);
 }
 .s2GridText{
     font-size: 16px;
@@ -313,6 +310,8 @@
 
     background-repeat: repeat;
     background: url("/div.big-feature.png");
+
+    font-family: var(--font-inter);
 }
 
 .s3Title{
@@ -322,114 +321,8 @@
     text-align: center;
     margin: auto;
     padding: 20px 0;
-}
 
-.s3NavBar{
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
-    z-index: 2;
-}
-
-.s3navButtonSelected {
-	background-color:#44c767;
-	border-radius:28px;
-	border:1px solid #18ab29;
-	display:inline-block;
-	cursor:pointer;
-	padding: 8px 18px;
-	text-decoration:none;
-
-    font-weight: 500;
-    font-size: 16px;
-    letter-spacing: 0.32px;
-}
-
-
-.s3navButton {
-        /*Reset's every elements apperance*/
-        background: none repeat scroll 0 0 transparent;
-        border: medium none;
-        border-spacing: 0;
-        list-style: none outside none;
-        margin: 0;
-        padding: 0;
-        text-align: left;
-        text-decoration: none;
-        text-indent: 0;
-
-    color: var(--primary-text);
-	border-radius:28px;
-	border:1px transparent #18ab29;
-	display:inline-block;
-	cursor:pointer;
-	padding: 8px 18px;
-	text-decoration:none;
-
-    font-weight: 500;
-    font-size: 16px;
-    letter-spacing: 0.32px;
-    margin: 0 11px;
-}
-.s3navButton:hover {
-	background-color:#5D5C62;
-}
-.s3navButton:active {
-	position:relative;
-	top:1px;
-}
-
-.s3navSelectedButton{
-    background-color: #413F46;
-    border:1px solid #5D5C62;
-}
-.s3CaroucelWrapper{
-    max-width: 1272px;
-    margin: auto;
-    height: 429px;
-    z-index: 1;
-}
-
-.s3Caroucel{
-    width: 1272px;
-    height: 429px;
-    border-radius: 22px;
-    background-color: #413F46;
-    overflow: clip;
-    padding: 102px 64px;
-    background-size: cover;
-    
-    background-repeat: no-repeat;
-
-}
-@media screen and (max-width: 1286px) {
-    .s3Caroucel {
-        width: calc(100vw - 5px);
-    }
-    .s3CaroucelWrapper{
-        max-width: calc(100vw - 5px);
-    }
-}
-.arrow{
-    width: 20px;
-    height: 20px;
-}
-
-@media screen and (max-width: 800px) {
-    .arrow{
-        width: 50px;
-        height: 50px;
-    }
-    .s3NavBar{
-        display: flex;
-        justify-content: space-around;
-    }
-}
-
-
-
-.animationDiv{
-    position: absolute;
+    font-family: var(--font-manrope);
 }
 
 
@@ -472,6 +365,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    font-family: var(--font-manrope);
 }
 .s4subtitle{
     font-weight: 500;
@@ -487,73 +382,28 @@
     position: relative;
 }
 
-.s4Circle{
-    z-index: -2;
-    
-    width: 933px;
-    height: 933px;
-    filter: blur(175px); 
-    border-radius: 50%;
-    opacity: 0.3;
-}
+
 
 .s4Circle1{
-    background: #7A31FF;
-    left: -600px;
-    top: -500px;
+    right: -713px;
+    top: -177px;
 }
 .s4Circle2{
-    background: #CE8AFF;
-    opacity: 0.3;
-    left: -600px;
-    top: -700px;
+    left: -1073px;
+    top: -544px;
 }
-.s4Circle3{
-    background: #7A31FF;
-    opacity: 0.8;
-    right: -600px;
-    top: 200px;
-}
-.s4Circle4{
-    background: #CE8AFF;
-    opacity: 0.3;
-    right: -800px;
-    top: 0px;
-}
+
 
 
 /*#endregion*/
 
 
-
-
-.s3page{
-    max-width: 360px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-
-}
-
-.s3pageTitle{
-    font-size: 26px;
-    font-weight: 800;
-}
-.s3pageText{
+.ip{
+    margin-top: 15px;
     font-size: 16px;
-    font-weight: 400;
-    letter-spacing: -0.1px;
+    font-weight: 500;
+    color: #8F37F7;
 }
-
-
-
-@media screen and (max-width: 800px) {
-    .backgroundImages{
-        display: none;
-    }
-    .s3Caroucel{
-        padding: 102px 40px;
-    }
+.ip span{
+    color: #EBEBEB;
 }
-
-

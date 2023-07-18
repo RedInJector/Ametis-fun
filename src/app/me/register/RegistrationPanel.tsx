@@ -2,7 +2,6 @@
 import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
 import { useUser } from '@/components/Auth/UserProvider';
 import s from './Registrationpanel.module.css';
-import {inter, manrope} from '@/fonts/fonts';
 import { useRouter } from 'next/navigation'
 import * as config from "@/config/config";
 import Image from 'next/image'
@@ -11,12 +10,13 @@ import Spinner from '@/components/Spinner/Spinner'
 
 import { motion } from "framer-motion"
 
-export default function RegistrationPanel() {
-    const user = useUser();
+export default function RegistrationPanel({user}:{user:User}) {
 
     return (
         <>   
-            {user ? <motion.div initial= {{ y: 70, opacity:0}} animate={{y: 0, opacity:1 }}  transition={{ delay: 0.3, type: 'spring',  damping: 13}}><Panel user={user}></Panel></motion.div> : <Spinner />}
+            <motion.div initial= {{ y: 70, opacity:0}} animate={{y: 0, opacity:1 }}  transition={{ delay: 0.3, type: 'spring',  damping: 13}}>
+                <Panel user={user} />
+            </motion.div>
         </>
     )
 }
@@ -24,21 +24,6 @@ export default function RegistrationPanel() {
 interface Props {
     children: React.ReactNode;
   }
-  
-function SectionAnimation({children}:Props) {
-    const anim = {
-      initial:{ y: 0 },
-      animate:{ y: 100 },
-      transition:{ duration: 1 }
-    }
-    return(
-      <motion.div initial={anim.initial} animate={anim.animate} transition={anim.transition}>
-        {children}
-      </motion.div>
-    )
-  }
-
-
 
 const Panel = ({ user }: { user: User }) => {
     const [step, setStep] = useState(0);
@@ -81,6 +66,11 @@ const Panel = ({ user }: { user: User }) => {
                 { name: name }
             )
         })
+        if(res.status == 406) {
+            router.refresh();
+            return;
+        }
+
         if (res.status != 200)
             console.error('An unknown error occurred ');
 
@@ -91,7 +81,7 @@ const Panel = ({ user }: { user: User }) => {
     }
 
     return (
-        <section className={`${inter.className} ${s.section}`}>
+        <section className={` ${s.section}`}>
             <Image
                 draggable="false"
                 priority
@@ -155,7 +145,7 @@ const Krok1 = () => {
     return (
         <>
             <div className={s.step}>
-                <div className={`${manrope.className} ${s.stepHeader}`}>
+                <div className={`${s.stepHeader}`}>
                     Перший крок: Приєднатись на Discord сервер
                 </div>
                 <div className={s.stepContent}>
@@ -168,7 +158,7 @@ const Krok1 = () => {
                             <div className={s.k1DStopText}>
                                 Вас запрошено
                             </div>
-                            <div className={`${manrope.className} ${s.k1DSbottomText}`}>
+                            <div className={`${s.k1DSbottomText}`}>
                                 Ametis - Discord
                             </div>
                         </div>
@@ -179,11 +169,11 @@ const Krok1 = () => {
                 </a>
             </div>
             <hr className={s.hr} />
-            <div className={`${manrope.className} ${s.stepOff}`}>
+            <div className={`${s.stepOff}`}>
                 Другий крок: Прив’язати Minecraft акаунт
             </div>
             <hr className={s.hr} />
-            <div className={`${manrope.className} ${s.stepOff}`}>
+            <div className={`${s.stepOff}`}>
                 Третій крок: Оплатити прохідку
             </div>
         </>
@@ -197,12 +187,12 @@ interface FormProps {
 const Krok2 = ({ onSubmit }: FormProps) => {
     return (
         <>
-            <div className={`${manrope.className} ${s.stepOff}`}>
+            <div className={` ${s.stepOff}`}>
                 Перший крок: Приєднатись на Discord сервер
             </div>
             <hr className={s.hr} />
             <div className={s.step}>
-                <div className={`${manrope.className} ${s.stepHeader}`}>
+                <div className={`${s.stepHeader}`}>
                     Другий крок: Прив’язати Minecraft акаунт
                 </div>
                 <div className={s.stepContent}>
@@ -212,7 +202,7 @@ const Krok2 = ({ onSubmit }: FormProps) => {
 
             </div>
             <hr className={s.hr} />
-            <div className={`${manrope.className} ${s.stepOff}`}>
+            <div className={` ${s.stepOff}`}>
                 Третій крок: Оплатити прохідку
             </div>
         </>
@@ -242,7 +232,6 @@ const Form = ({ onSubmit }: FormProps) => {
     }
     useEffect(() => {
         let timeoutId: NodeJS.Timeout;
-        let name: string = "";
 
         if (!isStringValid(inputValue)) {
             setIsValid(false);
@@ -354,16 +343,16 @@ const Krok3 = ({ user }: { user: User }) => {
 
     return (
         <>
-            <div className={`${manrope.className} ${s.stepOff}`}>
+            <div className={` ${s.stepOff}`}>
                 Перший крок: Приєднатись на Discord сервер
             </div>
             <hr className={s.hr} />
-            <div className={`${manrope.className} ${s.stepOff}`}>
+            <div className={` ${s.stepOff}`}>
                 Другий крок: Прив’язати Minecraft акаунт
             </div>
             <hr className={s.hr} />
             <div className={s.step}>
-                <div className={`${manrope.className} ${s.stepHeader}`}>
+                <div className={` ${s.stepHeader}`}>
                     Третій крок: Оплатити прохідку
                 </div>
 
@@ -378,7 +367,7 @@ const Krok3 = ({ user }: { user: User }) => {
                 <div className={s.k3stepText}>
                     Вартість прохідки:
                 </div>
-                <div className={`${manrope.className} ${s.k3money}`}>
+                <div className={`${s.k3money}`}>
                     35.99₴
                 </div>
                 <div className={s.k3startext}>

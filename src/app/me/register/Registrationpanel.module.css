@@ -12,6 +12,8 @@
 .section{
     width: 100%;
     height: 100%;
+
+    font-family: var(--font-inter);
     
     margin: auto;
     padding: 60px 30px;
@@ -41,11 +43,15 @@
 .stepHeader{
     font-weight: 700;
     font-size: 20px;
+
+    font-family: var(--font-manrope);
 }
 .stepOff{
     font-weight: 700;
     font-size: 20px;
     color: rgba(235, 235, 235, 0.5);
+
+    font-family: var(--font-manrope);
 }
 .stepContent{
     padding: 15px 0;
@@ -86,6 +92,8 @@
 .k1DSbottomText{
     font-weight: 800;
     font-size: 16px;
+
+    font-family: var(--font-manrope);
 }
 .DSserverLogo{
     width: 64px;
@@ -196,6 +204,7 @@
 }
 .k3money{
     font-weight: 700;
+    font-family: var(--font-manrope);
 font-size: 40px;
 }
 .k3stepText{
@@ -240,6 +249,7 @@ font-size: 40px;
     align-content: center;
     justify-content: center;
 }
+
 .buttonPayicon{
     margin-right: 5px;
 }

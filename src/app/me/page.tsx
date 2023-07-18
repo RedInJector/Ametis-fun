@@ -7,26 +7,18 @@ import * as config from "@/config/config";
 import {cookies}  from 'next/headers'
 import { redirect } from 'next/navigation'
 import Me from './me';
+import ServerUserProvider from "components/Auth/serverUserProvider";
 
 export default async function LoginPage() {
 
-    const cookie = cookies().get('_dt');
-    if(cookie == null)
+
+    const user = await ServerUserProvider();
+    if(user === null)
         redirect(config.authUrl);
 
-    const headers = new Headers();
-    headers.append('Cookie', `_dt=${cookie.value}`);
+    if(user.banned)
+        redirect('/me/banned')
 
-    const response = await fetch(`${config.apiUri}/api/v1/getuserdata2`, {
-        method: 'GET',
-        cache: 'no-store',
-        headers: headers,
-    });
-
-    if(!response.ok)
-        redirect('/');
-
-    const user = await response.json() as User;
     if(!user.hasPayed)
         redirect('/me/register')
 
@@ -34,7 +26,7 @@ export default async function LoginPage() {
         <>
         <UserProvider AuthorizedOnly={true}>
             <NavBar />
-            <Me />
+            <Me user={user}/>
         </UserProvider>
         <Footer />
         </>

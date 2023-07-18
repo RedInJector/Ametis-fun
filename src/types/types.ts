@@ -10,6 +10,7 @@ export type User = {
     hasPayed: boolean;
     banned: boolean;
     admin: boolean;
+
 }
 
 export type Role = {
@@ -23,3 +24,10 @@ export type PlaytimeData = {
     playtime: number,
     date: string
 }
+
+export type Playtime = {
+    lastDaySeconds: number;
+    lastWeekSeconds: number;
+    lastMonthSeconds: number;
+    allTimeSeconds: number;
+  };

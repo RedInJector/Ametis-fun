@@ -49,6 +49,8 @@
 .s3pageTitle{
     font-size: 26px;
     font-weight: 800;
+
+    font-family: var(--font-manrope);
 }
 .s3pageText{
     font-size: 16px;
@@ -64,6 +66,8 @@
     font-weight: 500;
     padding: 10px 20px;
     background: #8F37F7;
+
+    font-family: var(--font-inter);
 }
 .BottomButton:hover{
     background: #a458fa;

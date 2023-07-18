@@ -31,12 +31,12 @@
 }
 
 .mainpanelwrapper {
-    padding: 20px 0px;
+    padding: 20px 0;
     display: grid;
     grid-template-columns: 2fr 5fr;
     grid-template-rows: 1fr;
     grid-column-gap: 50px;
-    grid-row-gap: 0px;
+    grid-row-gap: 0;
 }
 
 .right {
@@ -80,6 +80,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+
+    font-family: var(--font-manrope);
 }
 
 .viewer {
@@ -133,6 +135,7 @@
     width: 600px;
     font-size: 8px;
     font-weight: 800;
+    margin: auto;
 }
 
 .colorScale0{
@@ -140,56 +143,60 @@
 }
 
 .colorScale1{
-    fill: #d6e685;
+    fill: #CE8AFF;
 }
 .colorScale2{
-    fill: #8cc665;
+    fill: #AF61FB;
 }
 .colorScale3{
-    fill: #44a340;
+    fill: #8F37F7;
 }
 .colorScale4{
-    fill: #1e6823;
+    fill: #8534FB;
 }
 .colorScale5{
-    fill: #164d19;
+    fill: #7A31FF;
 }
 
 
 
 .tooltip{
-    position: fixed;
-    font-size: 15px;
-    font-weight: 500;
+
+    font-size: 15px !important;
+    font-weight: 800 !important;
+    font-family: var(--font-manrope);
+
+}
+.clickable{
+    cursor: pointer;
     user-select: none;
-    background-color: #8b43ff;
-    padding: 3px 5px;
-    border-radius: 2px;
 }
 
 
 
 @media screen and (max-width: 1000px) {
-.mainpanelwrapper{
-    display: flex;
-    flex-direction: column;
-}
+    .mainpanelwrapper{
+        display: flex;
+        flex-direction: column;
+    }
 
-.left{
-    margin: auto;
-}
-.right{
-    gap: 5px;
-    overflow: auto;
-    margin: auto;
-}
+    .left{
+        margin: auto;
+    }
+    .right{
+        gap: 5px;
+        overflow: auto;
+        margin: auto;
+
+        font-family: var(--font-manrope);
+    }
 }
 @media screen and (max-width: 800px) {
     .sectionWrapper{
         padding-top: 10px;
     }
     .section{
-        border-radius: 0px;
+        border-radius: 0;
     }
     .right{
         margin: 0;
@@ -200,10 +207,10 @@
         font-size: 30px;
     }
     .section{
-        padding: 16px 0px;
+        padding: 16px 0;
     }
     .rightPanel{
-        border-radius: 0px;
+        border-radius: 0;
     }
 }
 @media screen and (max-width: 430px) {

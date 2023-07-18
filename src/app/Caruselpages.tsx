@@ -1,5 +1,5 @@
+'use client'
 import s from './section3.module.css';
-import { inter, manrope } from '@/fonts/fonts';
 import Image from 'next/image'
 import Link from 'next/link';
 
@@ -24,7 +24,7 @@ function Page({ children, url }: Props2) {
 
 function Title({ children }: Props) {
     return (
-        <div className={`${manrope.className} ${s.s3pageTitle}`}>
+        <div className={`${s.s3pageTitle}`}>
             {children}
         </div>
     )

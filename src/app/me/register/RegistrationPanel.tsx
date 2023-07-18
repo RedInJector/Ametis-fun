@@ -374,7 +374,7 @@ const Krok3 = ({ user }: { user: User }) => {
                     *В полі Ім’я вводьте ваш Minecraft Нікнейм
                 </div>
                 <div className={s.PaybuttonContainer}>
-                    <a className={s.PayButton} href='/'>
+                    <a className={s.PayButton} href={config.donatelloURL}>
                         <div className={s.PayButtonInside}>
                             <Image
                                 draggable="false"

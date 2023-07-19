@@ -1,4 +1,6 @@
 .navDesktop {
+    pointer-events: none;
+
     top: 0;
     z-index: 10;
     position: fixed;
@@ -16,6 +18,7 @@
 }
 
 .navDesktopWrapper {
+    pointer-events: all;
     max-width: 1300px;
     padding: 0 30px;
     margin: auto;

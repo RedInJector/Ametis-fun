@@ -247,12 +247,13 @@
 .s2GridTitle{
     font-weight: 800;
     font-size: 20px;
+    margin-bottom: 12px;
 
     font-family: var(--font-manrope);
 }
 .s2GridText{
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 300;
     letter-spacing: -0.1px;
 }
 

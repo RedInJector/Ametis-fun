@@ -149,10 +149,10 @@ function NavMobileOpened({ clickHandler, className }: { clickHandler: any, class
                     />
                 </div>
 
-                <Link className={`${pathname == '/' ? sm.selectedButton : null} ${sm.button}`} href="/" draggable="false">Головна</Link>
-                <Link className={`${pathname == '/wiki/first_time_on_server/rules' ? sm.selectedButton : null} ${sm.button}`} href="/wiki/first_time_on_server/rules" draggable="false">Правила</Link>
-                <Link className={`${pathname == '/wiki' ? sm.selectedButton : null} ${sm.button}`} href="/wiki" draggable="false">Вікі</Link>
-                <Link className={`${pathname == '/map' ? sm.selectedButton : null} ${sm.button}`} href="/map" draggable="false">Мапа</Link>
+                <Link onClick={clickHandler} className={`${pathname == '/' ? sm.selectedButton : null} ${sm.button}`} href="/" draggable="false">Головна</Link>
+                <Link onClick={clickHandler} className={`${pathname == '/wiki/first_time_on_server/rules' ? sm.selectedButton : null} ${sm.button}`} href="/wiki/first_time_on_server/rules" draggable="false">Правила</Link>
+                <Link onClick={clickHandler} className={`${pathname == '/wiki' ? sm.selectedButton : null} ${sm.button}`} href="/wiki" draggable="false">Вікі</Link>
+                <Link onClick={clickHandler} className={`${pathname == '/map' ? sm.selectedButton : null} ${sm.button}`} href="/map" draggable="false">Мапа</Link>
                 <UserButton />
             </nav>
         </>

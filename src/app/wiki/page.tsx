@@ -20,26 +20,29 @@ function page() {
 
     const RenderedGroups = () => sortedgroups.map((group) => (
             <>
-                <div className={s.groupWrapper}>
-                <div className={s.groupTitle}>
-                    {group.slice(2)}
-                </div>
-                    <div className={s.groups}>
-                    {
-                        groupedPosts[group].sort((a, b) => a.orderPosition - b.orderPosition).map((post) => (
-                            <Link href={post.url} className={s.post} key={post._id}>
-                                <Image
-                                    src={post.titleimage}
-                                    className={s.postimage}
-                                    quality={100}
-                                    width={250}
-                                    height={250}
-                                    alt="" />
-                                <p className={s.textbackground}>
-                                    {post.title}
-                                </p>
-                            </Link>
-                        ))}
+                <div>
+                    <div className={s.groupWrapper}>
+                    <div className={s.groupTitle}>
+                        {group.slice(2)}
+                    </div>
+                        <div className={s.groups}>
+                        {
+                            groupedPosts[group].sort((a, b) => a.orderPosition - b.orderPosition).map((post) => (
+                                <Link href={post.url} className={s.post} key={post._id}>
+                                    <Image
+                                        src={post.titleimage}
+                                        className={s.postimage}
+                                        quality={100}
+                                        width={250}
+                                        height={250}
+                                        alt="" />
+                                    <p className={s.textbackground}>
+                                        {post.title}
+                                    </p>
+                                </Link>
+                            ))}
+
+                        </div>
 
                     </div>
 

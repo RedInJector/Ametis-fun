@@ -14,7 +14,7 @@ interface Props2 {
 
 function Page({ children, url }: Props2) {
     return (
-        <div className={s.s3Caroucel} style={{ backgroundImage: `url(${url})` }}>
+        <div className={s.s3Caroucel} style={{ backgroundImage: `url(${url})`, backgroundSize: 'cover' }}>
             <div className={s.s3page}>
                 {children}
             </div>
@@ -61,7 +61,7 @@ const page1 = {
         <Title>Власний ресурспак</Title>
         <Paragraph>Ми знаємо як важливо мати на Role-Play серверах власний ресурспак</Paragraph>
         <Paragraph>Саме тому ми створили такий та активно його підримуємо, впершу чергу базуючись на ваших побажаннях та ідеях</Paragraph>
-        <BottomButton text='Детальніше про ресурспак' href='/'></BottomButton>
+        <BottomButton text='Детальніше про ресурспак' href='/wiki/commands_and_mechanics/resource_pack'></BottomButton>
     </Page>
 )}
 
@@ -71,8 +71,8 @@ const page2 = {
     <Page url="/mainpagepictures/panel/1.png">
         <Title>Власний пак Емоцій</Title>
         <Paragraph>Виражайте ваші емоції, враження та дії краще використовуючи наш пак емоцій</Paragraph>
-        <Paragraph>Один з єдиничних випадків україномовних паків емоцій, зроблей українцями для гравців нашого сервера</Paragraph>
-        <BottomButton text='Детальніше про емоції' href='/'></BottomButton>
+        <Paragraph>Один з рідкісних випадків україномовних паків емоцій, зроблений українцями для гравців нашого сервера.</Paragraph>
+        <BottomButton text='Детальніше про емоції' href='/wiki/commands_and_mechanics/emotions'></BottomButton>
     </Page>
 )}
 
@@ -80,34 +80,34 @@ const page2 = {
 const page3 = {
     label: "Система лобі",
     content:(
-    <Page url="/mainpagepictures/panel/1.png">
+    <Page url="/mainpagepictures/panel/3.png">
         <Title>Система лобі</Title>
-        <Paragraph>Дає можливість високої продуктивності сервера та стабільний ТПС</Paragraph>
-        <Paragraph>Не звичайна система сервера з розділенням сервера на світ побудов та світ ферм робить наш проєкт менш лагучим та більш ефективним</Paragraph>
-        <BottomButton text='Детальніше про систему лобі' href='/'></BottomButton>
+        <Paragraph>Дає можливість високої продуктивності сервера та стабільний ТПС </Paragraph>
+        <Paragraph>Ефективна система з розділенням сервера на світ побудов та світ ферм, що робить наш проєкт менш лагучим та більш продуктивним.</Paragraph>
+        <BottomButton text='Детальніше про систему лобі' href='/wiki/commands_and_mechanics/lobby_system'></BottomButton>
     </Page>
 )}
 
 const page4 = {
     label: "Спільноти",
     content:(
-    <Page url="/mainpagepictures/panel/1.png">
+    <Page url="/mainpagepictures/panel/4.png">
         <Title>Спільноти</Title>
         <Paragraph>Одна з крутих можливостей об’єднюватись та втілювати ваші проєкти в реальність</Paragraph>
-        <Paragraph>Використовуючи плагін Parties ми створити круту систему прокачування ваших спільнот при побудові проєктів, міст тощо</Paragraph>
-        <BottomButton text='Детальніше про спільноти' href='/'></BottomButton>
+        <Paragraph>Використовуючи плагін Parties ми створили круту систему поліпшення ваших спільнот при побудові проєктів, міст тощо.</Paragraph>
+        <BottomButton text='Детальніше про спільноти' href='/wiki/commands_and_mechanics/communities'></BottomButton>
     </Page>
 )}
 
 
 const page5 = {
-    label: "Чат",
+    label: "Банк",
     content: (
-    <Page url="/mainpagepictures/panel/1.png">
-        <Title>Чат</Title>
-        <Paragraph>Оновлений, налаштовуємий та не звичайни чат для вашого спілнування</Paragraph>
-        <Paragraph>Ви можете мутити та заглушувати гравців та вони не зможуть вам писати, вимикати чи вмикати певні канали в чаті</Paragraph>
-        <BottomButton text='Детальніше про систему чату' href='/'></BottomButton>
+    <Page url="/mainpagepictures/panel/5.png">
+        <Title>Банк</Title>
+        <Paragraph>На сервері існує система банкінгу, котра працює через дискорд</Paragraph>
+        <Paragraph>Будь-який гравець може відкрити баланс, переказувати гроші, знімати гроші з балансу тощо</Paragraph>
+        <BottomButton text='Детальніше про банк' href='/wiki/commands_and_mechanics/bank'></BottomButton>
     </Page>
 )}
 

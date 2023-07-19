@@ -60,8 +60,6 @@ export default async function RootLayout({children,}: { children: React.ReactNod
 
             {children}
 
-
-
             <Script src="https://www.googletagmanager.com/gtag/js?id=G-7B5NWL7HXJ" />
             <Script id="google-analytics">
                 {`

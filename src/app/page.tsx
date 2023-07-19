@@ -12,7 +12,6 @@ import S4BOTGLOW from 'public/s4BottomGlow.png'
 import { motion } from "framer-motion"
 import Footer from '@/components/footer/footer'
 import * as config from '@/config/config'
-import {useEffect} from "react";
 
 interface Props {
   children: React.ReactNode;
@@ -176,19 +175,19 @@ const Section2 = () => {
           number={1}
           file="/mainpagepictures/2.png"
           title="Виживайте"
-          text="Основа сервера - звичайне, ванільне виживання з іншими гравцями"
+          text="Що може бути краще ніж ванільне виживання з друзями, та іншими гравцями!"
         />
         <S2GridElement
           number={2}
           file="/mainpagepictures/1.png"
-          title="Придумуйте власні правила "
-          text="Гра на сервері будується на стосунках між гравцями, отож будь-хто може змінити чи регулювати правила та закони"
+          title="Пропонуйте, та критикуйте"
+          text="Ваша думка є важливою для нас. Ми відповідаємо на кожні пропозиції гравців, що до сервера"
         />
         <S2GridElement
           number={3}
           file="/mainpagepictures/3.png"
           title="Створюйте власні спільноти"
-          text="На сервері є можливість створювати власні спільноти людей для власних проєктів"
+          text="Об'єднуйтесь, створюючи власні спільноти, які розділяють спільні цілі та ідеї"
         />
         <S2GridElement
           number={4}
@@ -200,14 +199,13 @@ const Section2 = () => {
           number={5}
           file="/mainpagepictures/5.png"
           title="Торгуйте"
-          text="Працюйте, добувайте ресурси, відкрийте
-          власний бізнес і продавайте речі на ринку"
+          text="Купуйте за діаманти, або через онлайн банк, створюйте цікаві бізнес ідеї, та заробляйте"
         />
         <S2GridElement
           number={6}
           file="/mainpagepictures/6.png"
-          title="Беріть участь або створюйте свої події"
-          text="Беріть участь в міні-іграх, торгуйтесь на ринку, приєднуйтесь до зборів ресурсів, або побудови проєктів"
+          title="Беріть владу у свої руки"
+          text="Кожен гравець може обратися на керівну посаду, та прикласти руку до розвитку серверу"
         />
 
       </div>

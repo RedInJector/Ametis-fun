@@ -139,3 +139,7 @@
 .textbackground{
     background-color: transparent;
 }
+
+.wrapper .hr:last-of-type{
+    display: none;
+}

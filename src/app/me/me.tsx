@@ -72,7 +72,7 @@ export default function Me({user}:{user:User}) {
             const data = await response.text();
 
             if(data == 'Now')
-                setLastOnline("Зараз")
+                setLastOnline("Онлайн")
 
             else if(data == "null")
                 setLastOnline("Ніколи")
@@ -157,7 +157,7 @@ export default function Me({user}:{user:User}) {
 
                                 </div>
                                 <hr className={s.hr} />
-                                <div className={s.profileText}>Був на сервері: {lastOnline} {lastOnline != 'Ніколи' ? "тому" : "" }</div>
+                                <div className={s.profileText}>Був на сервері: {lastOnline} {lastOnline != 'Ніколи' && lastOnline != "Онлайн" ? "тому" : "" }</div>
                                 <hr className={s.hr} />
                                 <div onClick={handleClick}  className={`${inter.className} ${s.profileText} ${s.rolebox} ${s.clickable}`}>Інформація:
                                     <CopyToClipboard text={user.discordUser.publicUsername}>
@@ -177,8 +177,10 @@ export default function Me({user}:{user:User}) {
                             <div className={s.rightPanel}>
                                 <div className={s.profileTitleText}>Статистика</div>
                                 <hr className={s.hr} />
+                                <div className={`${s.profileText}`}>Часу награно: <span className={`${s.profileText}  ${s.stats}`}>{convertSecondsToTime(playTime?.allTimeSeconds)}</span></div>
                                 <div className={`${s.infoHeader} ${s.profileText}`}>
-                                    <div>Часу награно: <span className={s.stats}>{convertSecondsToTime(playTime?.allTimeSeconds)}</span></div>
+
+
                                     <div>За місяць: <span className={s.stats}>{convertSecondsToTime(playTime?.lastMonthSeconds)}</span></div>
                                     <div>За тиждень: <span className={s.stats}>{convertSecondsToTime(playTime?.lastWeekSeconds)}</span></div>
                                     <div>За день: <span className={s.stats}>{convertSecondsToTime(playTime?.lastDaySeconds)}</span></div>
@@ -291,23 +293,42 @@ function Calendar({user}:{user:User}) {
 
 
 function convertSecondsToTime(seconds: number | undefined) {
-    if(seconds === undefined)
+    const minutesInDay = 1440;
+
+
+    if (seconds === undefined)
         return "0";
 
-    if(seconds == -1)
+    if (seconds == -1)
         return "Ніколи";
 
 
-    if (seconds < 60) {
-      return seconds + " хв.";
-    } else {
-      const hours = Math.floor(seconds / 3600);
-      const minutes = Math.floor((seconds % 3600) / 60);
-  
-      if (hours > 0) {
-        return hours + " год. " + minutes + " хв.";
-      } else {
-        return minutes + " хв.";
-      }
+    const days = Math.floor(seconds / 86400);
+    seconds -= days * 86400;
+
+    const hours = Math.floor(seconds / 3600);
+    seconds -= hours * 3600;
+
+    const minutes = Math.floor(seconds / 60);
+    seconds -= minutes * 60;
+
+    const timeComponents = [];
+
+    if (days > 0) {
+        timeComponents.push(`${days} дн.  `);
     }
-  }
+    if (hours > 0) {
+        timeComponents.push(`${hours} год.  `);
+    }
+    if (minutes > 0) {
+        timeComponents.push(`${minutes} хв.  `);
+    }
+    if (seconds > 0 && hours == 0) {
+        timeComponents.push(`${seconds} сек.  `);
+    }
+
+    const timeString = timeComponents.join(" ");
+
+    return timeString;
+
+}

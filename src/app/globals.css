@@ -187,10 +187,16 @@ article table {
 article th, article td {
   border: 1px solid white;
   padding: 8px;
+
+}
+
+article table p{
+  margin: 0;
+  text-align: center;
 }
 
 article th {
-  text-align: left;
+  text-align: center;
 }
 
 article tr{
@@ -252,7 +258,7 @@ article span{
 
   article .alcotable td::before {
     font-weight: bold;
-    width: 300px;
+    width: 200px;
     min-width: 190px;
     display: flex;
     align-items: center;

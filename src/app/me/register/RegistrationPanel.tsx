@@ -113,8 +113,8 @@ const Panel = ({ user }: { user: User }) => {
 
 
 const Krok1 = () => {
-    const GuildURL = "https://discord.gg/AxAKTZsZPu";
-    const GuildLogoUrl = "https://cdn.discordapp.com/avatars/445248333733298178/7dbe24db6e095fce0b53500478c89583?size=1024"
+    const GuildURL = config.discordUrl;
+    const GuildLogoUrl = config.discordiconUrl
     const GuildLogo = () => {
         return (
             <Image

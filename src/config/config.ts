@@ -23,3 +23,5 @@ export const donatelloURL = "";
 
 export const serverip = "play.ametis.xyz";
 
+export const discordiconUrl = "";
+

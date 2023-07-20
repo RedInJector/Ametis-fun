@@ -277,10 +277,10 @@ function Calendar({user}:{user:User}) {
                             return s.colorScale3;
                         else if(value.count <= 3600*4)
                             return s.colorScale4;
-                        else if(value.count >= 3600*5)
+                        else if(value.count > 3600*4)
                             return s.colorScale5;
 
-                    } } />
+                    }} />
                     
                     </>
                 :

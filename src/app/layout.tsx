@@ -1,7 +1,7 @@
 import './globals.css'
 import { Inter, Manrope } from 'next/font/google'
 import Script from 'next/script'
-import UserProvider from "components/Auth/UserProvider";
+import * as c from '@/config/config'
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'], variable: '--font-inter', })
 
@@ -60,15 +60,19 @@ export default async function RootLayout({children,}: { children: React.ReactNod
 
             {children}
 
-            <Script src="https://www.googletagmanager.com/gtag/js?id=G-7B5NWL7HXJ" />
-            <Script id="google-analytics">
-                {`
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', 'G-7B5NWL7HXJ');
-                `}
-            </Script>
+            {c.secure ?
+                <>
+                    <Script src="https://www.googletagmanager.com/gtag/js?id=G-7B5NWL7HXJ" />
+                    <Script id="google-analytics">
+                        {`
+                          window.dataLayer = window.dataLayer || [];
+                          function gtag(){dataLayer.push(arguments);}
+                          gtag('js', new Date());
+                          gtag('config', 'G-7B5NWL7HXJ');
+                        `}
+                    </Script>
+                </>
+                : null }
         </body>
     </html>
     )

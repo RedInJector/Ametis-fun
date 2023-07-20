@@ -5,6 +5,7 @@ import React from "react";
 import {User} from "@/types/types";
 import {apiUri} from "@/config/config";
 import {motion} from "framer-motion";
+import * as c from '@/config/config'
 
 
 export default function Panel({user}:{user:User}){
@@ -45,7 +46,7 @@ export default function Panel({user}:{user:User}){
                         <div className={s.annottation}>*В полі Ім’я вводьте ваш Minecraft Нікнейм</div>
                     </div>
                     <div className={s.PaybuttonContainer}>
-                        <a className={s.PayButton} href='/'>
+                        <a className={s.PayButton} href={c.donatelloURL}>
                             <div className={s.PayButtonInside}>
                                 <Image
                                     draggable="false"

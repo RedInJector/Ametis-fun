@@ -57,7 +57,7 @@ function BottomButton({text, href}:{text:string, href:string}) {
 const page1 = {
     label: "Ресурспак",
     content:(
-    <Page url="/mainpagepictures/panel/2.png">
+    <Page url="/mainpagepictures/panel/1.png">
         <Title>Власний ресурспак</Title>
         <Paragraph>Ми знаємо як важливо мати на Role-Play серверах власний ресурспак</Paragraph>
         <Paragraph>Саме тому ми створили такий та активно його підримуємо, впершу чергу базуючись на ваших побажаннях та ідеях</Paragraph>
@@ -68,7 +68,7 @@ const page1 = {
 const page2 = {
     label: "Емоції",
     content:(
-    <Page url="/mainpagepictures/panel/1.png">
+    <Page url="/mainpagepictures/panel/2.png">
         <Title>Власний пак Емоцій</Title>
         <Paragraph>Виражайте ваші емоції, враження та дії краще використовуючи наш пак емоцій</Paragraph>
         <Paragraph>Один з рідкісних випадків україномовних паків емоцій, зроблений українцями для гравців нашого сервера.</Paragraph>

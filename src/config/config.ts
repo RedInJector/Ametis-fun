@@ -1,4 +1,4 @@
-const secure = false;
+export const secure = false;
 export function http(){
     if(secure)
         return 'https://'

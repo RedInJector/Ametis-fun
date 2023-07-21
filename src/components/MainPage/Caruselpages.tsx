@@ -1,5 +1,5 @@
 'use client'
-import s from './section3.module.css';
+import s from '../../app/section3.module.css';
 import Image from 'next/image'
 import Link from 'next/link';
 

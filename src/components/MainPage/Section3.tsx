@@ -1,4 +1,4 @@
-import s from './page.module.css'
+import s from '../../app/page.module.css'
 
 import Carousel from './Carusel';
 

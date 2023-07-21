@@ -14,6 +14,7 @@ import Logo from 'public/Ametis-icon.svg'
 import UserButton from './UserButton';
 
 import * as config from "@/config/config";
+import {PrivateUser, PUser} from "@/types/PrivateUser";
 
 
 export default function Navbar() {

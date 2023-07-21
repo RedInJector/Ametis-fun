@@ -2,6 +2,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { User } from '@/types/types';
 import * as config from "@/config/config";
+import {useRouter} from "next/navigation";
 
 type UserContextType = {
     user: User | null;
@@ -19,6 +20,7 @@ const Context = createContext<UserContextType>({ user: null, logout: () => { } }
 
 const Provider = ({ children, AuthorizedOnly }: Props) => {
     const [user, setUser] = useState<User | null>(null);
+    const router = useRouter();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -57,6 +59,7 @@ const Provider = ({ children, AuthorizedOnly }: Props) => {
                         console.error('An unknown error occurred ');
                     }
                     setUser(null);
+                    router.refresh();
                     if(AuthorizedOnly)
                         window.location.replace("/");
                 }

@@ -3,7 +3,7 @@
  * * This hook returns the viewport/window height and width
  */
 
-import { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
 type WindowDimentions = {
     width: number;
@@ -22,6 +22,7 @@ const useWindowDimensions = (): WindowDimentions => {
                 height: window.innerHeight,
             });
         }
+
         handleResize();
         window.addEventListener('resize', handleResize);
         return (): void => window.removeEventListener('resize', handleResize);

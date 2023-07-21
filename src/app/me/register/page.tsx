@@ -10,7 +10,7 @@ import {User} from "@/types/types";
 import ServerUserProvider from "components/Auth/serverUserProvider";
 
 export default async function LoginPage() {
-    const user = await ServerUserProvider();
+    const user = await ServerUserProvider(false);
     if(user == null)
         redirect(config.authUrl);
 

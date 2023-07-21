@@ -11,7 +11,7 @@ import Panel from "./banned";
 
 
 export default async function Page(){
-    const user = await ServerUserProvider();
+    const user = await ServerUserProvider(false);
     if(user == null)
         redirect(c.authUrl)
 

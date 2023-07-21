@@ -1,83 +1,95 @@
 .navMobile{
-    top:0;
-    z-index: 11;
-    position: fixed;
-    width: 100%;
-    height: var(--nav-mobile-height);
-    display:flex;
-    align-items: center;
-}
-.Image{
-    width: 48px;
-    height: auto;
-    margin-left: 15px;
-}
-.zindex{
-    z-index: 15;
+    display: none;
 }
 
-.opened{
-    top:0;
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    background: #19181B;
-    z-index: 11;
+@media screen and (max-width: 800px) {
+    .navMobile {
+        top: 0;
+        z-index: 11;
+        position: fixed;
+        width: 100%;
+        height: var(--nav-mobile-height);
+        display: flex;
+        align-items: center;
+    }
 
-    padding: 0 10px;
+    .Image {
+        width: 48px;
+        height: auto;
+        margin-left: 15px;
+    }
 
-    display: flex;
-    flex-direction: column;
-    gap:10px;
+    .zindex {
+        z-index: 15;
+    }
 
-    font-weight: 400;
-    color: #FFF;
-    font-size: 16px;
-}
-.top{
-    height: 66px;
-    display: flex;
-    align-items: center;
-}
-.Image2{
-    z-index: inherit;
-    width: 36px;
-    height: auto;
-    margin-left: 13px;
-}
+    .opened {
+        top: 0;
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: #19181B;
+        z-index: 11;
 
-.button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 50px;
-    background: rgba(65, 63, 69, 0.20);
-    border: 1px solid #5D5C62;
-    border-radius: 25px;   
-}
+        padding: 0 10px;
 
-.button:hover{
-    background: rgba(98, 53, 187, 0.89);
-}
-.button:active{
-    background: rgb(107, 37, 247);
-}
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
 
-.navClosed{
-    right: 100vw;
-    transition: right 0.5s ease;
-}
-.navOpened{
-    right: 0;
-    transition: right 0.5s ease;
-}
+        font-weight: 400;
+        color: #FFF;
+        font-size: 16px;
+    }
 
-.topbutton:active{
-    background-color: #c5c5c53a;
-    border-radius: 10px;
-}
+    .top {
+        height: 66px;
+        display: flex;
+        align-items: center;
+    }
 
-.sticky {
-    backdrop-filter: blur(30px);
-	background-color: rgba(25, 24, 27, 0.5);
+    .Image2 {
+        z-index: inherit;
+        width: 36px;
+        height: auto;
+        margin-left: 13px;
+    }
+
+    .button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        background: rgba(65, 63, 69, 0.20);
+        border: 1px solid #5D5C62;
+        border-radius: 25px;
+    }
+
+    .button:hover {
+        background: rgba(98, 53, 187, 0.89);
+    }
+
+    .button:active {
+        background: rgb(107, 37, 247);
+    }
+
+    .navClosed {
+        right: 100vw;
+        transition: right 0.5s ease;
+    }
+
+    .navOpened {
+        right: 0;
+        transition: right 0.5s ease;
+    }
+
+    .topbutton:active {
+        background-color: #c5c5c53a;
+        border-radius: 10px;
+    }
+
+    .sticky {
+        backdrop-filter: blur(30px);
+        background-color: rgba(25, 24, 27, 0.5);
+    }
 }

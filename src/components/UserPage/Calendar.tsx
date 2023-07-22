@@ -5,14 +5,17 @@ import ReactTooltip from "react-tooltip";
 import s from "@/app/p/[name]/page.module.css";
 import CalendarHeatmap from "react-calendar-heatmap";
 
-export function Calendar({data}:{data:HeatmapDatum[]}) {
-    var mappedArray = data.map(function (obj) {
-        return {
-            count: obj.playtime == null ? 0 : obj.playtime,
-            date: obj.date,
-            level: 1
-        };
-    });
+export function Calendar({data}:{data:HeatmapDatum[] | undefined}) {
+
+    let mappedArray: any[] = [];
+    if(data !== undefined)
+        mappedArray = data.map(function (obj) {
+            return {
+                count: obj.playtime == null ? 0 : obj.playtime,
+                date: obj.date,
+                level: 1
+            };
+        });
 
     const getTooltipDataAttrs = (value:any) => {
         // Temporary hack around null value.date issue
@@ -24,8 +27,6 @@ export function Calendar({data}:{data:HeatmapDatum[]}) {
             'data-tip': `${value.date} награв: ${ConvertSecondsToTime(value.count)}`,
         };
     };
-
-    console.log(mappedArray)
 
 
     return (

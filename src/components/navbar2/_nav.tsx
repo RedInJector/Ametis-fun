@@ -14,21 +14,13 @@ import Logo from 'public/Ametis-icon.svg'
 import UserButton from './UserButton';
 
 import * as config from "@/config/config";
-import {PrivateUser, PUser} from "@/types/PrivateUser";
 
 
 export default function Navbar() {
-    const { width } = useWindowDimensions();
     return (
         <>
-
-            {
-                width ?
-                    width <= 800 ?
-                        <NavMobile /> : <NavDesktop />
-                    :
-                    null
-            }
+            <nav className={s.DeskQ}><NavDesktop /></nav>
+            <nav className={s.MobileQ}><NavMobile /></nav>
         </>
 
     )
@@ -42,6 +34,8 @@ function NavDesktop() {
             const scrolled = window.scrollY > 0;
             setIsScrolled(scrolled);
         };
+
+        handleScroll();
 
         window.addEventListener('scroll', handleScroll);
 
@@ -97,6 +91,8 @@ function NavMobile() {
             const scrolled = window.scrollY > 0;
             setIsScrolled(scrolled);
         };
+
+        handleScroll();
 
         window.addEventListener('scroll', handleScroll);
 

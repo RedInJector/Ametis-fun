@@ -1,1 +1,15 @@
 
+.PlayerbannerContainer{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.RoleContainer{
+    padding: 10px;
+    border-radius: 50px;
+    background-color: #5a2596;
+
+    display: flex;
+    align-items: center;
+}

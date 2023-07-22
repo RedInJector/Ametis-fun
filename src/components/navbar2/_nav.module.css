@@ -9,7 +9,7 @@
     
     font-size: 16px;
     font-weight: 500;
-
+    transition: background-color 0.2s, backdrop-filter 0.5s;
 }
 
 .navDesktopSticky{
@@ -197,21 +197,15 @@
     color:#8F37F7;
 }
 
-.navMobile{
+.MobileQ{
     display: none;
 }
 
-.scrollhook{
-    height: 100%;
-    width: 100%;
-    transition: background-color 0.2s, backdrop-filter 0.5s;
-}
-
 @media screen and (max-width: 800px) {
-    .navDesktop{
+    .DeskQ{
         display: none;
     }
-    .navMobile{
+    .MobileQ{
         display: block;
     }
 }

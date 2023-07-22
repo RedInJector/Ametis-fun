@@ -1,7 +1,7 @@
 export interface PrivateUser {
     user:       PUser;
-    statistics: Statistics;
-    roles:      Role[];
+    statistics?: Statistics;
+    roles?:      Role[];
 }
 
 export interface Role {
@@ -12,10 +12,10 @@ export interface Role {
 }
 
 export interface Statistics {
-    time_all:     string;
-    time_month:   string;
-    time_week:    string;
-    time_day:     string;
+    time_all:     number;
+    time_month:   number;
+    time_week:    number;
+    time_day:     number;
     last_online:  number;
     heatmap_data: HeatmapDatum[];
 }

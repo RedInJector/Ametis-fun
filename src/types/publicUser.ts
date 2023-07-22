@@ -1,7 +1,7 @@
 export interface PublicUser {
     user:       User;
-    statistics: Statistics;
-    roles:      Role[];
+    statistics?: Statistics;
+    roles?:      Role[];
 }
 
 export interface Role {

@@ -1,7 +1,7 @@
 'use client'
 import {CopyToClipboard} from "react-copy-to-clipboard";
 import {useState} from "react";
-import s from './page.module.css'
+import s from '../../app/p/[name]/page.module.css'
 
 
 export default function CopyComponent({ textToCopy, children }:{textToCopy:string, children:any}){

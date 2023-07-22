@@ -1,5 +1,8 @@
-export function ConvertSecondsToTime(seconds: number) {
+export function ConvertSecondsToTime(seconds: number | undefined) {
     const minutesInDay = 1440;
+
+    if(seconds==undefined)
+        return '0 хв.'
 
     if(seconds == 0)
         return '0 хв.'

@@ -7,9 +7,10 @@ import 'react-calendar-heatmap/dist/styles.css';
 import Image from "next/image";
 import {ConvertSecondsToTime} from "@/Helpers/SecondsConverter";
 import {PublicUser} from "@/types/publicUser";
-import {Calendar} from "@/app/p/[name]/Calendar";
-import Skin from "@/app/p/[name]/Skin";
-import CopyComponent from "@/app/p/[name]/CopyComponent";
+import {Calendar} from "components/UserPage/Calendar";
+import Skin from "components/UserPage/Skin";
+import CopyComponent from "components/UserPage/CopyComponent";
+import IsOnline from "components/UserPage/IsOnline";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,8 +20,6 @@ export default function UserPage({publicUser}:{publicUser:PublicUser}) {
         const numString = num.toString();
         return numString.padStart(length, '0');
     }
-
-    console.log(publicUser)
 
     return (
         <main className={s.main}>
@@ -40,7 +39,7 @@ export default function UserPage({publicUser}:{publicUser:PublicUser}) {
                                 <hr className={s.hr} />
                                 <div className={`${inter.className} ${s.profileText} ${s.rolebox}`}>Ролі:
                                     {
-                                        publicUser.roles.map((role, index) => (
+                                        publicUser.roles?.map((role, index) => (
                                             <div key={index} className={s.role}>
                                                 <span
                                                     style={{ backgroundColor: `rgb(${role.R},${role.G},${role.B})` }}
@@ -53,7 +52,7 @@ export default function UserPage({publicUser}:{publicUser:PublicUser}) {
 
                                 </div>
                                 <hr className={s.hr} />
-                                <div className={s.profileText}>Був на сервері: </div>
+                                <div className={s.profileText}>Був на сервері: <IsOnline name={publicUser.user.minecraftName}/></div>
                                 <hr className={s.hr} />
                                 <div className={`${inter.className} ${s.profileText} ${s.rolebox}`}>Інформація:
                                     <CopyComponent textToCopy={publicUser.user.discordUser.Username}>
@@ -71,18 +70,18 @@ export default function UserPage({publicUser}:{publicUser:PublicUser}) {
                             <div className={s.rightPanel}>
                                 <div className={s.profileTitleText}>Статистика</div>
                                 <hr className={s.hr} />
-                                <div className={`${s.profileText}`}>Часу награно: <span className={`${s.profileText}  ${s.stats}`}>{ConvertSecondsToTime(publicUser.statistics.time_all)}</span></div>
+                                <div className={`${s.profileText}`}>Часу награно: <span className={`${s.profileText}  ${s.stats}`}>{ConvertSecondsToTime(publicUser.statistics?.time_all)}</span></div>
                                 <div className={`${s.infoHeader} ${s.profileText}`}>
 
 
-                                    <div>За місяць: <span className={s.stats}>{ConvertSecondsToTime(publicUser.statistics.time_month)}</span></div>
-                                    <div>За тиждень: <span className={s.stats}>{ConvertSecondsToTime(publicUser.statistics.time_week)}</span></div>
-                                    <div>За день: <span className={s.stats}>{ConvertSecondsToTime(publicUser.statistics.time_day)}</span></div>
+                                    <div>За місяць: <span className={s.stats}>{ConvertSecondsToTime(publicUser.statistics?.time_month)}</span></div>
+                                    <div>За тиждень: <span className={s.stats}>{ConvertSecondsToTime(publicUser.statistics?.time_week)}</span></div>
+                                    <div>За день: <span className={s.stats}>{ConvertSecondsToTime(publicUser.statistics?.time_day)}</span></div>
                                 </div>
                                 <hr className={s.hr} />
                                 <div className={s.HeatmapWrapper}>
                                     <div className={`${s.Heatmap}`}>
-                                        <Calendar data={publicUser.statistics.heatmap_data}/>
+                                        <Calendar data={publicUser.statistics?.heatmap_data}/>
                                     </div>
                                 </div>
                             </div>

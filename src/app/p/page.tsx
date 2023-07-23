@@ -2,6 +2,7 @@ import * as config from "@/config/config";
 import {notFound} from "next/navigation";
 import {PublicUser, User} from "@/types/publicUser";
 import PlayerBanner from "@/app/p/PlayerBanner";
+import s from './page.module.css'
 
 
 export default async function Page(){
@@ -15,10 +16,9 @@ export default async function Page(){
         notFound();
 
     const users = await response.json() as PublicUser[]
-    console.log(users)
 
     return(
-        <main>
+        <main className={s.main}>
             {users.map((user) => (
                 <PlayerBanner publicUser={user}></PlayerBanner>
             ))}

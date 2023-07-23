@@ -1,8 +1,43 @@
+.main{
+    display: flex;
+    gap: 30px;
+}
+
 
 .PlayerbannerContainer{
     display: flex;
     align-items: center;
     gap: 20px;
+
+    font-size: 14px;
+    padding: 15px;
+
+    background-color: #5D5C62;
+    border-radius: 10px;
+
+    max-width: 370px;
+
+    border: 2px transparent solid;
+    margin: 3px;
+}
+.PlayerbannerContainer:hover{
+    border: 5px #8F37F7 solid;
+    margin: 0;
+}
+
+.playerName{
+    font-weight: 600;
+
+    font-family: var(--font-manrope);
+    font-size: 22px;
+}
+
+.roleWrapper{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    flex-wrap: wrap;
 }
 
 .RoleContainer{
@@ -10,6 +45,15 @@
     border-radius: 50px;
     background-color: #5a2596;
 
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    gap:10px;
+}
+
+.dot {
+    height: 9px;
+    width: 9px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
 }

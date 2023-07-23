@@ -26,10 +26,7 @@ export default async function ServerUserProvider(required:boolean):Promise<User 
         else
             redirect("/");
 
-    let user = await response.json() as User;
-
-
-    return user;
+    return await response.json() as User;
 }
 
 export async function ServerPUserProvider(required:boolean):Promise<PUser | null>{

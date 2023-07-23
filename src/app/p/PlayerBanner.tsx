@@ -17,9 +17,15 @@ export default function PlayerBanner({publicUser}:{publicUser: PublicUser}){
                 height={50}
             />
             <div>
-                <div>{publicUser.user.minecraftName}#{ConvertToTag(publicUser.user.id, 5)}</div>
-                <div>{publicUser.roles?.map((role) => (
-                    <div className={s.RoleContainer}>{role.name}</div>
+                <div className={s.playerName}>{publicUser.user.minecraftName}#{ConvertToTag(publicUser.user.id, 5)}</div>
+                <div className={s.roleWrapper}>{publicUser.roles?.map((role) => (
+                        <div className={s.RoleContainer}>
+                            <span
+                                style={{ backgroundColor: `rgb(${role.R},${role.G},${role.B})` }}
+                                className={s.dot}
+                            ></span>
+                            {role.name}
+                        </div>
                 ))}</div>
             </div>
 

@@ -49,7 +49,7 @@ const Provider = ({ children, AuthorizedOnly }: Props) => {
 
     const logout = () => {
         try {
-            fetch(`${config.apiUri}/api/v1/logout2`, {
+            fetch(`${config.apiUri}/api/v2/logout`, {
                 method: 'DELETE',
                 cache: 'no-store',
                 credentials: 'include',

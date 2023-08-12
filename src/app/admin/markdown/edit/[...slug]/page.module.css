@@ -1,0 +1,66 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    padding: 20px;
+    padding-bottom: 0;
+}
+
+.FormWrapper{
+
+}
+
+
+.textArea{
+    margin-top: 20px;
+    width: 100%;
+    resize: vertical;
+    padding: 15px;
+    border-radius: 15px;
+    border:0;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.06);
+    height: 350px;
+}
+
+.Wrapper{
+
+}
+.EditorWrapper{
+    background-color: rgba(65, 63, 70, 0.46);
+    border-radius: 10px;
+    padding: 20px 10px;
+    margin: 10px;
+
+    width: 50%;
+
+    overflow: auto;
+}
+.PreviewWrapper{
+    width: 50%;
+    padding: 20px 10px;
+}
+.Page{
+    display: flex;
+    gap: 20px;
+}
+
+.link{
+
+}
+
+.EditLink{
+    color: #1882FF;
+}
+
+.previev{
+    font-size: 14px;
+    font-family: var(--font-oswald);
+    font-weight: 600;
+}
+
+.workArea{
+    display: flex;
+
+    max-height: 80vh;
+}

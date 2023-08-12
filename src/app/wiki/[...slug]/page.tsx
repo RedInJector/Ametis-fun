@@ -1,56 +1,74 @@
-import { allPosts } from "contentlayer/generated";
-import {getMDXComponent, useMDXComponent} from "next-contentlayer/hooks";
+import * as config from "@/config/config";
+import {notFound} from "next/navigation";
 import s from './page.module.css'
-import { notFound } from 'next/navigation'
-import Sidebar from "./sidebar";
-import Redirect from "components/redirect";
-import {MDXComponents} from "mdx/types";
-import Image from "next/image";
+import {Metadata, ResolvingMetadata} from 'next'
+import {groupMD, MD} from "@/types/MD";
+import SearchBar from "@/app/wiki/[...slug]/SearchBar";
+import Sidebar from "@/app/wiki/[...slug]/sidebar";
 
 
-export const generateStaticParams = async () =>
-    allPosts.map((post: any) => ({ slug: post._raw.flattenedPath.split('/') }));
+export async function generateMetadata({params}: { params: { slug: string[] } }): Promise<Metadata> {
+    const route = params.slug.join('/');
+    const res = await fetch(`${config.apiUri}/api/v2/markdown/get/${route}`, {
+        method: 'GET',
+        cache: 'no-cache'
+    });
 
+    const md = await res.json() as MD;
 
-export const generateMetadata = ({ params }: any) => {
-    const post = allPosts.find(
-        (post: any) => post._raw.flattenedPath === params.slug.join('/')
-    );
-
-    return { title: post?.title };
-};
-
-
-const mdxComponents: MDXComponents = {
-    grayasd: ({ children }) => <span className="grayyer"> {children} </span>,
-    // Add a custom component.
-    Scrpt: () => <Redirect></Redirect> ,
+    return {
+        title: md.title,
+    }
 }
 
+export default async function Page({params}: { params: { slug: string[] } }) {
 
-const PostLayout = ({ params }: { params: { slug: string[] } }) => {
-    const post = allPosts.find((post) => (
-        post._raw.flattenedPath === params.slug.join('/'))
-    );
+    const route = params.slug.join('/');
 
 
-    let MDXContent;
+    console.log(route);
 
-    if (!post) notFound();
+    const res = await fetch(`${config.apiUri}/api/v2/markdown/get/${route}`, {
+        method: 'GET',
+        cache: 'no-cache',
+        next: { revalidate: 3600 }
+    });
+
+    if (!res.ok)
+        notFound();
+
+    const md = await res.json() as MD;
+
+    if(!md.wiki)
+        notFound();
 
 
-    MDXContent = useMDXComponent(post.body.code)
+    const getwikiList = await fetch(`${config.apiUri}/api/v2/markdown/wiki/getgroupes`, {
+        method: 'GET',
+        next: { revalidate: 3600 }
+    });
+
+
+    let wikiList = null;
+    if (getwikiList.ok)
+        wikiList = await getwikiList.json() as groupMD[];
+
 
     return (
-        <>
-            <main className={s.main}>
-                <Sidebar />
-                <article>
-                    <MDXContent components={mdxComponents} />
-                </article>
-            </main>
-        </>
-    );
-};
-
-export default PostLayout;
+        <main className={s.main}>
+            <SearchBar/>
+            {wikiList ?
+                <Sidebar mds={wikiList} currentMD={md}/>
+                :
+                null
+            }
+            <article>
+                {md.renderedContent ?
+                    <div dangerouslySetInnerHTML={{__html: md.renderedContent}}/>
+                    :
+                    <>Not Found</>
+                }
+            </article>
+        </main>
+    )
+}

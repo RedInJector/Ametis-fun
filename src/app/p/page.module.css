@@ -6,30 +6,31 @@
 
 .PlayerbannerContainer{
     display: flex;
-    align-items: center;
-    gap: 20px;
+    max-width: 100%;
+    padding: 13px 25px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
 
-    font-size: 14px;
-    padding: 15px;
+    border-radius: 9px;
+    border: 1px solid #5D5C62;
+    background: rgba(65, 63, 70, 0.20);
 
-    background-color: #5D5C62;
-    border-radius: 10px;
 
-    max-width: 370px;
-
-    border: 2px transparent solid;
-    margin: 3px;
 }
 .PlayerbannerContainer:hover{
-    border: 5px #8F37F7 solid;
-    margin: 0;
+    border: 1px solid #8F37F7;
 }
 
 .playerName{
-    font-weight: 600;
 
     font-family: var(--font-manrope);
-    font-size: 22px;
+
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 25px; /* 156.25% */
+    letter-spacing: -0.1px;
 }
 
 .roleWrapper{
@@ -41,19 +42,40 @@
 }
 
 .RoleContainer{
-    padding: 10px;
-    border-radius: 50px;
-    background-color: #5a2596;
+    border-radius: 999999px;
+    background: #19181B;
 
     display: inline-flex;
     align-items: center;
     gap:10px;
+
+    font-family: var(--font-inter);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 21px; /* 175% */
+
+    padding: 8px 15px;
 }
 
 .dot {
-    height: 9px;
-    width: 9px;
+    height: 7px;
+    width: 7px;
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
+}
+
+.BannerTop{
+    display: flex;
+    gap:12px;
+
+}
+
+.lastOnline{
+    font-family: var(--font-inter);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 25px;
+    letter-spacing: -0.1px;
 }

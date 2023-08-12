@@ -1,17 +1,14 @@
 import s from './page.module.css'
 import Image from "next/image";
 import React from "react";
-import Navbar from "components/navbar2/_nav";
-import UserProvider from "components/Auth/UserProvider";
+import Navbar from "components/deprecated/navbar2/_nav";
 import Footer from "components/footer/footer";
 import Link from "next/link";
 
 export default function Page(){
     return(
         <>
-            <UserProvider AuthorizedOnly={false}>
-                <Navbar />
-            </UserProvider>
+            <Navbar/>
             <main className={s.main}>
                 <div className={s.container}>
                     <Image

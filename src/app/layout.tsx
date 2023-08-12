@@ -1,16 +1,17 @@
 import './globals.css'
-import { Inter, Manrope } from 'next/font/google'
+import {Inter, Manrope, Oswald, Space_Mono} from 'next/font/google'
 import Script from 'next/script'
 import * as c from '@/config/config'
 
-const inter = Inter({ subsets: ['latin', 'cyrillic'], variable: '--font-inter', })
+const inter = Inter({subsets: ['latin', 'cyrillic'], variable: '--font-inter',})
 
-const manrope = Manrope({ subsets: ['latin', 'cyrillic'], variable: '--font-manrope',})
+const manrope = Manrope({subsets: ['latin', 'cyrillic'], variable: '--font-manrope',})
+const oswald = Oswald({subsets: ['latin', "cyrillic"], variable: '--font-oswald',})
 
 
 export const metadata = {
-  title: 'Ametis',
-  description: 'Ametis minecraft server',
+    title: 'Ametis',
+    description: 'Ametis minecraft server',
 }
 
 /*
@@ -53,26 +54,29 @@ export const Onest = localFont({
 */
 
 
-export default async function RootLayout({children,}: { children: React.ReactNode}) {
+export default async function RootLayout({children,}: { children: React.ReactNode }) {
     return (
     <html lang="en">
+        <head>
+            <meta name="google-site-verification" content="1AXV0PWIwY63WCSVHLrLShwJm6N2AyAtCIoTKl80b3I"/>
+        </head>
         <body className={`${manrope.variable} ${inter.variable}`}>
 
-            {children}
+        {children}
 
-            {c.secure ?
-                <>
-                    <Script src="https://www.googletagmanager.com/gtag/js?id=G-7B5NWL7HXJ" />
-                    <Script id="google-analytics">
-                        {`
+        {c.secure ?
+            <>
+                <Script src="https://www.googletagmanager.com/gtag/js?id=G-7B5NWL7HXJ"/>
+                <Script id="google-analytics">
+                    {`
                           window.dataLayer = window.dataLayer || [];
                           function gtag(){dataLayer.push(arguments);}
                           gtag('js', new Date());
                           gtag('config', 'G-7B5NWL7HXJ');
                         `}
-                    </Script>
-                </>
-                : null }
+                </Script>
+            </>
+            : null}
         </body>
     </html>
     )

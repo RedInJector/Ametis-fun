@@ -2,6 +2,7 @@ export interface PublicUser {
     user:       User;
     statistics?: Statistics;
     roles?:      Role[];
+    lastOnline?: number;
 }
 
 export interface Role {

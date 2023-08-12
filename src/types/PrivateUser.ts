@@ -26,16 +26,16 @@ export interface HeatmapDatum {
 }
 
 export interface PUser {
-    id:            number;
-    discordUser:   DiscordUser;
-    minecraftName: string;
-    hasPayed:      boolean;
-    banned:        boolean;
-    admin:         boolean;
-    unbannable:    boolean;
+    id: number;
+    discordUser: DiscordUser;
+    minecraftName: string | null;
+    hasPayed: boolean;
+    banned: boolean;
+    admin: boolean;
+    unbannable: boolean;
 }
 
 export interface DiscordUser {
     discordId: string;
-    Username:  string;
+    Username: string; // Make sure the property name matches the API response
 }

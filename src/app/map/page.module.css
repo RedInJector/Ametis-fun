@@ -1,21 +1,149 @@
 .main{
+    width: 100%;
     height: 100vh;
-    overflow: hidden;
+    overflow: clip;
 }
+
+
+
+.SliderContainer {
+    width: 100%;
+
+    position: fixed;
+    bottom: 0;
+
+    z-index: 5;
+}
+
+.rotateimg180 {
+    -webkit-transform:rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.arrowImage{
+    position: fixed;
+
+    left: 50%;
+    margin-left: -50px;
+
+    transition: bottom 0.3s ease-in-out;
+    bottom: 0;
+
+    cursor: pointer;
+
+    z-index: 6;
+
+    display: flex;
+    align-items: center;
+}
+
+.arrowImage:hover{
+    bottom: 10px;
+}
+
+.BottomSlider{
+    padding-top: 25px;
+    position: absolute;
+    bottom: 0;
+
+    width: 100%;
+    height: 60vh;
+
+    background-color: #19181B;
+}
+
+.BottomSliderChildrenContainer{
+    height: 100%;
+    position: relative;
+    max-width: 1475px;
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+
 .frame{
     border: 0;
 
+    height: 100%;
     width: 100%;
 
     margin-top: var(--nav-height);
     height: calc(100% - var(--nav-height));
 }
 
+.scrollableDiv{
+    height: 100%;
+    display: flex;
+    flexDirection: column-reverse;
 
+    padding-bottom: 10px;
 
-@media screen and (max-width: 800px) {
-    .frame {
-        margin-top: var(--nav-mobile-height);
-        height: calc(100% - var(--nav-mobile-height));
+    overflow-y: scroll;
+}
+
+.width100{
+    width: 100%;
+}
+
+.BannersWrapper{
+    overflow: clip;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 25px;
+    grid-row-gap: 25px;
+
+    margin-bottom: 30px;
+}
+
+@media screen and (max-width: 1630px) {
+    .BannersWrapper{
+        grid-template-columns: repeat(3, auto);
+        grid-template-rows: repeat(1, auto);
     }
+}
+
+@media screen and (max-width: 1200px) {
+    .BannersWrapper{
+        grid-template-columns: repeat(2, auto);
+        grid-template-rows: repeat(1, auto);
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .BannersWrapper{
+        grid-template-columns: repeat(1, auto);
+        grid-template-rows: repeat(1, auto);
+    }
+}
+
+
+.searchBarContainer{
+    color: #EBEBEB;
+    width: 100%;
+    max-width: 350px;
+
+    padding: 10px;
+    border-radius: 40px;
+    border: 1px solid #5D5C62;
+    background: #413F46;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.searchBar{
+    all: unset;
+    width: 100%;
+    height: 100%;
+
+    color: #EBEBEB;
+    background: transparent;
+    border: none;
 }

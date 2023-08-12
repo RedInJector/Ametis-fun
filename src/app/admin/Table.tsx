@@ -1,6 +1,4 @@
 'use client'
-import { useUser } from '@/components/Auth/UserProvider';
-import Spinner from '@/components/Spinner/Spinner';
 import * as config from '@/config/config'
 import { User } from '@/types/types'
 import { useEffect, useState } from 'react';
@@ -8,25 +6,18 @@ import s from './page.module.css'
 
 
 export default function Table(){
-    const user = useUser();
-    
 
     return(
         <main className={s.main}>
-            {user ? <Table1 user = {user}/> : <Spinner /> }
+            <Table1 />
         </main>
     )
     
 }
 
 
-function Table1({user}:{user:User}){
-    if(!user?.admin)
-        window.location.replace("/");
-
+function Table1(){
     const [table, setTable] = useState<User[] | null>(null);
-    
-
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch(`${config.apiUri}/api/v1/admin/players`, {

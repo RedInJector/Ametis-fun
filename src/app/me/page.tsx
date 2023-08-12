@@ -1,13 +1,10 @@
 
-import UserProvider from 'components/Auth/UserProvider';
-import NavBar from 'components/navbar2/_nav'
 import Footer from 'components/footer/footer'
-import { User } from '@/types/types';
 import * as config from "@/config/config";
-import {cookies}  from 'next/headers'
 import { redirect } from 'next/navigation'
 import Me from './me';
 import {ServerPrivateUserProvider} from "components/Auth/serverUserProvider";
+import Navbar from "components/nav3/start";
 
 export default async function LoginPage() {
 
@@ -22,12 +19,12 @@ export default async function LoginPage() {
     if(!privateUser.user.hasPayed)
         redirect('/me/register')
 
+
+
     return (
         <>
-        <UserProvider AuthorizedOnly={true}>
-            <NavBar />
-            <Me privateUser={privateUser}/>
-        </UserProvider>
+        <Navbar/>
+        <Me privateUser={privateUser}/>
         <Footer />
         </>
     )

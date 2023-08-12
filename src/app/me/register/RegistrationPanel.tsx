@@ -1,6 +1,5 @@
 'use client'
 import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
-import { useUser } from '@/components/Auth/UserProvider';
 import s from './Registrationpanel.module.css';
 import { useRouter } from 'next/navigation'
 import * as config from "@/config/config";
@@ -9,8 +8,9 @@ import { User } from '@/types/types';
 import Spinner from '@/components/Spinner/Spinner'
 
 import { motion } from "framer-motion"
+import {PUser} from "@/types/PrivateUser";
 
-export default function RegistrationPanel({user}:{user:User}) {
+export default function RegistrationPanel({user}:{user:PUser}) {
 
     return (
         <>   
@@ -25,7 +25,7 @@ interface Props {
     children: React.ReactNode;
   }
 
-const Panel = ({ user }: { user: User }) => {
+const Panel = ({ user }: { user: PUser }) => {
     const [step, setStep] = useState(0);
     const router = useRouter()
 
@@ -55,7 +55,7 @@ const Panel = ({ user }: { user: User }) => {
     }, []);
 
     const handleFormSubmit = async (name: string) => {
-        const res = await fetch(`${config.apiUri}/api/v1/submit-minecraft-name`, {
+        const res = await fetch(`${config.apiUri}/api/v2/me/submit-minecraft-name`, {
             method: 'POST',
             cache: 'no-store',
             credentials: 'include',
@@ -240,7 +240,7 @@ const Form = ({ onSubmit }: FormProps) => {
 
         if (isValidating) {
             timeoutId = setTimeout(async () => {
-                const res = await fetch(`${config.apiUri}/api/v1/check-minecraft-name?name=` + inputValue, {
+                const res = await fetch(`${config.apiUri}/api/v2/me/check-minecraft-name?name=` + inputValue, {
                     method: 'GET',
                     cache: 'no-store',
                     credentials: 'include'
@@ -313,7 +313,7 @@ const Avatar = ({ name }: { name: string }) => {
         />
     )
 }
-const Krok3 = ({ user }: { user: User }) => {
+const Krok3 = ({ user }: { user: PUser }) => {
     if (user.minecraftName == null)
        return(<></>);
 

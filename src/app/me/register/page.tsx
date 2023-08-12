@@ -1,16 +1,13 @@
 import s from './Registrationpanel.module.css';
 import RegistrationPanel from './RegistrationPanel';
-import UserProvider from '@/components/Auth/UserProvider';
-import NavBar from '@/components/navbar2/_nav'
 import Footer from '@/components/footer/footer'
-import {cookies} from "next/headers";
 import {redirect} from "next/navigation";
 import * as config from "@/config/config";
-import {User} from "@/types/types";
-import ServerUserProvider from "components/Auth/serverUserProvider";
+import {ServerPUserProvider} from "components/Auth/serverUserProvider";
+import Navbar from "components/nav3/start";
 
 export default async function LoginPage() {
-    const user = await ServerUserProvider(false);
+    const user = await ServerPUserProvider(false);
     if(user == null)
         redirect(config.authUrl);
 
@@ -23,13 +20,11 @@ export default async function LoginPage() {
 
     return (
         <>
-        <UserProvider AuthorizedOnly={true}>
-            <NavBar />
+            <Navbar/>
             <main className={s.main}>
                 <RegistrationPanel user={user} />
             </main>
-        </UserProvider>
-        <Footer />
+            <Footer />
         </>
     )
 }

@@ -2,10 +2,9 @@
 import s from './_nav.module.css';
 import sm from './_navMobile.module.css'
 import Image from 'next/image'
-import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link'
 import { usePathname } from "next/navigation";
-import useWindowDimensions from 'components/hooks/useWindowDimension';
 
 import DSIcon from 'public/nav/discord-icon.svg'
 import TGIcon from 'public/nav/Telegram-icon.svg'
@@ -14,19 +13,27 @@ import Logo from 'public/Ametis-icon.svg'
 import UserButton from './UserButton';
 
 import * as config from "@/config/config";
+import {PUser} from "@/types/PrivateUser";
 
 
-export default function Navbar() {
+let NavBarlist: paths[];
+interface paths{
+    pathname: string,
+        text: string
+}
+
+export default function Navbar3({user, NavBarList}:{user:PUser | null, NavBarList: paths[]}) {
+    NavBarlist = NavBarList;
     return (
         <>
-            <nav className={s.DeskQ}><NavDesktop /></nav>
-            <nav className={s.MobileQ}><NavMobile /></nav>
+            <nav className={s.DeskQ}><NavDesktop user={user}/></nav>
+            <nav className={s.MobileQ}><NavMobile user={user} /></nav>
         </>
 
     )
 }
 
-function NavDesktop() {
+function NavDesktop({ user }: { user: PUser | null}) {
     const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
@@ -58,7 +65,7 @@ function NavDesktop() {
                 <div className={`${s.Center} ${s.HorizontalCenter}`}>
                     <NavList />
                 </div>
-                <UserButton />
+                <UserButton user={user}/>
             </div>
         </nav>
 
@@ -70,10 +77,21 @@ function NavList() {
     const pathname = usePathname();
     return (
         <>
-            <Link className={`${pathname == '/' ? s.selectedButton : null} ${s.button}`} href="/" draggable="false">Головна</Link>
-            <Link className={`${pathname == '/wiki/first_time_on_server/rules' ? s.selectedButton : null} ${s.button}`} href="/wiki/first_time_on_server/rules" draggable="false">Правила</Link>
-            <Link className={`${pathname == '/wiki' ? s.selectedButton : null} ${s.button}`} href="/wiki" draggable="false">Вікі</Link>
-            <Link className={`${pathname == '/map' ? s.selectedButton : null} ${s.button}`} href="/map" draggable="false">Мапа</Link>
+            {NavBarlist.map(value => {
+                return (
+                    <Link
+                        key={value.pathname}
+                        className=
+                            {`${pathname == value.pathname ?
+                                s.selectedButton : null} 
+                                  ${s.button}`
+                            }
+                        href={value.pathname}
+                        draggable="false">
+                        {value.text}
+                    </Link>
+                )
+            })}
             <Link className={`${s.iconButton}`} href={config.discordUrl} draggable="false"><Image priority src={DSIcon} alt={""} /></Link>
             <Link className={`${s.iconButton}`} href={config.telegramUrl} draggable="false"><Image priority src={TGIcon} alt={""} /></Link>
         </>
@@ -82,7 +100,7 @@ function NavList() {
 //<Link className={pathname == "/" ? s.selectedButton : s.notSelectedButton} href="/" draggable="false">Головна</Link>
 
 
-function NavMobile() {
+function NavMobile({ user }: { user: PUser | null}) {
     const [isOpened, setOpened] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
@@ -108,7 +126,7 @@ function NavMobile() {
     return (
         <>
             <NavMobileClosed className={`${sm.navMobile} ${ isScrolled ? sm.sticky : null}`} clickHandler={clickhandler} />
-            <NavMobileOpened className={`${sm.opened} ${isOpened ? sm.navOpened : sm.navClosed}`} clickHandler={clickhandler} />
+            <NavMobileOpened user={user} className={`${sm.opened} ${isOpened ? sm.navOpened : sm.navClosed}`} clickHandler={clickhandler} />
         </>
     )
 }
@@ -129,7 +147,7 @@ function NavMobileClosed({ clickHandler, className }: { clickHandler: any, class
     )
 }
 
-function NavMobileOpened({ clickHandler, className }: { clickHandler: any, className: any }) {
+function NavMobileOpened({ clickHandler, className, user }: { clickHandler: any, className: any, user:PUser | null }) {
     const pathname = usePathname();
     return (
         <>
@@ -146,11 +164,23 @@ function NavMobileOpened({ clickHandler, className }: { clickHandler: any, class
                     />
                 </div>
 
-                <Link onClick={clickHandler} className={`${pathname == '/' ? sm.selectedButton : null} ${sm.button}`} href="/" draggable="false">Головна</Link>
-                <Link onClick={clickHandler} className={`${pathname == '/wiki/first_time_on_server/rules' ? sm.selectedButton : null} ${sm.button}`} href="/wiki/first_time_on_server/rules" draggable="false">Правила</Link>
-                <Link onClick={clickHandler} className={`${pathname == '/wiki' ? sm.selectedButton : null} ${sm.button}`} href="/wiki" draggable="false">Вікі</Link>
-                <Link onClick={clickHandler} className={`${pathname == '/map' ? sm.selectedButton : null} ${sm.button}`} href="/map" draggable="false">Мапа</Link>
-                <UserButton />
+                {NavBarlist.map(value => {
+                    return (
+                        <Link
+                            key={value.pathname}
+                            onClick={clickHandler}
+                            className=
+                                {`${pathname == value.pathname ?
+                                    sm.selectedButton : null} 
+                                  ${sm.button}`
+                                }
+                            href={value.pathname}
+                            draggable="false">
+                            {value.text}
+                        </Link>
+                    )
+                })}
+                <UserButton user={user}/>
             </nav>
         </>
     )

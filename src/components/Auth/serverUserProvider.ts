@@ -1,33 +1,7 @@
-import {User} from "@/types/types";
 import {cookies} from "next/headers";
 import {redirect} from "next/navigation";
 import * as config from "@/config/config";
 import {PrivateUser, PUser} from "@/types/PrivateUser";
-
-
-export default async function ServerUserProvider(required:boolean):Promise<User | null>{
-    const cookie = cookies().get('_dt');
-
-    if(cookie == null)
-        return null;
-
-    const headers = new Headers();
-    headers.append('Cookie', `_dt=${cookie.value}`);
-
-    const response = await fetch(`${config.apiUri}/api/v1/getuserdata2`, {
-        method: 'GET',
-        cache: 'no-store',
-        headers: headers,
-    });
-
-    if(!response.ok)
-        if(!required)
-            return null;
-        else
-            redirect("/");
-
-    return await response.json() as User;
-}
 
 export async function ServerPUserProvider(required:boolean):Promise<PUser | null>{
     const cookie = cookies().get('_dt');
@@ -38,11 +12,13 @@ export async function ServerPUserProvider(required:boolean):Promise<PUser | null
     const headers = new Headers();
     headers.append('Cookie', `_dt=${cookie.value}`);
 
-    const response = await fetch(`${config.apiUri}/api/v2/me`, {
+    const response = await fetch(`${config.apiUri}/api/v2/me?type=user-only`, {
         method: 'GET',
         cache: 'no-store',
         headers: headers,
     });
+
+
 
     if(!response.ok)
         if(!required)
@@ -50,7 +26,10 @@ export async function ServerPUserProvider(required:boolean):Promise<PUser | null
         else
             redirect("/");
 
-    return await response.json() as PUser;
+
+    const u = await response.json();
+
+    return u.user as PUser;
 }
 
 export async function ServerPrivateUserProvider(required:boolean):Promise<PrivateUser | null>{
@@ -68,12 +47,17 @@ export async function ServerPrivateUserProvider(required:boolean):Promise<Privat
         headers: headers,
     });
 
+
+
     if(!response.ok)
         if(!required)
             return null;
         else
             redirect("/");
 
-    return await response.json() as PrivateUser;
+    const u = await response.json();
+
+
+    return u as PrivateUser;
 }
 

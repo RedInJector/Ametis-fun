@@ -6,9 +6,10 @@ import {User} from "@/types/types";
 import {apiUri} from "@/config/config";
 import {motion} from "framer-motion";
 import * as c from '@/config/config'
+import {PUser} from "@/types/PrivateUser";
 
 
-export default function Panel({user}:{user:User}){
+export default function Panel({user}:{user:PUser}){
     const convertToPaddedString = (num: number, length: number): string => {
         const numString = num.toString();
         return numString.padStart(length, '0');
@@ -26,14 +27,14 @@ export default function Panel({user}:{user:User}){
                     <div className={s.playerBanner}>
                         <Image
                             draggable="false"
-                            src={apiUri + "/api/v1/p/head/" + user.minecraftName}
+                            src={`${apiUri}/api/v2/p/${user.minecraftName}/head.png`}
                             width={100}
                             height={100}
                             className={s.AvatarIcon}
                             alt="Player Icon"
                         />
                         <div>
-                            <div>{user.minecraftName ? user.minecraftName : user.discordUser.publicUsername}#
+                            <div>{user.minecraftName ? user.minecraftName : user.discordUser.Username}#
                             {convertToPaddedString(user.id, 5)}</div>
                         </div>
                     </div>

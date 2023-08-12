@@ -1,88 +1,61 @@
 'use client'
 import Link from "next/link";
-import {allPosts, Post} from "contentlayer/generated";
+import * as config from "@/config/config";
 import s from './page.module.css'
-import {usePathname} from "next/navigation";
+import {groupMD, MD} from "@/types/MD";
 
 
-export default function Sidebar() {
-    const pathname = usePathname();
+export default function Sidebar({mds, currentMD}:{mds:groupMD[], currentMD:MD}) {
 
-
-    const groupedPosts: Record<string, Post[]> = allPosts.reduce((groups: any, page) => {
-        if (!groups[page.group]) {
-            groups[page.group] = [];
+    const groupedMDs: Record<string, groupMD[]> = mds.reduce((groups: any, md) => {
+        if (!groups[md.groupName]) {
+            groups[md.groupName] = [];
         }
 
-        groups[page.group].push(page);
+        groups[md.groupName].push(md);
         return groups;
     }, {});
 
-    const sortedgroups = Object.keys(groupedPosts).sort((b, a) => b.localeCompare(a));
+    const sortedMDs = Object.keys(groupedMDs).sort((a, b) => b.localeCompare(a));
 
+    const RenderedMDs = () => sortedMDs.map((md) => {
 
-    const renderedGroups = sortedgroups.map((group) => (
-        <details className={s.details} key={group}>
-            <summary className={s.h2}>{group.slice(2)}</summary>
-            <div className={s.par}>
-                <div>
-                    <div className={s.verticalLine}></div>
-                </div>
-                <div>
-                    {
-                        groupedPosts[group].sort((a, b) => a.orderPosition - b.orderPosition).map((post) => (
-                            <div className={s.txt} key={post._id}>
-                                <Link className={` ${pathname == post.url ? s.selected : s.link} `} href={post.url}>
-                                    {post.title}
-                                </Link>
-                            </div>
-                        ))}
-                </div>
-            </div>
-        </details>
-    ));
+        let isOpened = false;
 
-
-    const RenderedGroups2 = () => {
-        const containsStringFromArray = (path:any, group: any):boolean =>
-            groupedPosts[group].some((post) => {
-                return post.url.includes(path)
-            });
+        if(md == currentMD.groupName)
+            isOpened = true
 
 
         return (
-            <div className={s.wrapper}>
-                {
-                sortedgroups.map((group) => (
-                    <details key={group} open={containsStringFromArray(pathname, group)} className={s.details} >
-                        <summary className={s.h2}>{group.slice(2)}</summary>
-                        <div className={s.par}>
-                            <div>
-                                <div className={s.verticalLine}></div>
-                            </div>
-                            <div>
-                                {
-                                    groupedPosts[group].sort((a, b) => a.orderPosition - b.orderPosition).map((post) => (
-                                        <div className={s.txt} key={post._id}>
-                                            <Link className={` ${pathname == post.url ? s.selected : s.link} `}
-                                                  href={post.url}>
-                                                {post.title}
-                                            </Link>
-                                        </div>
-                                    ))}
-                            </div>
-                        </div>
-                    </details>
-                ))
-                }
-            </div>
+            <details className={s.details} key={md} open={isOpened}>
+                <summary className={s.h2}>{md.slice(2)}</summary>
+                <div className={s.par}>
+                    <div>
+                        <div className={s.verticalLine}></div>
+                    </div>
+                    <div>
+                        {
+                            groupedMDs[md].sort((a, b) => a.orderPosition - b.orderPosition).map((md) => (
+                                <div className={s.txt} key={md.id}>
+                                    <Link className={` ${currentMD.path == md.path ? s.selected : s.link} `}
+                                          href={`${config.thisDomain}/wiki/${md.path}`}>
+                                        {md.title}
+                                    </Link>
+                                </div>
+                            ))}
+                    </div>
+                </div>
+            </details>
         )
-    }
+    });
+
+
+
 
     return (
         <>
             <div className={s.sidebarContainer}>
-                <RenderedGroups2 />
+                <RenderedMDs />
             </div>
         </>
     )

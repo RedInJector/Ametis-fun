@@ -2,8 +2,7 @@ import * as config from "@/config/config";
 import {notFound} from "next/navigation";
 import {PublicUser} from "@/types/publicUser";
 import UserPage from "@/app/p/[name]/userpage";
-import UserProvider from "components/Auth/UserProvider";
-import Navbar from "components/navbar2/_nav";
+import Navbar from "components/deprecated/navbar2/_nav";
 import Footer from "components/footer/footer";
 
 
@@ -22,9 +21,7 @@ export default async function Page({ params }: { params: { name: string } }){
 
     return(
         <>
-            <UserProvider AuthorizedOnly={false}>
-                <Navbar />
-            </UserProvider>
+            <Navbar/>
             <main>
                 <UserPage publicUser={publicuser}/>
             </main>

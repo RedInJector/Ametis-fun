@@ -19,9 +19,9 @@ import * as config from "@/config/config";
                 </div>
             </div>
             <div className={s.middle}>
-                <span className={s.middleText}>Контакти</span>
-                <span className={s.middleText}>Користувацька угода</span>
-                <span className={s.middleText}>Дизайн</span>
+                <Link href={"/wiki/other/contacts"} className={s.middleText}>Контакти</Link>
+                <Link href={"/user-agreement"} className={s.middleText}>Користувацька угода</Link>
+                <Link href={"/wiki/other/design"} className={s.middleText}>Дизайн</Link>
             </div>
             <div className={s.bottom}>
             Уся розміщена інформація на сайті не є публічною офертою. We are in no way affiliated with or endorsed by Mojang, AB.

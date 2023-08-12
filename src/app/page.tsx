@@ -2,8 +2,7 @@ import Image from 'next/image'
 import s from './page.module.css'
 import Link from 'next/link'
 import Section3 from 'components/MainPage/Section3'
-import UserProvider from '@/components/Auth/UserProvider';
-import NavBar from '@/components/navbar2/_nav'
+
 import UPGLOW from 'public/Upper Glow.png'
 import BOTGLOW from 'public/Bottom Glow.png'
 import S4UPGLOW from 'public/s4UpperGlow.png'
@@ -16,7 +15,8 @@ import {
     BackgrundImageLeftAnimation, BackgrundImageRightAnimation, GlowDownAnimation, GridElementAnimation,
     NavAnimation, SectionAnimation, TextDownAnimation, TitleAnimation
 } from "components/MainPage/Animations";
-import ServerUserProvider from "components/Auth/serverUserProvider";
+import {ServerPUserProvider} from "components/Auth/serverUserProvider";
+import Navbar from "components/nav3/start";
 
 
 
@@ -25,10 +25,10 @@ export default function Home() {
 
     return (
         <>
-            <UserProvider AuthorizedOnly={false}>
+
 
                 <NavAnimation>
-                    <NavBar/>
+                    <Navbar/>
                 </NavAnimation>
 
                 <main className={s.main}>
@@ -41,7 +41,7 @@ export default function Home() {
                         <Section4/>
                     </SectionAnimation>
                 </main>
-            </UserProvider>
+
             <Footer/>
 
         </>
@@ -49,7 +49,7 @@ export default function Home() {
 }
 
 const Section1 = async () => {
-    const user = await ServerUserProvider(false);
+    const user = await ServerPUserProvider(false);
 
     return (
         <section className={`${s.s1container}`}>
@@ -122,7 +122,7 @@ const Section1 = async () => {
 }
 
 const MainButtons = async () => {
-    const user = await ServerUserProvider(false);
+    const user = await ServerPUserProvider(false);
 
     return (
         <div className={s.s1Buttons}>

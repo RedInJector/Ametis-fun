@@ -1,3 +1,5 @@
+
+// TODO: Last online???? where? stats or here?
 export interface PrivateUser {
     user:       PUser;
     statistics?: Statistics;

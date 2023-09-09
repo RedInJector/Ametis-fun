@@ -15,8 +15,8 @@ import {
     BackgrundImageLeftAnimation, BackgrundImageRightAnimation, GlowDownAnimation, GridElementAnimation,
     NavAnimation, SectionAnimation, TextDownAnimation, TitleAnimation
 } from "components/MainPage/Animations";
-import {ServerPUserProvider} from "components/Auth/serverUserProvider";
 import Navbar from "components/nav3/start";
+import {ServerUserProviderBuilder} from "components/Auth/ServerUserBuilder";
 
 
 
@@ -49,7 +49,9 @@ export default function Home() {
 }
 
 const Section1 = async () => {
-    const user = await ServerPUserProvider(false);
+    const user = await ServerUserProviderBuilder()
+        .addUser()
+        .execute();
 
     return (
         <section className={`${s.s1container}`}>
@@ -76,6 +78,7 @@ const Section1 = async () => {
             <div className={s.backgroundImages} draggable="false">
                 <BackgrundImageLeftAnimation>
                     <Image
+                        priority
                         src='/LEFTPERSONA.png'
                         alt=""
                         width={700}
@@ -85,6 +88,7 @@ const Section1 = async () => {
                 </BackgrundImageLeftAnimation>
                 <BackgrundImageRightAnimation>
                     <Image
+                        priority
                         src='/RIGHTPERSONA.png'
                         alt=""
                         width={780}
@@ -106,7 +110,7 @@ const Section1 = async () => {
                 </div>
                 <div className={s.ip}>
                     {user != null ?
-                        user.hasPayed ? <><span>IP:</span> {config.serverip}</>
+                        user.user.hasPayed ? <><span>IP:</span> {config.serverip}</>
                             : null
                         :
                         null
@@ -122,7 +126,9 @@ const Section1 = async () => {
 }
 
 const MainButtons = async () => {
-    const user = await ServerPUserProvider(false);
+    const user = await ServerUserProviderBuilder()
+        .addUser()
+        .execute();
 
     return (
         <div className={s.s1Buttons}>
@@ -130,7 +136,7 @@ const MainButtons = async () => {
                 <div className={s.s1ButtonTextContainer}>
                     <ButtonIcon file="/gamepad-icon.svg"/>
                     {user != null ?
-                        user.hasPayed ?
+                        user.user.hasPayed ?
                             <>Мій Профіль</>
                             :
                             <>Придбати доступ на сервер</>
@@ -213,6 +219,7 @@ const Section4 = () => {
                 <div className={s.zindex}>
                     <Image
                         src={S4UPGLOW}
+                        quality={50}
                         alt=""
                         className={`${s.s1BackgroundImage} ${s.s4Circle1}`}
                     />
@@ -220,6 +227,7 @@ const Section4 = () => {
 
                         src={S4BOTGLOW}
                         alt=""
+                        quality={50}
                         className={`${s.s1BackgroundImage} ${s.s4Circle2}`}
                     />
                 </div>

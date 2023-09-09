@@ -3,9 +3,7 @@
 import * as config from "@/config/config";
 import {PublicUser, User} from "@/types/publicUser";
 import PlayerBanner from "@/app/p/PlayerBanner";
-import s from './page.module.css'
-import BottomSlider from "@/app/map/BottomSlider";
-import * as c from "@/config/config";
+import s from "components/SearchBar/searchbar.module.css"
 import {ChangeEvent, useEffect, useRef, useState} from "react";
 import Image from "next/image";
 
@@ -33,7 +31,6 @@ export default function SearchBar({children}: {  children?: any }) {
                 cache: 'no-cache',
                 signal: abortController.signal // Pass the new signal to the fetch call
             });
-            console.log(res)
             if (!abortController.signal.aborted) {
                 // Check if the request was not cancelled before updating the state
                 setFound(await res.json());
@@ -77,9 +74,9 @@ export default function SearchBar({children}: {  children?: any }) {
                        placeholder="Пошук гравців"/>
             </div>
 
-            {found ?             <section className={s.BannerWrapper}>
+            {found ?             <section className={s.BannersWrapper}>
                     {found.map((user) => (
-                        <PlayerBanner key={user.user.id} publicUser={user}/>
+                            <PlayerBanner key={user.user.id} publicUser={user}/>
                     ))}
                 </section> :
                 children

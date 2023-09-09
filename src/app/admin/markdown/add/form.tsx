@@ -1,10 +1,9 @@
 'use client'
 import * as config from "@/config/config";
 import s from './page.module.css'
-import {MD} from "@/types/MD";
+import {MD, MDTag} from "@/types/MD";
 
-
-import {useState} from "react";
+import React, {useState} from "react";
 import MDRenderer from "components/MDRenderer/MDRenderer";
 import Editor from "react-simple-code-editor";
 import {highlight, languages} from "prismjs";
@@ -12,6 +11,11 @@ import 'prismjs/themes/prism-funky.css';
 
 import 'prismjs/components/prism-markdown';
 import {useRouter} from "next/navigation";
+
+interface Tag {
+    id: number;
+    text: string;
+}
 
 export default function MdDocumentForm() {
     const [path, setPath] = useState('');
@@ -25,13 +29,20 @@ export default function MdDocumentForm() {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
+        const convertTagsToMDTags = (tags: Tag[]): MDTag[] => {
+            return tags.map(tag => ({
+                tag: tag.text
+            }));
+        };
+        const mdTags: MDTag[] = convertTagsToMDTags(tags);
+
         // Data to be sent in the POST request
         const data = {
             path: path,
             content: content,
             title: Title,
             imageUrl: imageUrl,
-            wiki: isWiki,
+            tags: mdTags,
         } as MD;
 
 
@@ -41,15 +52,49 @@ export default function MdDocumentForm() {
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify(data)
         })
             .then(result => {
                 // Handle the response from the server here if needed
-                router.push("/admin/markdown")
+                if(result.ok)
+                    router.push(`/admin/markdown/edit/${path}`)
             })
             .catch(error => {
                 console.error('Error:', error);
             });
+    };
+
+
+    const [tags, setTags] = useState<Tag[]>([]);
+    const [newTag, setNewTag] = useState<string>('');
+
+    const handleTagChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setNewTag(event.target.value);
+    };
+
+    const handleTagAdd = () => {
+        if (newTag.trim() !== '') {
+            const tag: Tag = {
+                id: Date.now(),
+                text: newTag.trim(),
+            };
+
+            setTags([...tags, tag]);
+            setNewTag('');
+        }
+    };
+
+    const handleTagEdit = (tagId: number, newText: string) => {
+        const updatedTags = tags.map(tag =>
+            tag.id === tagId ? {...tag, text: newText} : tag
+        );
+        setTags(updatedTags);
+    };
+
+    const handleTagDelete = (tagId: number) => {
+        const updatedTags = tags.filter(tag => tag.id !== tagId);
+        setTags(updatedTags);
     };
 
     return (
@@ -84,13 +129,28 @@ export default function MdDocumentForm() {
                         />
                     </div>
                     <div>
-                    <label htmlFor="iswiki"> is Wiki page?? </label>
-                        <input
-                            type="checkbox"
-                            id="iswiki"
-                            checked={isWiki}
-                            onChange={(e) => setisWiki(e.target.checked)}
-                        />
+                        <label htmlFor="tags">Tags: </label>
+                        <div id="tags">
+                            <input
+                                type="text"
+                                value={newTag}
+                                onChange={handleTagChange}
+                                placeholder="Enter a new tag"
+                            />
+                            <button type="button" onClick={handleTagAdd}>Add Tag</button>
+                        </div>
+                        <div className={s.tagInputwrapper}>
+                            {tags.map(tag => (
+                                <div key={tag.id}>
+                                    <input
+                                        type="text"
+                                        value={tag.text}
+                                        onChange={event => handleTagEdit(tag.id, event.target.value)}
+                                    />
+                                    <button type="button" onClick={() => handleTagDelete(tag.id)}>Delete</button>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
                 <div className={s.workArea}>

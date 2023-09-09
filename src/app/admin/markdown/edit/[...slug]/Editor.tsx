@@ -36,16 +36,15 @@ export default function MdDocumentEditForm({md}:{md:MD}){
         // Replace 'YOUR_POST_ENDPOINT' with the actual endpoint to which you want to send the POST request
         fetch(`${config.apiUri}/api/v2/markdown/edit`, {
             method: 'POST',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         })
-            .then(response => response.json())
-            .then(result => {
-                // Handle the response from the server here if needed
-                console.log('Response:', result);
-                //router.push(`/mdtest/${md.path}`);
+            .then(response => {
+                if(response.ok)
+                    router.push(`/admin`);
             })
             .catch(error => {
                 console.error('Error:', error);

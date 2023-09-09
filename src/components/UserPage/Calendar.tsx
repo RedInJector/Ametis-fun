@@ -3,7 +3,7 @@ import {HeatmapDatum} from "@/types/publicUser";
 import {ConvertSecondsToTime} from "@/Helpers/SecondsConverter";
 import ReactTooltip from "react-tooltip";
 import s from "@/app/p/[name]/page.module.css";
-import CalendarHeatmap from "react-calendar-heatmap";
+import CalendarHeatmap from "@/libs/react-calendar-heatmap/dist/react-calendar-heatmap.esm";
 
 export function Calendar({data}:{data:HeatmapDatum[] | undefined}) {
 
@@ -29,21 +29,22 @@ export function Calendar({data}:{data:HeatmapDatum[] | undefined}) {
     };
 
 
+
     return (
         <>
             <ReactTooltip  className={s.tooltip} />
             <CalendarHeatmap
-                startDate={new Date('2023-07-01')}
+                startDate={new Date('2023-07-19')}
                 endDate={new Date('2023-12-31')}
                 showMonthLabels = {false}
                 showWeekdayLabels = {false}
-                showOutOfRangeDays
+
                 tooltipDataAttrs={getTooltipDataAttrs}
 
                 weekdayLabels={['нд', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб']}
                 monthLabels={['січ', 'лют', 'бер', 'кві', 'тра', 'чер', 'лип', 'сер', 'вер', 'жов', 'лис', 'гру']}
                 values={mappedArray}
-                classForValue={(value) => {
+                classForValue={(value: { count: number; }) => {
                     if (!value) {
                         return s.colorScale0;
                     }

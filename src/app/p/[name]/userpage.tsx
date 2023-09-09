@@ -2,7 +2,7 @@ import s from './page.module.css';
 import * as config from '@/config/config'
 
 import { Inter } from 'next/font/google'
-import 'react-calendar-heatmap/dist/styles.css';
+import '@/libs/react-calendar-heatmap/dist/styles.css';
 
 import Image from "next/image";
 import {ConvertSecondsToTime} from "@/Helpers/SecondsConverter";

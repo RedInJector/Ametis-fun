@@ -2,8 +2,8 @@ import * as config from "@/config/config";
 import {notFound} from "next/navigation";
 import {PublicUser} from "@/types/publicUser";
 import UserPage from "@/app/p/[name]/userpage";
-import Navbar from "components/deprecated/navbar2/_nav";
 import Footer from "components/footer/footer";
+import Navbar from "components/nav3/start";
 
 
 export default async function Page({ params }: { params: { name: string } }){

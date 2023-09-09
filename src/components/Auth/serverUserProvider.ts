@@ -1,9 +1,9 @@
 import {cookies} from "next/headers";
 import {redirect} from "next/navigation";
 import * as config from "@/config/config";
-import {PrivateUser, PUser} from "@/types/PrivateUser";
+import {PrivateUser,} from "@/types/PrivateUser";
 
-export async function ServerPUserProvider(required:boolean):Promise<PUser | null>{
+export async function ServerUserOnlyProvider(required:boolean):Promise<PrivateUser | null>{
     const cookie = cookies().get('_dt');
 
     if(cookie == null)
@@ -29,10 +29,10 @@ export async function ServerPUserProvider(required:boolean):Promise<PUser | null
 
     const u = await response.json();
 
-    return u.user as PUser;
+    return u as PrivateUser;
 }
 
-export async function ServerPrivateUserProvider(required:boolean):Promise<PrivateUser | null>{
+export async function ServerUserAllProvider(required:boolean):Promise<PrivateUser | null>{
     const cookie = cookies().get('_dt');
 
     if(cookie == null)

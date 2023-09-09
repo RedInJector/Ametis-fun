@@ -7,12 +7,11 @@ export interface MD{
     imageUrl?: string;
     orderPosition?: string;
     groupName?: string;
-    wiki: boolean;
-    tags: MDType;
+    tags?: MDTag[];
 }
 
-export interface MDType {
-    id: number;
+export interface MDTag {
+    id?: number;
     tag: string
 }
 
@@ -24,5 +23,5 @@ export interface groupMD {
     imageUrl: string;
     orderPosition: number;
     groupName: string;
-    wiki: boolean;
+    tags?: MDTag[];
 }

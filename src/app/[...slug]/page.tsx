@@ -25,7 +25,6 @@ export default async function Page({params}: { params: { slug: string[] } }) {
     const route = params.slug.join('/');
 
 
-    console.log(route);
 
     const res = await fetch(`${config.apiUri}/api/v2/markdown/get/${route}`, {
         method: 'GET',
@@ -38,7 +37,7 @@ export default async function Page({params}: { params: { slug: string[] } }) {
 
     const md = await res.json() as MD;
 
-    if (md.wiki)
+    if (md.tags?.some(value => value.tag == "wiki"))
         notFound();
 
 

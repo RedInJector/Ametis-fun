@@ -10,9 +10,10 @@ import {notFound} from "next/navigation";
 
 async function page() {
 
+    // TODO: revalidate
     const getwikiList = await fetch(`${config.apiUri}/api/v2/markdown/wiki/getgroupes`, {
         method: 'GET',
-        next: { revalidate: 3600 }
+        next: { revalidate: 3 }
     });
 
 
@@ -20,6 +21,7 @@ async function page() {
         notFound();
 
     const mds = await getwikiList.json() as groupMD[];
+
 
 
     const groupedMDs: Record<string, groupMD[]> = mds.reduce((groups: any, md) => {

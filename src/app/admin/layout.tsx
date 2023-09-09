@@ -1,15 +1,17 @@
 import s from './page.module.css'
-import {ServerPUserProvider} from "components/Auth/serverUserProvider";
 import {notFound} from "next/navigation";
+import {ServerUserProviderBuilder} from "components/Auth/ServerUserBuilder";
 
 
 export default async function layout({children,}: { children: React.ReactNode}){
-    const user = await ServerPUserProvider(false);
+    const user = await ServerUserProviderBuilder()
+        .addUser()
+        .execute();
 
     if(user == null)
         notFound();
 
-    if(!user.admin)
+    if(!user.user.admin)
         notFound();
 
 

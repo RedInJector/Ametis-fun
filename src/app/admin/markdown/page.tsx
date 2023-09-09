@@ -4,6 +4,8 @@ import Link from "next/link";
 import * as config from "@/config/config";
 import {notFound} from "next/navigation";
 import {MD} from "@/types/MD";
+import DeleteDoc from "@/app/admin/markdown/deleteDoc";
+import {cookies} from "next/headers";
 
 
 
@@ -21,18 +23,36 @@ export default async function Page(){
 
     const data = await response.json() as MD[];
 
-
-
     return(
         <main className={s.main}>
+            <Link className={s.Back} href={`/admin`}>[Back]</Link>
             { data.map((md) => (
                 <div className={s.Page}>
-                    <Link href={md.wiki ? `/wiki/${md.path}` : `/${md.path}`}>{md.path}</Link>
-                    <Link className={s.EditLink} href={`/admin/markdown/edit/${md.path}`}>[Edit]</Link>
+                    <Link href={md.tags?.some(value => value.tag == 'wiki') ? `/wiki/${md.path}` : `/${md.path}`}>
+                        <h3>{md.title}: </h3>
+                        <span>{md.path}</span>
+
+                    </Link>
+                    <div className={s.PageBot}>
+                        <div>
+                            <span>Tags: </span>
+                            {md.tags?.map((md) => (
+                                <span>
+                                    "{md.tag}"
+                                </span>
+                            ))}
+                        </div>
+                        <div className={s.Links}>
+                            <Link className={s.link} href={`/admin/markdown/edit/${md.path}`}>[Edit]</Link>
+                            <DeleteDoc className={s.link} href={`${config.apiUri}/api/v2/markdown/remove?param=${md.path}`}>
+                                [Delete]
+                            </DeleteDoc>
+                        </div>
+                    </div>
                 </div>
             ))}
 
-            <Link className={s.EditLink} href={"/admin/markdown/add"}>[New]</Link>
+            <Link className={s.link} href={"/admin/markdown/add"}>[New]</Link>
         </main>
     )
 }

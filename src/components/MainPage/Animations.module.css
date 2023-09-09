@@ -1,0 +1,95 @@
+@keyframes slideIn {
+    from {
+        transform: translateY(200px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes OpacityIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+.TitleAnimation {
+    opacity: 0;
+    animation: slideIn 0.8s cubic-bezier(.5,.34,.4,.99) forwards,
+    OpacityIn 0.6s cubic-bezier(.95,.07,.69,.98) forwards;
+}
+
+
+@keyframes LImageIn {
+    from {
+        transform: translateX(-100px);
+    }
+    to {
+        transform: translateX(0px);
+    }
+}
+
+.BackgrundImageLeftAnimation{
+    opacity: 0;
+    animation: LImageIn 0.8s cubic-bezier(.37,.05,.2,1.28) .5s forwards,
+    OpacityIn 0.6s cubic-bezier(.95,.07,.69,.98) .5s forwards;
+}
+
+
+@keyframes RImageIn {
+    from {
+        transform: translateX(100px);
+    }
+    to {
+        transform: translateX(0px);
+    }
+}
+
+.BackgrundImageRightAnimation{
+    opacity: 0;
+    animation: RImageIn 0.5s cubic-bezier(.37,.05,.2,1.28) .55s forwards,
+    OpacityIn 0.6s cubic-bezier(.95,.07,.69,.98) .55s forwards;
+}
+
+
+@keyframes LGlowIn {
+    from {
+        transform: translateX(-200px)
+        rotate(30deg);
+    }
+    to {
+        transform: translateX(0px)
+        rotate(0deg);
+    }
+}
+
+.BackgrundGlowLeftAnimation{
+    opacity: 0;
+    animation: LGlowIn 2s cubic-bezier(.31,0,.64,.99) forwards,
+    OpacityIn 0.6s cubic-bezier(.95,.07,.69,.98) forwards;
+}
+
+
+
+
+@keyframes RGlowIn {
+    from {
+        transform: translateX(500px)
+        rotate(30deg);
+    }
+    to {
+        transform: translateX(0px)
+        rotate(0deg);
+    }
+}
+
+.BackgrundGlowRightAnimation{
+    opacity: 0;
+    animation: RGlowIn 3s ease-in-out forwards,
+    OpacityIn 0.6s cubic-bezier(.95,.07,.69,.98) forwards;
+}

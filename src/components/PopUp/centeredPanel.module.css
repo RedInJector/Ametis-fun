@@ -1,0 +1,45 @@
+.panel{
+    position: fixed;
+    max-width: 100vw;
+    min-width: 300px;
+    text-align: center;
+    left: 50%;
+    transform: translate(-50%, 0);
+
+
+    background-color: #8F37F7;
+    padding: 20px 15px;
+    border-radius: 20px;
+
+    display: flex;
+    align-items: center;
+
+    top: calc(20% + 30px);
+    opacity: 0;
+    animation: slideAndFade 0.5s ease both;
+
+    overflow-wrap: anywhere;
+}
+
+
+@keyframes slideAndFade {
+    from {
+        top: calc(20% + 30px);
+        opacity: 0;
+    }
+    to {
+        top: 20%;
+        opacity: 1;
+    }
+}
+
+.unskippable{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    background-color: rgba(0, 0, 0, 0.18);
+    z-index: 9999;
+}

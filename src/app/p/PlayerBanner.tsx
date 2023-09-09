@@ -1,3 +1,4 @@
+'use client'
 import {PublicUser} from "@/types/publicUser";
 import Link from "next/link";
 import Image from "next/image";
@@ -5,10 +6,10 @@ import * as c from '@/config/config'
 import s from './page.module.css'
 import ConvertToTag from "@/Helpers/ConvertToTag";
 import {ConvertSecondsToTime} from "@/Helpers/SecondsConverter";
+import IsOnline from "components/UserPage/IsOnline";
 
 
 export default function PlayerBanner({publicUser, className}: { publicUser: PublicUser, className?: any }) {
-    console.log(publicUser)
     return (
         <Link className={`${className} ${s.PlayerbannerContainer}`} href={`/p/${publicUser.user.minecraftName}`}>
             <div className={s.BannerTop}>
@@ -23,13 +24,13 @@ export default function PlayerBanner({publicUser, className}: { publicUser: Publ
                     {publicUser.user.minecraftName}#{ConvertToTag(publicUser.user.id, 5)}
                     <br/>
                     <div className={s.lastOnline}>
-                        Був на сервері: <IsOnline time={publicUser.lastOnline}/>
+                        Був на сервері: <IsOnline name={publicUser.user.minecraftName}/>
                     </div>
                 </div>
             </div>
 
             <div className={s.roleWrapper}>{publicUser.roles?.map((role) => (
-                <div className={s.RoleContainer}>
+                <div key={role.name} className={s.RoleContainer}>
                         <span
                             style={{backgroundColor: `rgb(${role.R},${role.G},${role.B})`}}
                             className={s.dot}
@@ -42,7 +43,7 @@ export default function PlayerBanner({publicUser, className}: { publicUser: Publ
     )
 }
 
-
+/*
 function IsOnline({time}:{time?:number}){
 
 
@@ -69,4 +70,4 @@ function IsOnline({time}:{time?:number}){
         </>
     )
 
-}
+*/

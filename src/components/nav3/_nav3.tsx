@@ -13,7 +13,7 @@ import Logo from 'public/Ametis-icon.svg'
 import UserButton from './UserButton';
 
 import * as config from "@/config/config";
-import {PUser} from "@/types/PrivateUser";
+import {PrivateUser} from "@/types/PrivateUser";
 
 
 let NavBarlist: paths[];
@@ -22,7 +22,7 @@ interface paths{
         text: string
 }
 
-export default function Navbar3({user, NavBarList}:{user:PUser | null, NavBarList: paths[]}) {
+export default function Navbar3({user, NavBarList}:{user:PrivateUser | null, NavBarList: paths[]}) {
     NavBarlist = NavBarList;
     return (
         <>
@@ -33,7 +33,7 @@ export default function Navbar3({user, NavBarList}:{user:PUser | null, NavBarLis
     )
 }
 
-function NavDesktop({ user }: { user: PUser | null}) {
+function NavDesktop({ user }: { user: PrivateUser | null}) {
     const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
@@ -100,7 +100,7 @@ function NavList() {
 //<Link className={pathname == "/" ? s.selectedButton : s.notSelectedButton} href="/" draggable="false">Головна</Link>
 
 
-function NavMobile({ user }: { user: PUser | null}) {
+function NavMobile({ user }: { user: PrivateUser | null}) {
     const [isOpened, setOpened] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
@@ -147,7 +147,7 @@ function NavMobileClosed({ clickHandler, className }: { clickHandler: any, class
     )
 }
 
-function NavMobileOpened({ clickHandler, className, user }: { clickHandler: any, className: any, user:PUser | null }) {
+function NavMobileOpened({ clickHandler, className, user }: { clickHandler: any, className: any, user:PrivateUser | null }) {
     const pathname = usePathname();
     return (
         <>

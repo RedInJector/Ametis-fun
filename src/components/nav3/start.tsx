@@ -1,9 +1,11 @@
-import {ServerPUserProvider} from "components/Auth/serverUserProvider";
 import Navbar3 from "components/nav3/_nav3";
+import {ServerUserProviderBuilder} from "components/Auth/ServerUserBuilder";
 
 
 export default async function Navbar() {
-    const user = await ServerPUserProvider(false);
+    const user = await ServerUserProviderBuilder()
+        .addUser()
+        .execute();
 
     return(
         <>

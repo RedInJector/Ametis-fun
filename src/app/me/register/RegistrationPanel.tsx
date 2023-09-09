@@ -4,13 +4,11 @@ import s from './Registrationpanel.module.css';
 import { useRouter } from 'next/navigation'
 import * as config from "@/config/config";
 import Image from 'next/image'
-import { User } from '@/types/types';
-import Spinner from '@/components/Spinner/Spinner'
 
 import { motion } from "framer-motion"
-import {PUser} from "@/types/PrivateUser";
+import {PrivateUser} from "@/types/PrivateUser";
 
-export default function RegistrationPanel({user}:{user:PUser}) {
+export default function RegistrationPanel({user}:{user:PrivateUser}) {
 
     return (
         <>   
@@ -25,18 +23,18 @@ interface Props {
     children: React.ReactNode;
   }
 
-const Panel = ({ user }: { user: PUser }) => {
+const Panel = ({ user }: { user: PrivateUser }) => {
     const [step, setStep] = useState(0);
     const router = useRouter()
 
     let params: string;
-    params = 'dsid=' + user.discordUser.discordId;
+    params = 'dsid=' + user.user.discordUser.discordId;
 
     useEffect(() => {
-        if (user.hasPayed) {
+        if (user.user.hasPayed) {
             router.push('/');
         }
-        if (user.minecraftName != null) {
+        if (user.user.minecraftName != null) {
             setStep(2);
             return;
         }
@@ -74,7 +72,7 @@ const Panel = ({ user }: { user: PUser }) => {
         if (res.status != 200)
             console.error('An unknown error occurred ');
 
-        user.minecraftName = name;
+        user.user.minecraftName = name;
         
         //setSavedPlayerName(name);
         setStep(2);
@@ -313,8 +311,8 @@ const Avatar = ({ name }: { name: string }) => {
         />
     )
 }
-const Krok3 = ({ user }: { user: PUser }) => {
-    if (user.minecraftName == null)
+const Krok3 = ({ user }: { user: PrivateUser }) => {
+    if (user.user.minecraftName == null)
        return(<></>);
 
 
@@ -325,7 +323,7 @@ const Krok3 = ({ user }: { user: PUser }) => {
     const router = useRouter()
 
     let params: string;
-    params = 'userid=' + user.id;
+    params = 'userid=' + user.user.id;
 
     useEffect(() => {
         const uri = config.ws() + config.apiUrl + '/api/v1/payment-socket?' + params;
@@ -357,10 +355,10 @@ const Krok3 = ({ user }: { user: PUser }) => {
                 </div>
 
                 <div className={`${s.PlayerBanner} ${s.k3Banner}`}>
-                    <Avatar name={user.minecraftName} />
+                    <Avatar name={user.user.minecraftName} />
                     <div className={s.bannerText}>
-                        <div>{user.minecraftName}</div>
-                        <div className={s.idtext}>#{convertToPaddedString(user.id, 5)}</div>
+                        <div>{user.user.minecraftName}</div>
+                        <div className={s.idtext}>#{convertToPaddedString(user.user.id, 5)}</div>
                     </div>
                 </div>
 

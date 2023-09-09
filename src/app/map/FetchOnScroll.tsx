@@ -6,7 +6,6 @@ import {PublicUser} from "@/types/publicUser";
 import PlayerBanner from "@/app/p/PlayerBanner";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Spinner from "components/Spinner/Spinner";
-import {generateUUID} from "three/src/math/MathUtils";
 
 
 export default function FetchOnScroll(){
@@ -17,7 +16,7 @@ export default function FetchOnScroll(){
     const fetchData = async () => {
 
         try {
-            const response = await fetch(`${config.apiUri}/api/v2/p/all?page=${page}&amount=21`);
+            const response = await fetch(`${config.apiUri}/api/v2/p/all?page=${page}&amount=21`, {cache: "no-cache"});
             if(!response.ok)
                 setEnd(true)
 
@@ -25,9 +24,7 @@ export default function FetchOnScroll(){
 
             if(data.length === 0)
                 setEnd(true)
-
-            console.log(data)
-
+            
             setItems(prevItems => [...prevItems, ...data]);
             setPage(prevPage => prevPage + 1);
         }catch (error) {
@@ -54,7 +51,7 @@ export default function FetchOnScroll(){
             >
                 {items.map(item => (
                     <div key={item.user.id}>
-                        <PlayerBanner className={s.gridChildren} key={generateUUID()} publicUser={item}/>
+                        <PlayerBanner  className={s.gridChildren} publicUser={item}/>
                     </div>
                 ))}
             </InfiniteScroll>

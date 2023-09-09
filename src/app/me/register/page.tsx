@@ -3,18 +3,19 @@ import RegistrationPanel from './RegistrationPanel';
 import Footer from '@/components/footer/footer'
 import {redirect} from "next/navigation";
 import * as config from "@/config/config";
-import {ServerPUserProvider} from "components/Auth/serverUserProvider";
 import Navbar from "components/nav3/start";
+import {ServerUserProviderBuilder} from "components/Auth/ServerUserBuilder";
 
 export default async function LoginPage() {
-    const user = await ServerPUserProvider(false);
+    const user = await ServerUserProviderBuilder()
+        .addUser()
+        .execute();
+
     if(user == null)
         redirect(config.authUrl);
 
-    if(user.banned)
-        redirect('/me/banned')
 
-    if(user.hasPayed)
+    if(user.user.hasPayed)
         redirect('/me')
 
 

@@ -1,18 +1,32 @@
+'use client'
 import * as config from "@/config/config";
 import {ConvertSecondsToTime} from "@/Helpers/SecondsConverter";
+import {useEffect, useState} from "react";
 
-export default async function IsOnline({name}:{name:string | null}){
+export default function IsOnline({name}:{name:string | null}){
+    const [lastOnline, setlastOnline] = useState(0);
+
     if(name == null)
         return (<>Error. How do you even did that?</>)
 
-    const response = await fetch(`${config.apiUri}/api/v2/p/${name}/isonline`, {
-        method: 'GET',
-        //next: {revalidate: 120}
-    });
+    useEffect(() => {
+        const fetchOnline = async () => {
+            const response = await fetch(`${config.apiUri}/api/v2/p/${name}/isonline`, {
+                method: 'GET',
+                //next: {revalidate: 120}
+            });
 
-    const time= Number(await response.text());
+            const time= Number(await response.text());
+            setlastOnline(time)
 
-    if(time == -1){
+        }
+
+        fetchOnline();
+
+    }, [])
+
+
+    if(lastOnline == -1){
         return (
             <>
                 Ніколи
@@ -20,7 +34,7 @@ export default async function IsOnline({name}:{name:string | null}){
         )
     }
 
-    if(time == 0)
+    if(lastOnline == 0)
         return (
             <>
                 Онлайн
@@ -30,7 +44,7 @@ export default async function IsOnline({name}:{name:string | null}){
 
     return(
         <>
-            {ConvertSecondsToTime(time)} тому
+            {ConvertSecondsToTime(lastOnline)} тому
         </>
     )
 

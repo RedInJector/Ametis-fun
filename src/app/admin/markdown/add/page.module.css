@@ -52,3 +52,8 @@
     font-family: var(--font-oswald);
     font-weight: 600;
 }
+
+.tagInputwrapper{
+    display: flex;
+    gap: 10px;
+}

@@ -11,8 +11,8 @@ import {PrivateUser} from "@/types/PrivateUser";
 import Skin from "components/UserPage/Skin";
 import CopyComponent from "components/UserPage/CopyComponent";
 import {ConvertSecondsToTime} from "@/Helpers/SecondsConverter";
-import {Calendar} from "components/UserPage/Calendar";
 import IsOnline from "components/UserPage/IsOnline";
+import {Calendar} from "components/UserPage/Calendar";
 
 const inter = Inter({ subsets: ['latin'] })
 

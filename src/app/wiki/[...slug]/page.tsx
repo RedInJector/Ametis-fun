@@ -26,12 +26,10 @@ export default async function Page({params}: { params: { slug: string[] } }) {
     const route = params.slug.join('/');
 
 
-    console.log(route);
 
     const res = await fetch(`${config.apiUri}/api/v2/markdown/get/${route}`, {
         method: 'GET',
-        cache: 'no-cache',
-        next: { revalidate: 3600 }
+        next: { revalidate: 1200 }
     });
 
     if (!res.ok)
@@ -39,13 +37,13 @@ export default async function Page({params}: { params: { slug: string[] } }) {
 
     const md = await res.json() as MD;
 
-    if(!md.wiki)
+    if(!md.tags?.some(item => item.tag == "wiki"))
         notFound();
 
-
+    // TODO: revalidate
     const getwikiList = await fetch(`${config.apiUri}/api/v2/markdown/wiki/getgroupes`, {
         method: 'GET',
-        next: { revalidate: 3600 }
+        next: { revalidate: 1200 }
     });
 
 
@@ -57,6 +55,7 @@ export default async function Page({params}: { params: { slug: string[] } }) {
     return (
         <main className={s.main}>
             <SearchBar/>
+            <br/>
             {wikiList ?
                 <Sidebar mds={wikiList} currentMD={md}/>
                 :

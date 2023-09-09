@@ -1,7 +1,7 @@
 'use client'
 import {useEffect, useRef, useState} from "react";
 import * as config from "@/config/config";
-import s from "@/app/map/page.module.css";
+import s from "components/SearchBar/searchbar.module.css"
 import Image from "next/image";
 import {MD} from "@/types/MD";
 import Link from "next/link";
@@ -46,7 +46,7 @@ export default function SearchBar() {
     useEffect(() => {
         if (input.length === 0) {
             setFound(null);
-        } else if (input.length > 3) {
+        } else if (input.length >= 3) {
             // Implement debounce to make the call after 0.5 seconds
             if (debounceTimeoutRef.current) {
                 clearTimeout(debounceTimeoutRef.current);
@@ -81,15 +81,21 @@ export default function SearchBar() {
             </div>
 
             {found ?
-                <section>
+                <section className={s.wikiFoundContainer}>
                     {found.map((md) => (
-                        <div key={md.id}>
-                            <Link href={`${config.thisDomain}/wiki/${md.path}`}>
-                                <div>{md.title}</div>
-                                <div>{md.content}</div>
-                            </Link>
-                            <br />
-                        </div>
+                        <Link  key={md.id} className={s.wikiFoundItem} href={`${config.thisDomain}/wiki/${md.path}`}>
+                            <Image
+                                height={50}
+                                width={50}
+                                src={md.imageUrl ?  md.imageUrl : ""}
+                                alt={""}
+                                className={s.wikiImage}
+                            />
+                            <div className={s.wikiFoundText}>
+                                <div className={s.wikifoundItemTitle}>{md.title}</div>
+                                <div className={s.wikifoundItemDescription}>{md.content}</div>
+                            </div>
+                        </Link>
                     ))
                     }
                     {
@@ -97,6 +103,7 @@ export default function SearchBar() {
                     }
                 </section>
             : null}
+
         </>
     );
 }

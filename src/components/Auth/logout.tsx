@@ -27,7 +27,8 @@ export default function LogoutComponent({ children, className, onClick }: Props)
                         onClick();
                     }
                     //router.refresh();
-                    router.push('/');
+                    router.push('?logout=1');
+                    router.refresh();
 
                 }
             );

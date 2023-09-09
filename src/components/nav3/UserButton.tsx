@@ -4,16 +4,16 @@ import * as config from '@/config/config'
 import Image from 'next/image'
 import Auth from 'public/nav/Frame.svg'
 import { apiUri, authUrl } from '@/config/config'
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { motion } from "framer-motion"
 import Link from 'next/link';
-import {PUser} from "@/types/PrivateUser";
-import LogoutComponent, {Logout} from "components/Auth/logout";
+import {PrivateUser} from "@/types/PrivateUser";
+import LogoutComponent from "components/Auth/logout";
 
 
-let usr: PUser | null;
+let usr: PrivateUser | null;
 
-export default function UserButton({ user }: { user: PUser | null }) {
+export default function UserButton({ user }: { user: PrivateUser | null }) {
     usr = user;
     const [isOpened, setOpened] = useState(false);
 
@@ -23,6 +23,19 @@ export default function UserButton({ user }: { user: PUser | null }) {
     const setOpenedState = () => {
         setOpened(false);
     }
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+    const handleScroll = () => {
+        setOpened(false)
+    };
+
+
 
     return (
         <div className={s.userbuttonContainer}>
@@ -66,10 +79,6 @@ function AuthButton() {
 }
 
 function Panel({setOpened}:{setOpened?: () => void}) {
-    //const auth = useAuth();
-
-
-    
     return (
         <div className={s.OpenedPanel}>
             <div>
@@ -79,7 +88,7 @@ function Panel({setOpened}:{setOpened?: () => void}) {
 
                 <div className={s.PanelTopRight}>
                     <Name />
-                    {usr?.hasPayed ?
+                    {usr?.user?.hasPayed ?
                     <div className={s.ipbutton}>ip: <span className={s.ip}>{config.serverip}</span></div>
                     :
                     <Link href='/me' className={s.buybutton}>
@@ -119,12 +128,12 @@ function Name() {
 
     return (
         <>
-            {usr.minecraftName == null ?
-                <Link href='/me' className={s.userlink}>{usr.discordUser.Username}
-                    #{convertToPaddedString(usr.id, 5)}</Link>
+            {usr.user.minecraftName == null ?
+                <Link href='/me' className={s.userlink}>{usr.user.discordUser.Username}
+                    #{convertToPaddedString(usr.user.id, 5)}</Link>
                 :
                 <div>
-                    <Link href="/me" className={s.userlink}>{usr.minecraftName}#{convertToPaddedString(usr.id, 5)}</Link>
+                    <Link href="/me" className={s.userlink}>{usr.user.minecraftName}#{convertToPaddedString(usr.user.id, 5)}</Link>
                 </div>
             }
         </>
@@ -138,9 +147,9 @@ function AvatarImage() {
         return (<></>)
 
 
-    if(usr?.minecraftName != null)
+    if(usr?.user.minecraftName != null)
         return (
-            <img className={s.avatarimage} src={`${apiUri}/api/v2/p/${usr?.minecraftName}/head.png`}></img>
+            <img className={s.avatarimage} src={`${apiUri}/api/v2/p/${usr?.user.minecraftName}/head.png`}></img>
         )
     
     return(

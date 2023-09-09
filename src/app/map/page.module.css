@@ -138,6 +138,7 @@
     align-items: center;
     gap: 10px;
 }
+
 .searchBar{
     all: unset;
     width: 100%;

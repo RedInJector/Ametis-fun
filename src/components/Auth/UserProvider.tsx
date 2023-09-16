@@ -1,79 +1,28 @@
 'use client'
 import { createContext, useContext, useEffect, useState } from 'react';
-import { User } from '@/types/types';
-import * as config from "@/config/config";
 import {useRouter} from "next/navigation";
+import {PrivateUser} from "@/types/PrivateUser";
 
 type UserContextType = {
-    user: User | null;
-    logout: () => void;
+    user: PrivateUser | null;
 };
 
 
 
 interface Props {
     children: React.ReactNode,
-    AuthorizedOnly: boolean
+    PrivateUser: PrivateUser,
 }
 
-const Context = createContext<UserContextType>({ user: null, logout: () => { } });
+const Context = createContext<UserContextType>({ user: null });
 
-const Provider = ({ children, AuthorizedOnly }: Props) => {
-    const [user, setUser] = useState<User | null>(null);
+const Provider = ({ children, PrivateUser }: Props) => {
+    const [user, setUser] = useState<PrivateUser>(PrivateUser);
     const router = useRouter();
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch(`${config.apiUri}/api/v1/getuserdata2`, {
-                method: 'GET',
-                cache: 'no-store',
-                credentials: 'include',
-            });
-            if (!response.ok) {
-                if(AuthorizedOnly)
-                    window.location.replace(config.authUrl);
-
-                setUser(null);
-                return;
-            }
-            if(!response.ok)
-                return;
-
-            const data = await response.json() as User;
-
-            setUser(data);
-        };
-
-        fetchData();
-    }, [])
-
-    const logout = () => {
-        try {
-            fetch(`${config.apiUri}/api/v2/logout`, {
-                method: 'DELETE',
-                cache: 'no-store',
-                credentials: 'include',
-            }).then(
-                (res) => {
-                    if (!res.ok) {
-                        console.error('An unknown error occurred ');
-                    }
-                    setUser(null);
-                    router.refresh();
-                    if(AuthorizedOnly)
-                        window.location.replace("/");
-                }
-            );
-        }
-        catch (error) {
-            console.error('An error occurred ' + error);
-        }
-
-    }
 
     const exposed: UserContextType = {
         user,
-        logout,
     };
 
     return (
@@ -82,6 +31,4 @@ const Provider = ({ children, AuthorizedOnly }: Props) => {
 };
 
 export const useUser = () => useContext(Context).user;
-export const useAuth = () => useContext(Context);
-
 export default Provider;

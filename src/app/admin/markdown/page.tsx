@@ -6,6 +6,7 @@ import {notFound} from "next/navigation";
 import {MD} from "@/types/MD";
 import DeleteDoc from "@/app/admin/markdown/deleteDoc";
 import {cookies} from "next/headers";
+import ToMain from "@/app/admin/ToMain";
 
 
 
@@ -25,7 +26,9 @@ export default async function Page(){
 
     return(
         <main className={s.main}>
-            <Link className={s.Back} href={`/admin`}>[Back]</Link>
+            <div>
+                <ToMain/>
+            </div>
             { data.map((md) => (
                 <div className={s.Page}>
                     <Link href={md.tags?.some(value => value.tag == 'wiki') ? `/wiki/${md.path}` : `/${md.path}`}>

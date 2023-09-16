@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
-import Navbar from "components/deprecated/navbar2/_nav";
+import Navbar from "components/nav3/start";
 import Footer from "components/footer/footer";
 import s from "./page.module.css";
 import React from "react";

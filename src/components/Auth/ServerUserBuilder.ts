@@ -1,6 +1,6 @@
 import {cookies} from "next/headers";
 import * as config from "@/config/config";
-import {PrivateUser,} from "@/types/PrivateUser";
+import {PrivateUser, UserRoles,} from "@/types/PrivateUser";
 
 export class UserProviderBuilder {
     private searchParams: string[][] = [];
@@ -50,8 +50,18 @@ export class UserProviderBuilder {
         }
 
 
-        const u = await response.json();
-        return u as PrivateUser;
+        const statusMapping: Record<string, UserRoles> = {
+            "PLAYER": UserRoles.PLAYER,
+            "EDITOR": UserRoles.EDITOR,
+            "MODERATOR": UserRoles.MODERATOR,
+            "ADMIN": UserRoles.ADMIN,
+        };
+
+
+        const u = await response.json() as PrivateUser;
+        u.user.userRole = statusMapping[u.user.userRole]
+
+        return u ;
 
     }
 }

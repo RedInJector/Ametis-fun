@@ -30,7 +30,7 @@ export type Playtime = {
     lastWeekSeconds: number;
     lastMonthSeconds: number;
     allTimeSeconds: number;
-  };
+};
 
 
 

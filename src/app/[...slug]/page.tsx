@@ -13,6 +13,9 @@ export async function generateMetadata({params}: { params: { slug: string[] } })
         cache: 'no-cache'
     });
 
+    if(!res.ok)
+        notFound()
+
     const md = await res.json() as MD;
 
     return {
@@ -24,16 +27,17 @@ export default async function Page({params}: { params: { slug: string[] } }) {
 
     const route = params.slug.join('/');
 
-
-
     const res = await fetch(`${config.apiUri}/api/v2/markdown/get/${route}`, {
         method: 'GET',
         //cache: 'no-cache',
         next: {revalidate: 3600}
     });
 
-    if (!res.ok)
+    console.log(res)
+
+    if (res.status != 200){
         notFound();
+    }
 
     const md = await res.json() as MD;
 

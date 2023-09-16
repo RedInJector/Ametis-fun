@@ -35,9 +35,19 @@ export interface PUser {
     banned: boolean;
     admin: boolean;
     unbannable: boolean;
+    userRole: UserRoles
 }
+
+
 
 export interface DiscordUser {
     discordId: string;
     Username: string; // Make sure the property name matches the API response
+}
+
+export enum UserRoles {
+    PLAYER = 0,
+    EDITOR = 1,
+    MODERATOR = 2,
+    ADMIN = 3
 }

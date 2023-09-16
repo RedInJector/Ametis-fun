@@ -1,7 +1,7 @@
 import {cookies} from "next/headers";
 import {redirect} from "next/navigation";
 import * as config from "@/config/config";
-import {PrivateUser,} from "@/types/PrivateUser";
+import {PrivateUser, UserRoles,} from "@/types/PrivateUser";
 
 export async function ServerUserOnlyProvider(required:boolean):Promise<PrivateUser | null>{
     const cookie = cookies().get('_dt');
@@ -17,6 +17,7 @@ export async function ServerUserOnlyProvider(required:boolean):Promise<PrivateUs
         cache: 'no-store',
         headers: headers,
     });
+
 
 
 
